@@ -1,0 +1,31 @@
+{
+  "name": "bg-project",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000b\u0000g\u0000-\u0000p\u0000r\u0000o\u0000j\u0000e\u0000c\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "build": "babel src --out-dir dist",
+    "serve": "node dist/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bangood/bg-project.git"
+  },
+  "author": "'bangood' <'2419281635@qq.com'>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bangood/bg-project/issues"
+  },
+  "homepage": "https://github.com/Bangood/bg-project#readme",
+  "devDependencies": {
+    "@babel/cli": "7.4.3",
+    "@babel/core": "7.4.3",
+    "@babel/node": "7.2.2",
+    "@babel/preset-env": "7.4.3",
+    "nodemon": "1.18.11"
+  },
+  "dependencies": {
+    "alipay-sdk": "3.0.4"
+  }
+}
