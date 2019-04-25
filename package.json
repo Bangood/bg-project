@@ -26,6 +26,8 @@
     "nodemon": "1.18.11"
   },
   "dependencies": {
-    "alipay-sdk": "3.0.4"
+    "alipay-sdk": "3.0.4",
+    "koa": "2.7.0",
+    "koa-router": "7.4.0"
   }
 }
