@@ -10,7 +10,9 @@ router.post('/gateway.do',(ctx,next)=>{
     const charset = '';
     console.log(ctx.request.body);
 });
-
+router.get('/',(ctx,next)=>{
+    ctx.body = 'hi';
+})
 app.use(router.routes());
 
 export function init(port) {
