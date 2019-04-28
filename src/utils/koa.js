@@ -4,6 +4,7 @@ import BodyParser from 'koa-bodyparser';
 import AlipaySdk from 'alipay-sdk';
 import path from 'path';
 import fs from 'fs';
+const crypto = require("crypto");
 const alipaySdk = new AlipaySdk({
     appId: '2019042364291281',
     privateKey: fs.readFileSync(path.resolve(__dirname,'../../assets/private-key.pem'),'ascii'),
@@ -39,10 +40,11 @@ router.post('/gateway.do',async (ctx,next)=>{
                 <biz_content>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy0Ohf6pq+u9SYY/kTt0VffzdtglGFo0mK5cd+l6BzUrX2SFZaSxqaC98hrGYSvx0cjVCztKK+W7Ob7vjYhHk1+zHA8WO2KFSYQrfRPJNzJivLKSu3N7SwGMDW51kGFkVxJqafnBVm/r7wksaCeQkOA8rNFnPF0epv4jPEX3ua4++syFikneYvx0j6zPT7xefLfm858fOwHq+u1ES+xrO/HCxmG3yzwtHFQsqnxlmAHadC4VOBcU45W6rnhVH144+7hVEGieV7u9grRfuhfLZlkYyphMVHoyWsUSbzKN4V3Pha9S0PFQG4p9txKbY9mxbuzkp2WOsopyQ7EBwKf6n2QIDAQAB</biz_content>
                 <success>true</success>
             </response>
-            <sign>DXr8LVfHytoZ3RR0K95pzGtA3d9LdpjIjLEis2BDIPQisPwS+FMFxZt9NCMt531EeDj/nbzoIAz8Or7PuqxNfSzNI8qnhirm/Hvr8uedXX9JiQxHu8q3Rw2lJWD8cqQzgf3xwV/+wbN8yuI7s8xjo6odq6NCqrAIu7E0DDfZyKo=</sign>
+            <sign>LNZAivFdVklfdnKB3g9UwAM9jFqRL7OeX02Xrsd6owHfgY+ImjmjFNP7XsWCvS1ReK0UBECYE63obm5snvOuQM+BF23WjRFrzvgQ6hUvnook2gKite+HheIHP8+Hr6BaCtakw+CfNRzpPg//XmTwXp+bXMk/Ig5ZiUwsgPb33uVUfbjpQCT2qV1AAIZBN83F4RXsqFx43FuLhXj/NNvKK6zBFq9btiPsxYWaciGOdtPYfGMjCKt6W93CLwKu2RObOU02dynO5e1jpxcCx5LNoCQ+hsFAgtuAwXITlgomlK5RNaqatGTA9pD5S+IC1iRxLR++AbgnNwkRBzSYXC0JvA==</sign>
             <sign_type>RSA2</sign_type>
         </alipay>
         `
+        let sign = crypto.createSign('RSA-SHA256').update('MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiULinfbmmNmsPiiBaNGTKl8abplmt62WBhmJ8l4b4eK0FM7TbLETBAzUgXY1OG9PjQBXyaADNzhdR1exU15NTSpnCWlqcQGZFzZ6Kt39p/dWU5+ZmObG1cX3ShN0qzVcbPxKBYlZvPsrbiBUZdTEOInF822ftcl4cp8OK0kdoHz5xYo/Vc6Ek2re85WeYja4zM/Y9ysyH7+ZdrgtLNs5iA+JJW1jTVwqfctc/lq4N7KmHA6WezIX2E9KZiOSbF8UnYk3ZerggaHoKvkRxHFIqqyHk8JT5Me+39ad1DSFS5J16Grq9S0ZjHcVYXN3z0NXHqRP5QMLe9pDxPk17dU+xQIDAQAB</biz_content><success>true</success>', 'utf8').sign(fs.readFileSync(path.resolve(__dirname,'../../assets/private-key.pem'),'ascii'), 'base64');
     }catch(err){
         console.log('errrrrrrr')
         console.log(err);
