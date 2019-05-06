@@ -49,5 +49,8 @@ async function fundAuthOrderAppFreeze() {
         console.log(err);
     }
 }
-export  {fundAuthOrderAppFreeze};
+async function redirect($ctx){
+    console.log($ctx.query);
+}
+export  {fundAuthOrderAppFreeze,redirect};
 
