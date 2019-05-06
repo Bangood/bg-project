@@ -61,16 +61,16 @@ async function getProduct($ctx) {
     })
 }
 async function saveOrder($ctx){
-    console.log($ctx.request.body);
+    let {openId,productId,userName,UserTelphone,userEmail,province,area,country,address,isWithhold}=JSON.parse($ctx.request.body.param)
     try {
         let result = await alipaySdk.exec('alipay.fund.auth.order.app.freeze',{
             bizContent: {
-                outOrderNo:'',
-                outRequestNo: '',
-                orderTitle: '',
+                outOrderNo:'8077735255938023',
+                outRequestNo: '8077735255938032',
+                orderTitle: '预授权冻结',
                 amount:0.01,
-                productCode: '',
-                payeeLogonId:'',
+                productCode: 'PRE_AUTH_ONLINE',
+                payeeLogonId:'396493396@qq.com',
 
             }
         })
