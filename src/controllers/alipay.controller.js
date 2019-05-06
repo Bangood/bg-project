@@ -12,7 +12,7 @@ const alipaySdk = new AlipaySdk({
 function formatKey(key, type) {
     const item = key.split('\n').map(val => val.trim());
     console.log(item)
-    // 删除包含 `RSA PRIVATE KEY / PUBLIC KEY` 等字样的第一行
+        // 删除包含 `RSA PRIVATE KEY / PUBLIC KEY` 等字样的第一行
     if (item[0].includes(type)) {
         item.shift();
     }
@@ -24,8 +24,8 @@ function formatKey(key, type) {
 }
 async function fundAuthOrderAppFreeze() {
     try {
-        const result = await alipaySdk.exec('alipay.fund.auth.order.app.freeze',{
-            bizContent:{
+        const result = await alipaySdk.exec('alipay.fund.auth.order.app.freeze', {
+            bizContent: {
                 outOrderNo: '8077735255938023',
                 outRequestNo: '8077735255938032',
                 orderTitle: '预授权冻结',
@@ -40,17 +40,29 @@ async function fundAuthOrderAppFreeze() {
                 settleCurrency: 'USD',
                 enablePayChannels: '[{\"payChannelType\":\"PCREDIT_PAY\"},{\"payChannelType\":\"MONEY_FUND\"}]'
             }
-        },{
-            validateSign:true,
-            log:console,
+        }, {
+            validateSign: true,
+            log: console,
         });
         console.log(result);
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 }
-async function redirect($ctx){
-    console.log($ctx.query);
-}
-export  {fundAuthOrderAppFreeze,redirect};
+async function redirect($ctx) {
+    let { app_id, source, scope, auth_code } = $ctx.query;
+    try {
+        let result = alipayPublicKey.exec('alipay.system.oauth.token', {
+            grantType: 'authorization_code',
+            code: auth_code,
+        }, {
+            validateSign: true,
+            log: console
+        });
+        console.log(result);
+    } catch (err) {
+        console.log(err);
+    }
 
+}
+export { fundAuthOrderAppFreeze, redirect };
