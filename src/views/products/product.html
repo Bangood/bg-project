@@ -292,7 +292,7 @@
                             isWithhold: 1 //methods.settings.isWithhold
                         };
                         $.getAjaxData({
-                            url: '/front/saveorder?rnd=' + Math.random(),
+                            url: '/v1/products/saveorder',
                             data: {
                                 param: JSON.stringify(param)
                             },
