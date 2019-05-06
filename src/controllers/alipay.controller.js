@@ -62,7 +62,7 @@ async function redirect($ctx) {
         });
         console.log(result);
 
-        $ctx.redirect('/v1/products/'+$ctx.params['id'])
+        $ctx.redirect('/v1/products?productId='+$ctx.params['id']+`&paa_id=${app_id}&source=${source}&scope=${scope}&auth_code=${auth_code}`)
     } catch (err) {
         console.log(err);
     }
