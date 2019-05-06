@@ -50,6 +50,7 @@ async function fundAuthOrderAppFreeze() {
     }
 }
 async function redirect($ctx) {
+    console.log($ctx.params['id']);
     let { app_id, source, scope, auth_code } = $ctx.query;
     try {
         let result = await alipaySdk.exec('alipay.system.oauth.token', {
@@ -60,6 +61,8 @@ async function redirect($ctx) {
             log: console
         });
         console.log(result);
+
+        $ctx.redirect('/v1/products/'+$ctx.params['id'])
     } catch (err) {
         console.log(err);
     }
