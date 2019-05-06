@@ -25,6 +25,7 @@ async function renderItem($ctx){
     await $ctx.render('products/product',{});
 }
 async function getAuthUrl($ctx){
-    $ctx.ok({status:0,data:{key:0,msg:'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3a%2f%2fapply.epicbm.cn%2fapply%2fCP190402133400000211'}})
+    let redirectUrl = encodeURI('http://39.100.71.78/v1/alipay/redirect');
+    $ctx.ok({status:0,data:{key:0,msg:'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri='+redirectUrl}})
 }
 export {list,renderPage,renderItem,getAuthUrl};
