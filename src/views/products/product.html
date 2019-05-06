@@ -154,7 +154,7 @@
             loadChinaCity: function() {
                 $.ajax({
                     type: "GET",
-                    url: "/pos/js/chinaCity.json",
+                    url: "http://apply.epicbm.cn/pos/js/chinaCity.json",
                     dataType: "json",
                     success: function(data) {
                         methods.settings.dataChinaCity = data;

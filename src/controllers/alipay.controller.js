@@ -32,6 +32,13 @@ async function fundAuthOrderAppFreeze() {
                 amount: 0.01,
                 productCode: 'PRE_AUTH_ONLINE',
                 payeeLogonId: '15196634454',
+                payeeUserId: '2088102000275795',
+                payTimeout: '2d',
+                extraParam: '{\"category\":\"CHARGE_PILE_CAR\"}',
+                sceneCode: 'OVERSEAS_ONLINE_AUTH_COMMON_SCENE',
+                transCurrency: 'USD',
+                settleCurrency: 'USD',
+                enablePayChannels: '[{\"payChannelType\":\"PCREDIT_PAY\"},{\"payChannelType\":\"MONEY_FUND\"}]'
             }
         },{
             validateSign:true,

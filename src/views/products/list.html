@@ -14,8 +14,8 @@
 
     <link href="/pos/css/weui.css" rel="stylesheet" />
 
-    <script src="/javascript/core/jquery-1.12.4.min.js"></script>
-    <script src="/javascript/common/tools.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/js/tools.js"></script>
 
     <!-- 主文件 -->
     <link rel="stylesheet" href="https://gw.alipayobjects.com/as/g/antui/antui/10.1.10/dpl/antui.css" />
@@ -41,8 +41,9 @@
 
         var methods = {
             getList: function () {
+                
                 $.getAjaxData({
-                    url: '/front/getprolist?rnd=' + Math.random(),
+                    url: '/v1/products/list',
                     success: function (data) {
                         if (data.data.key == 0) {
                             methods.bindData(data.data.msg);
@@ -82,7 +83,7 @@
             },
             openApplyProduct: function (id) {
                 $.getAjaxData({
-                    url: '/front/getauthurl?id=' + id,
+                    url: '/v1/products/getauthurl?id=' + id,
                     success: function (data) {
                         if (data.data.key == 0) {
                             window.location.href = data.data.msg;
@@ -141,11 +142,7 @@
 <body ontouchstart="">
     <div class="swiper-container am-carousel demo-swiper" id="J-swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/a1.png" style="width:100%;height:100%;"></div>
-            <div class="swiper-slide"><img src="images/a2.png" style="width:100%;height:100%;"></div>
-            <div class="swiper-slide"><img src="images/a4.png" style="width:100%;height:100%;"></div>
-            <div class="swiper-slide"><img src="images/a3.png" style="width:100%;height:100%;"></div>
-            <div class="swiper-slide"><img src="images/a1.png" style="width:100%;height:100%;"></div>
+            <div class="swiper-slide"><img src="/imgs/img1.jpg" style="width:100%;height:100%;"></div>
         </div>
         <div class="swiper-pagination"></div>
     </div>
@@ -156,10 +153,10 @@
             <a class="am-notice-go" href="#"></a>
         </div>-->
     </div>
-    <div style="margin:0 2px;text-align:center;"><img src="images/middle.png" style="width:100%;height:80px;margin-top:5px; display:block;" /></div>
+    <div style="margin:0 2px;text-align:center;"><img src="/imgs/img1.jpg" style="width:100%;height:80px;margin-top:5px; display:block;" /></div>
 
     <div style="padding:5px 2px 5px 5px;margin-top:10px;margin-left:2px;margin-right:2px; height:30px;line-height:30px;font-size:14px; background-color:#fff;">
-        <img src="images/base/product.png" style="width:28px;height:28px;" /> <label style="position:relative;top:-8px;">产品列表</label>
+        <img src="/imgs/product.png" style="width:28px;height:28px;" /> <label style="position:relative;top:-8px;">产品列表</label>
     </div>
     <div id="dvList" style="padding-top:5px;">
         <div class="am-list am-list-twoline">
@@ -188,11 +185,11 @@
             </div>
         </div>
     </div>
-    <div style="padding:5px 2px 5px 5px;margin-top:10px;margin-left:2px;margin-right:2px; height:30px;line-height:30px;font-size:14px; background-color:#fff;">
-        <img src="images/bank/defaultBankLogo.png" style="width:28px;height:28px;" /> <label style="position:relative;top:-8px;">支持银行</label>
-    </div>
+    <!-- <div style="padding:5px 2px 5px 5px;margin-top:10px;margin-left:2px;margin-right:2px; height:30px;line-height:30px;font-size:14px; background-color:#fff;">
+        <img src="/imgs/defaultBankLogo.png" style="width:28px;height:28px;" /> <label style="position:relative;top:-8px;">支持银行</label>
+    </div> -->
 
-    <div class="am-list am-list-twoline" style="padding:5px 0;">
+    <!-- <div class="am-list am-list-twoline" style="padding:5px 0;">
         <div class="am-list-body">
             <div class="am-list-item am-list-item-indent line-twoline">
                 <div class="am-list-thumb"><img src="images/bank/gs.png" alt=""></div>
@@ -286,6 +283,6 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
 </body>
 </html>
