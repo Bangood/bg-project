@@ -4,7 +4,7 @@ const router = new Router();
 router.get('/', renderPage)
     .post('/list', list)
     .post('/getauthurl',getAuthUrl)
-    .post('getproduct',getProduct)
+    .post('/getproduct',getProduct)
     .get('/:productId', renderItem);
 
 
