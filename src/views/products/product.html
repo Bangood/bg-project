@@ -17,14 +17,14 @@
     <link rel="stylesheet" href="https://gw.alipayobjects.com/as/g/antui/antui/10.1.10/dpl/antui.css" />
     <link rel="stylesheet" href="https://gw.alipayobjects.com/as/g/antui/antui/10.1.10/dpl/widget/toast.css" />
 
-    <link href="/pos/css/weui.css" rel="stylesheet" />
-    <link href="/pos/css/productapply.css" rel="stylesheet" />
+    <link href="http://apply.epicbm.cn/pos/css/weui.css" rel="stylesheet" />
+    <link href="http://apply.epicbm.cn/pos/css/productapply.css" rel="stylesheet" />
 
 
 
     <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
-    <script src="/javascript/common/tools.js" type="text/javascript"></script>
-    <script src="/pos/js/jquery.validate.custom.js" type="text/javascript"></script>
+    <script src="/js/tools.js" type="text/javascript"></script>
+    <script src="http://apply.epicbm.cn/pos/js/jquery.validate.custom.js" type="text/javascript"></script>
     <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
 
     <script>
@@ -120,7 +120,7 @@
                     return false;
                 }
                 $.getAjaxData({
-                    url: '/front/getproduct?rnd=' + Math.random(),
+                    url: '/v1/products/getproduct?rnd=' + Math.random(),
                     data: {
                         productId: methods.settings.productId
                     },
@@ -154,7 +154,7 @@
             loadChinaCity: function() {
                 $.ajax({
                     type: "GET",
-                    url: "http://apply.epicbm.cn/pos/js/chinaCity.json",
+                    url: "/json/chinaCity.json",
                     dataType: "json",
                     success: function(data) {
                         methods.settings.dataChinaCity = data;
@@ -355,7 +355,7 @@
 
 <body>
     <!--页面图片-->
-    <div class="pageImg"><img id="pageHeaderImg" src="images/base/errorDefault.jpg" alt="" onerror='javascript:this.src = "images/base/errorDefault.jpg"' /></div>
+    <div class="pageImg"><img id="pageHeaderImg" src="http://apply.epicbm.cn/pos/images/base/errorDefault.jpg" alt="" onerror='javascript:this.src = "images/base/errorDefault.jpg"' /></div>
     <!--申请的产品-->
     <div class="productTitle">
         <img alt="" src='images/base/product.png' />
