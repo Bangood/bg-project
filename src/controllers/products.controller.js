@@ -72,7 +72,8 @@ async function saveOrder($ctx) {
                 orderTitle: '预授权冻结',
                 amount: 0.01,
                 productCode: 'PRE_AUTH_ONLINE',
-                payeeLogonId: '396493396@qq.com'
+                payeeLogonId: '396493396@qq.com',
+                enablePayChannels: 'CREDITZHIMA'
         })
         let result = await alipaySdk.exec('alipay.fund.auth.order.app.freeze',{},{formData:formData})
 
