@@ -73,7 +73,9 @@ async function saveOrder($ctx) {
                 amount: 0.01,
                 productCode: 'PRE_AUTH_ONLINE',
                 payeeLogonId: '396493396@qq.com',
-                enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"}]"
+                payTimeout: '10d',
+                // enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"}]",
+                extraParam:"{\"category\":\"RENT_DIGITAL\"}"
         })
         let result = await alipaySdk.exec('alipay.fund.auth.order.app.freeze',{},{formData:formData})
 
@@ -85,7 +87,7 @@ async function saveOrder($ctx) {
             "data": {
                 "key": 0,
                 "msg": {
-                    body: result2[0]
+                    body: 'app_id=2019032063606623&biz_content=%7b%22amount%22%3a%22299.00%22%2c%22extra_param%22%3a%22%7b%5c%22category%5c%22%3a%5c%22RENT_DIGITAL%5c%22%7d%22%2c%22order_title%22%3a%22%e7%82%b9%e4%bb%98%22%2c%22out_order_no%22%3a%2220190507141651000002%22%2c%22out_request_no%22%3a%2220190507141651000001%22%2c%22pay_timeout%22%3a%2260d%22%2c%22payee_user_id%22%3a%222088431814589397%22%2c%22product_code%22%3a%22PRE_AUTH_ONLINE%22%7d&charset=UTF-8&format=json&method=alipay.fund.auth.order.app.freeze&notify_url=http%3a%2f%2fapply.epicbm.cn%2ffront%2fnotice%2fnative&sign_type=RSA2&timestamp=2019-05-07+14%3a16%3a51&version=1.0&sign=MUr62dCKbURifOONjgLf2tNBDMXRdbLyv97QgsFXKdiH4mBcthP7YxAJrF7LUJkCWM1N94Ox1D4mXNgbUPWXF6Jq4nP0xb817tbQBAxGGoWen8WxnNYsiwKzSTKTdZ3UV1zW9bLqChFfikz8RbaT6qYndP503wUW1zNyjTCq5EsiyfL412hl1LDWcxleLxsDPQlTEAZQKCuEvhkhtt9UCA2%2fsRuDfy9RX%2f8WFZE9PpGRpq4%2fSRMCCk7RAiZHlLWT2YsLzaGi%2bGEFrg5u3Brb%2bFwHCjyTEtFDw%2bduF1p2DrDeIpgLAVyBTCIuvBQVr5geN2%2bntCqG04W7czE8RVAZTg%3d%3d'
                 }
             }
         })
