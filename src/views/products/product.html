@@ -298,9 +298,7 @@
                             },
                             success: function(data) {
                                 if (data.data.key == 0) {
-                                    $.alert({
-                                        showText: data.data.msg.body
-                                    });
+                                    
                                     ap.tradePay({
                                         orderStr: data.data.msg.body
                                     }, function(res) {
