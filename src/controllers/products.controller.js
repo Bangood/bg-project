@@ -63,7 +63,7 @@ async function getProduct($ctx) {
 async function saveOrder($ctx) {
     let { openId, productId, userName, UserTelphone, userEmail, province, area, country, address, isWithhold } = JSON.parse($ctx.request.body.param)
     try {
-        let result = await alipaySdk.exec('alipay.fund.auth.order.app.freeze', {
+        let result = await alipaySdk.pageExec('alipay.fund.auth.order.app.freeze', {
             bizContent: {
                 outOrderNo: '8077735255938023',
                 outRequestNo: '8077735255938032',
