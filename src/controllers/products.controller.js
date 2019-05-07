@@ -73,7 +73,7 @@ async function saveOrder($ctx) {
                 amount: 0.01,
                 productCode: 'PRE_AUTH_ONLINE',
                 payeeLogonId: '396493396@qq.com',
-                enablePayChannels: "[{\"payChannelType\":\"PCREDIT_PAY\"},{\"payChannelType\":\"MONEY_FUND\"}]"
+                enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"}]"
         })
         let result = await alipaySdk.exec('alipay.fund.auth.order.app.freeze',{},{formData:formData})
 
