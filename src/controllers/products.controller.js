@@ -67,8 +67,8 @@ async function saveOrder($ctx) {
         const formData = new AlipayFormData();
         formData.setMethod('get');
         formData.addField('bizContent',{
-            outOrderNo: '8077735255938023',
-                outRequestNo: '8077735255938032',
+            outOrderNo: '8077735255938023'+Math.random(),
+                outRequestNo: '8077735255938032'+Math.random(),
                 orderTitle: '预授权冻结',
                 amount: 0.01,
                 productCode: 'PRE_AUTH_ONLINE',
