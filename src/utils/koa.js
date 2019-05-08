@@ -76,7 +76,7 @@ function formatKey(key, type) {
 
 // });
 // app.use(router.routes());
-
+global.userInfoMap = new Map();
 export function init(port) {
     app.listen(port);
     console.log('listen on :',port);

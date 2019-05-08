@@ -73,13 +73,15 @@ function genOutRequestNo(productID){
 async function saveOrder($ctx) {
     let { openId, productId, userName, userTelphone, userEmail, province, area, county, address, isWithhold } = JSON.parse($ctx.request.body.param)
     let pid = `考拉超收-${productId}`
+    let outOrderNo = genOutOrderNo(productId)
+    global.userInfoMap.set(outOrderNo,{pid, userName, userTelphone, userEmail, province, area, county, address})
     // sendMail({openId, pid, userName, userTelphone, userEmail, province, area, county, address, isWithhold})
     try {
         const formData = new AlipayFormData();
         formData.setMethod('get');
         formData.addField('notifyUrl','http://39.100.71.78/v1/notify');
         formData.addField('bizContent',{
-            outOrderNo: genOutOrderNo(productId),
+            outOrderNo: outOrderNo,
                 outRequestNo: genOutRequestNo(productId),
                 orderTitle: '预授权冻结',
                 amount: 0.01,
