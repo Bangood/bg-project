@@ -63,6 +63,6 @@ async function postNotify($ctx) {
             authNo:auth_no,
         });
     }
-    $ctx.ok(result);
+    $ctx.ok('success');
 }
 export { getNotify, postNotify };
