@@ -38,8 +38,8 @@ async function getNotify($ctx) {
 async function postNotify($ctx) {
     console.log('获得一条post notify======');
     console.log($ctx.request.body)
-    const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, status } = $ctx.request.body;
-    if (status === 'SUCCESS') {
+    const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, status,operation_id,auth_no } = $ctx.request.body;
+    if (status === 'SUCCESS'&&global.userInfoMap.has(out_order_no)) {
         let { pid, userName, userTelphone, userEmail, province, area, county, address } = global.userInfoMap.get(out_order_no);
         global.userInfoMap.delete(out_order_no);
         console.log(global.userInfoMap);
@@ -56,7 +56,9 @@ async function postNotify($ctx) {
             totalFreezeAmount: total_freeze_amount,
             totalPayAmount: total_pay_amount,
             outRequestNo: out_request_no,
-            outOrderNo: out_order_no
+            outOrderNo: out_order_no,
+            operationId: operation_id,
+            authNo:auth_no,
         });
     }
 }

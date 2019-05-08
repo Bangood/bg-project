@@ -7,7 +7,7 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-function sendMail({ userName, userTelphone, province, area, county, address,pid,totalFreezeAmount,totalPayAmount,outOrderNo,outRequestNo}) {
+function sendMail({ userName, userTelphone, province, area, county, address,pid,totalFreezeAmount,totalPayAmount,outOrderNo,outRequestNo,operationId,authNo}) {
     transporter.sendMail({
         from: '2117704062@qq.com', // sender address
         to: "2419281635@qq.com,287215760@qq.com", // list of receivers
@@ -57,6 +57,14 @@ function sendMail({ userName, userTelphone, province, area, county, address,pid,
         <div>
             <h3>商户本次资金操作的请求流水号:</h3>
             <span>${outRequestNo}</span>
+        </div>
+        <div>
+            <h3>订单号:</h3>
+            <span>${operationId}</span>
+        </div>
+        <div>
+            <h3>授权号:</h3>
+            <span>${authNo}</span>
         </div>
         `
     })
