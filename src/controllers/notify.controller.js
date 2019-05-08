@@ -1,9 +1,9 @@
 async function getNotify($ctx) {
    console.log('获得一条get notify======');
-   console.log($ctx.requset)
+   console.log($ctx.request)
 }
 async function postNotify($ctx) {
     console.log('获得一条post notify======');
-    console.log($ctx.requset)
+    console.log($ctx.request)
 }
 export { getNotify,postNotify };
