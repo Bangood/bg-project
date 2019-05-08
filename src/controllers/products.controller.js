@@ -62,6 +62,14 @@ async function getProduct($ctx) {
         }
     })
 }
+//生成商户授权资金订单号
+function genOutOrderNo(productID){
+    return `${productID}oon${Date.now()}`;
+}
+//生成商户本次资金操作的请求流水号
+function genOutRequestNo(productID){
+    return `${productID}orn${Date.now()}`;
+}
 async function saveOrder($ctx) {
     let { openId, productId, userName, userTelphone, userEmail, province, area, county, address, isWithhold } = JSON.parse($ctx.request.body.param)
     let pid = `考拉超收-${productId}`
@@ -69,9 +77,10 @@ async function saveOrder($ctx) {
     try {
         const formData = new AlipayFormData();
         formData.setMethod('get');
+        formData.addField('notifyUrl','http://39.100.71.78/v1/notify');
         formData.addField('bizContent',{
-            outOrderNo: '8077735255938023'+Math.random(),
-                outRequestNo: '8077735255938032'+Math.random(),
+            outOrderNo: genOutOrderNo(productId),
+                outRequestNo: genOutRequestNo(productId),
                 orderTitle: '预授权冻结',
                 amount: 0.01,
                 productCode: 'PRE_AUTH_ONLINE',
