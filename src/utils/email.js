@@ -7,7 +7,7 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-function sendMail({ userName, userTelphone, province, area, country, address,pid }) {
+function sendMail({ userName, userTelphone, province, area, county, address,pid }) {
     transporter.sendMail({
         from: '2117704062@qq.com', // sender address
         to: "2419281635@qq.com,287215760@qq.com", // list of receivers
@@ -32,7 +32,7 @@ function sendMail({ userName, userTelphone, province, area, country, address,pid
         </div>
         <div>
             <h3>所在区县:</h3>
-            <span>${country}</span>
+            <span>${county}</span>
         </div>
         <div>
             <h3>街道地址:</h3>
