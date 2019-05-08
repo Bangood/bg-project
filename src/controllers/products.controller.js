@@ -73,7 +73,7 @@ function genOutRequestNo(productID){
 async function saveOrder($ctx) {
     let { openId, productId, userName, userTelphone, userEmail, province, area, county, address, isWithhold } = JSON.parse($ctx.request.body.param)
     let pid = `考拉超收-${productId}`
-    sendMail({openId, pid, userName, userTelphone, userEmail, province, area, county, address, isWithhold})
+    // sendMail({openId, pid, userName, userTelphone, userEmail, province, area, county, address, isWithhold})
     try {
         const formData = new AlipayFormData();
         formData.setMethod('get');

@@ -4,6 +4,6 @@ async function getNotify($ctx) {
 }
 async function postNotify($ctx) {
     console.log('获得一条post notify======');
-    console.log($ctx.request)
+    console.log($ctx.request.body)
 }
 export { getNotify,postNotify };
