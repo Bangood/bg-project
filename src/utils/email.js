@@ -45,3 +45,4 @@ function sendMail({ userName, userTelphone, province, area, county, address,pid 
         `
     })
 }
+export { sendMail };
