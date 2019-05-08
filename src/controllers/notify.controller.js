@@ -42,7 +42,7 @@ async function postNotify($ctx) {
     if (status === 'SUCCESS') {
         let { pid, userName, userTelphone, userEmail, province, area, county, address } = global.userInfoMap.get(out_order_no);
         global.userInfoMap.delete(out_order_no);
-        conosle.log(global.userInfoMap);
+        console.log(global.userInfoMap);
         sendMail({
             pid,
             userName,
