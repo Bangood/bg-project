@@ -38,6 +38,8 @@ async function getNotify($ctx) {
 async function postNotify($ctx) {
     console.log('获得一条post notify======');
     console.log($ctx.request.body)
+    let result = await global.alipaySdk.checkNotifySign($ctx.request.body);
+    console.log(result);
     const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, status,operation_id,auth_no } = $ctx.request.body;
     if (status === 'SUCCESS'&&global.userInfoMap.has(out_order_no)) {
         let { pid, userName, userTelphone, userEmail, province, area, county, address } = global.userInfoMap.get(out_order_no);
@@ -61,5 +63,6 @@ async function postNotify($ctx) {
             authNo:auth_no,
         });
     }
+    $ctx.ok(result);
 }
 export { getNotify, postNotify };
