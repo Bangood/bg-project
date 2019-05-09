@@ -1,9 +1,10 @@
 
 
 import Router from 'koa-router';
-import {redirect} from '../controllers/alipay.controller';
+import {redirect,tradePay} from '../controllers/alipay.controller';
 const router = new Router();
-router.get('/redirect/:id', redirect);
+router.get('/redirect/:id', redirect)
+.post('/trade-pay',tradePay);
  
 
 

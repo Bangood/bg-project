@@ -90,4 +90,4 @@ async function tradePay($ctx){
         console.log(err);
     }
 }
-export { fundAuthOrderAppFreeze, redirect };
+export { fundAuthOrderAppFreeze, redirect,tradePay};
