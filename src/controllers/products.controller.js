@@ -89,7 +89,7 @@ async function saveOrder($ctx) {
                 payeeLogonId: '396493396@qq.com',
                 payTimeout: '10d',
                 enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"},{\"payChannelType\":\"MONEY_FUND\"}]",
-                // extraParam:"{\"category\":\"RENT_DIGITAL\"}"
+                extraParam:"{\"category\":\"RENT_DIGITAL\"}"
         })
         let result = await alipaySdk.exec('alipay.fund.auth.order.app.freeze',{},{formData:formData})
 
