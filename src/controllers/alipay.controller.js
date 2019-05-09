@@ -76,12 +76,12 @@ async function tradePay($ctx){
                 outTradeNo,
                 productCode: 'PRE_AUTH_ONLINE',
                 authNo,
-                subject: '预授权转支付测试',
+                subject: '预授权转支付',
                 totalAmount,
                 sellerId,
                 buyerId,
                 storeId,
-                body: '预授权解冻转支付测试',
+                body: '预授权解冻转支付',
                 authConfirmMode: 'COMPLETE'
             },
             notifyUrl: 'http://39.100.71.78/v1/notify'
