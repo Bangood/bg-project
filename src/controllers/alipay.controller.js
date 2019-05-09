@@ -85,7 +85,8 @@ async function tradePay($ctx){
                 authConfirmMode: 'COMPLETE'
             },
             notifyUrl: 'http://39.100.71.78/v1/notify'
-        })
+        });
+        console.log('tradePay-result:',result);
     }catch(err){
         console.log(err);
     }
