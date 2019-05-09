@@ -86,6 +86,8 @@ async function tradePay($ctx){
             },
             notifyUrl: 'http://39.100.71.78/v1/notify'
         })
+    }catch(err){
+        console.log(err);
     }
 }
 export { fundAuthOrderAppFreeze, redirect };
