@@ -70,14 +70,14 @@ async function redirect($ctx) {
 }
 async function tradePay($ctx){
     try {
-        let {outTradeNo,authNo,sellerId,buyerId,storeId} = $ctx.request.body;
+        let {outTradeNo,authNo,sellerId,buyerId,storeId,totalAmount} = $ctx.request.body;
         let result = await global.alipaySdk.exec('alipay.trade.pay',{
             bizContent: {
                 outTradeNo,
                 productCode: 'PRE_AUTH_ONLINE',
                 authNo,
                 subject: '预授权转支付测试',
-                totalAmount: '0.02',
+                totalAmount,
                 sellerId,
                 buyerId,
                 storeId,
