@@ -11,11 +11,12 @@ async function verify(ctx) {
             return ctx.body = `<?xml version="1.0" encoding="GBK"?><alipay><response><biz_content>${merchantPublicKey}</biz_content><success>true</success></response><sign>${sign}</sign><sign_type>RSA2</sign_type></alipay>`;
 
         }
-        console.log(result);
     } catch (err) {
         console.log(err);
     }
 }
+//
+
 async function gateway(ctx){
     const body = ctx.request.body;
     if(body.service==='alipay.service.check'){
