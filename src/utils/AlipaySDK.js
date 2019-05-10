@@ -42,6 +42,10 @@ export class AlipaySDK {
                 verifier.update(decodeSign, 'utf8');
                 return verifier.verify(this.config.alipayPublicKey, signStr, 'base64');
             };
+            //为网关签名
+            this.instance.signForGateway = function(){
+                return crypto.createSign('RSA-SHA256').update(`<biz_content>${merchantPublicKey}</biz_content><success>true</success>`, 'utf8').sign(this.config.privateKey, 'base64');
+            }
             return this.instance;
         }
         return this.instance;
