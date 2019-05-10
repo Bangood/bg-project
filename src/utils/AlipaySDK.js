@@ -40,12 +40,10 @@ export class AlipaySDK {
                     }).join('&');
                     const verifier = crypto.createVerify(ALIPAY_ALGORITHM_MAPPING[signType]);
                     verifier.update(decodeSign, 'utf8');
-                    return verifier.verify(alipayPublicKeyy, signStr, 'base64');
+                    return verifier.verify(alipayPublicKey, signStr, 'base64');
                 };
                 return this.instance;
             }
             return this.instance;
         }
 }
-let a = AlipaySDK.getInstance();
-console.log(a)

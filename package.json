@@ -7,7 +7,7 @@
     "start": "nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/index",
-    "test": "nodemon --exec babel-node src/utils/email.js"
+    "test": "nodemon --exec babel-node src/utils/AlipaySDK.js"
   },
   "repository": {
     "type": "git",
