@@ -70,11 +70,12 @@
                         img = $('<img style="width:100px;height:80px;" src="' + item.logoImg + '" alt="" onerror=\'javascript:this.src = "images/base/empty.png"\'/>').appendTo(thumb),
                         content = $('<div class="am-list-content"></div >').appendTo(dvItem),
                         title = $('<div class= "am-list-title" >' + item.productName + '</div >').appendTo(content),
-                        brief = $('<div class="am-list-brief" style="font-size:10px;" title="' + item.productDesc + '">' + item.productDesc + '</div>').appendTo(content),
-                        button = $('<div class="am-list-brief" style="font-size:10px;">&nbsp;</div>').appendTo(content),
+                        brief = $(`<div class="${item.canGet==='true'?'am-list-brief':''}" style="font-size:10px;white-space:${item.canGet==='true'?'nowrap':'normal'}" title="` + item.productDesc + '">' + item.productDesc + '</div>').appendTo(content),
+                        button = $(`<div class="" style="font-size:10px;display:${item.canGet==='true'?'block':'none'}">&nbsp;</div>`).appendTo(content),
 
                         a = $('<a class="am-button dynamic right">申请</a>').appendTo(button);
-                    $('<div class="am-list-brief" style="font-size:10px;">&nbsp;</div>').appendTo(content);
+
+                    $('<div class="" style="font-size:10px;">&nbsp;</div>').appendTo(content);
 
                     a.click(function () {
                         methods.openApplyProduct(item.id);
