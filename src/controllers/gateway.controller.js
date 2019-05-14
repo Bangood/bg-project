@@ -49,10 +49,12 @@ async function fundAuchFreeze($ctx){
 
 async function gateway($ctx){
     const body = $ctx.request.body;
+    console.log($ctx.request.body);
     if(body.service==='alipay.service.check'){
+        console.log('alipay.service.check');
         return verify($ctx);
     }
-    if($ctx.request.body.notify_type === 'fun_auth_freeze'){
+    if($ctx.request.body.notify_type === 'fund_auth_freeze'){
         return fundAuchFreeze($ctx);
     }
 }
