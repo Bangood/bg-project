@@ -14,7 +14,7 @@ async function create($ctx){
   const outRequestNo = `${productId}orn${id}`;
 
   try {
-    await redisClient.set(outOrderNo,JSON.stringify({outOrderNo,outRequestNo,userName, userTelphone, province, area, county, address}))
+    await redisClient.set(outOrderNo,JSON.stringify({productId,outOrderNo,outRequestNo,userName, userTelphone, province, area, county, address}))
     console.log(productId)
     const product = await ProductModel.findById(productId);
     console.log(product);
