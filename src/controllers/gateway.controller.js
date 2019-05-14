@@ -29,7 +29,6 @@ async function fundAuchFreeze($ctx){
             pid:productId,
             userName,
             userTelphone,
-            userEmail,
             province,
             area,
             county,
