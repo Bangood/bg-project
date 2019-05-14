@@ -20,7 +20,7 @@ async function verify(ctx) {
     }
 }
 //alipay.fund.auth.order.app.freeze(线上资金授权冻结接口)
-async function fundAuchFreeze($ctx) {
+async function fundAuthFreeze($ctx) {
     try {
         let result = await alipaySDK.checkNotifySign($ctx.request.body);
         if(!result){
@@ -66,7 +66,14 @@ async function fundAuchFreeze($ctx) {
         console.log($err);
     }
 }
+// alipay.trade.pay  授权转支付 
+async function tradePay($ctx){
+    $ctx.body = 'success';
+}
+//alipay.fund.auth.order.unfreeze 资金授权解冻 
+async function fundAuthUnfreeze($ctx){
 
+}
 async function gateway($ctx) {
     const body = $ctx.request.body;
     console.log($ctx.request.body);
@@ -75,7 +82,13 @@ async function gateway($ctx) {
         return verify($ctx);
     }
     if ($ctx.request.body.notify_type === 'fund_auth_freeze') {
-        return fundAuchFreeze($ctx);
+        return fundAuthFreeze($ctx);
+    }
+    if($ctx.request.body.notify_type === 'trade_status_sync'){
+        return tradePay($ctx);
+    }
+    if($ctx.request.body.notify_type === 'fund_auth_unfreeze'){
+        
     }
 }
 export { gateway };
