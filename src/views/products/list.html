@@ -12,7 +12,7 @@
     <meta name="format-detection" content="telephone=no, email=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
 
-    <link href="/pos/css/weui.css" rel="stylesheet" />
+    <link href="https://cdn.staticfile.org/weui/2.0.0/style/weui.min.css" rel="stylesheet" />
 
     <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
     <script src="/js/tools.js"></script>
@@ -41,10 +41,12 @@
 
         var methods = {
             getList: function () {
-                
+                console.log('hi')
                 $.getAjaxData({
-                    url: '/v1/products/list',
+                    url: '/v1/product/list',
+                    type:'GET',
                     success: function (data) {
+                        console.log(data)
                         if (data.data.key == 0) {
                             methods.bindData(data.data.msg);
                         } else {
@@ -63,22 +65,26 @@
                     return;
                 }
                 var contain = $("#dvList").empty();
+                
                 $.each(list, function (i, item) {
+                    console.log(item);
+                    console.log(item.logoUrl)
                     var div = $('<div class="am-list am-list-twoline"></div>').appendTo(contain),
                         dvItem = $('<div class="am-list-item"></div>').appendTo(div),
                         thumb = $('<div class="am-list-thumb"></div>').appendTo(dvItem),
-                        img = $('<img style="width:100px;height:80px;" src="' + item.logoImg + '" alt="" onerror=\'javascript:this.src = "images/base/empty.png"\'/>').appendTo(thumb),
+                        img = $('<img style="width:100px;height:80px;" src="' + item.logoUrl + '" alt="" onerror=\'javascript:this.src = "images/base/empty.png"\'/>').appendTo(thumb),
                         content = $('<div class="am-list-content"></div >').appendTo(dvItem),
-                        title = $('<div class= "am-list-title" >' + item.productName + '</div >').appendTo(content),
-                        brief = $(`<div class="${item.canGet==='true'?'am-list-brief':''}" style="font-size:10px;white-space:${item.canGet==='true'?'nowrap':'normal'}" title="` + item.productDesc + '">' + item.productDesc + '</div>').appendTo(content),
-                        button = $(`<div class="" style="font-size:10px;display:${item.canGet==='true'?'block':'none'}">&nbsp;</div>`).appendTo(content),
+                        title = $('<div class= "am-list-title" >' + item.name + '</div >').appendTo(content),
+                        brief = $(`<div class="${item.canApply?'am-list-brief':''}" style="font-size:10px;white-space:${item.canApply?'nowrap':'normal'}" title="` + item.desc + '">' + item.desc + '</div>').appendTo(content),
+                        button = $(`<div class="" style="font-size:10px;display:${item.canApply?'block':'none'}">&nbsp;</div>`).appendTo(content),
 
                         a = $('<a class="am-button dynamic right">申请</a>').appendTo(button);
 
                     $('<div class="" style="font-size:10px;">&nbsp;</div>').appendTo(content);
 
                     a.click(function () {
-                        methods.openApplyProduct(item.id);
+                        // methods.openApplyProduct(item._id);
+                        window.location.href = '/v1/product?id='+item._id;
                     });
                 });
             },

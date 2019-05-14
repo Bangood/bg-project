@@ -55,7 +55,7 @@
         var methods = {
             settings: {
                 dataChinaCity: {},
-                productId: getRequest('productId') || '',
+                productId: getRequest('id') || '',
                 openId: getRequest('auth_code') || '',
                 isWithhold: getRequest('iswithhold') || '0' //支付方式 0：自主支付 1：代扣支付 区分大小写，后台代码规定的。
             },
@@ -108,19 +108,20 @@
             initPage: function() {
                 //日志2
 
-                if (methods.settings.productId.length == 0 || methods.settings.openId.length == 0) {
+                // if (methods.settings.productId.length == 0 || methods.settings.openId.length == 0) {
 
-                    var content = "【产品申请界面】--initPage方法：productId：" + methods.settings.productId + "，openId：" + methods.settings.openId + "，请求路径：" + window.location.href + "，最终结果：" + (methods.settings.productId.length == 0 || methods.settings.openId.length == 0);
-                    content += "---结果是true时，不会执行请求获取产品信息的方法，会提示：\"非法请求,拒绝访问\"。";
-                    methods.saveErrLog(content);
-                    $.alert({
-                        isOnlyShowContent: true,
-                        showText: "非法请求,拒绝访问。"
-                    });
-                    return false;
-                }
+                //     var content = "【产品申请界面】--initPage方法：productId：" + methods.settings.productId + "，openId：" + methods.settings.openId + "，请求路径：" + window.location.href + "，最终结果：" + (methods.settings.productId.length == 0 || methods.settings.openId.length == 0);
+                //     content += "---结果是true时，不会执行请求获取产品信息的方法，会提示：\"非法请求,拒绝访问\"。";
+                //     methods.saveErrLog(content);
+                //     $.alert({
+                //         isOnlyShowContent: true,
+                //         showText: "非法请求,拒绝访问。"
+                //     });
+                //     return false;
+                // }
                 $.getAjaxData({
-                    url: '/v1/products/getproduct?rnd=' + Math.random(),
+                    url: '/v1/product/' + getRequest('id'),
+                    type:'GET',
                     data: {
                         productId: methods.settings.productId
                     },
@@ -292,9 +293,9 @@
                             isWithhold: 1 //methods.settings.isWithhold
                         };
                         $.getAjaxData({
-                            url: '/v1/products/saveorder',
+                            url: '/v1/order',
                             data: {
-                                param: JSON.stringify(param)
+                                ...param
                             },
                             success: function(data) {
                                 if (data.data.key == 0) {

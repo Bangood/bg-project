@@ -7,7 +7,7 @@
     "start": "nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/index",
-    "test": "nodemon --exec babel-node src/utils/MongoDB.js"
+    "test": "nodemon --exec babel-node src/utils/Redis.js"
   },
   "repository": {
     "type": "git",
@@ -35,8 +35,10 @@
     "koa-router": "7.4.0",
     "koa-static": "5.0.0",
     "koa-views": "6.2.0",
+    "microtime": "3.0.0",
     "mongoose": "5.5.7",
     "nodemailer": "6.1.1",
-    "pug": "2.0.3"
+    "pug": "2.0.3",
+    "redis": "2.8.0"
   }
 }

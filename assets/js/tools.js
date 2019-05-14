@@ -645,6 +645,7 @@ Date.prototype.format = function (fmt) {
     }
 
 
+
 })(jQuery, window);
 //公用方法
 
