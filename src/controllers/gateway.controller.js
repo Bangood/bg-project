@@ -61,7 +61,7 @@ async function fundAuchFreeze($ctx) {
             operationId: operation_id,
             authNo: auth_no,
         });
-        $ctx.ok('success');
+        $ctx.body = 'success';
     } catch ($err) {
         console.log($err);
     }
