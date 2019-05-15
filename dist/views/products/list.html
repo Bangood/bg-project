@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- A11Y：注意设置页面的 lang 属性 -->
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <!-- A11Y：打开页面时，屏幕阅读器会首先阅读 title 的内容，确保 title 准确描述页面 -->
+    <title>产品列表</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+
+    <link href="https://cdn.staticfile.org/weui/2.0.0/style/weui.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/js/tools.js"></script>
+
+    <!-- 主文件 -->
+    <link rel="stylesheet" href="https://gw.alipayobjects.com/as/g/antui/antui/10.1.10/dpl/antui.css" />
+
+
+    <link rel="stylesheet" href="https://gw.alipayobjects.com/as/g/antui/antui/10.1.10/dpl/widget/notice.css" />
+
+    <link rel="stylesheet" href="https://as.alipayobjects.com/g/component/swiper/3.2.7/swiper.min.css" />
+    <script src="https://as.alipayobjects.com/g/component/swiper/3.2.7/swiper.min.js"></script>
+
+    <script>
+        $(function () {
+            var mySwiper1 = new Swiper('#J-swiper', {
+                pagination: '.swiper-pagination',
+                loop: true,
+                autoplayDisableOnInteraction: false,
+                autoplay: 2000,
+                mode: 'horizontal',
+                initialSlide: 0
+            });
+            methods.getList();
+        });
+
+        var methods = {
+            getList: function () {
+                console.log('hi')
+                $.getAjaxData({
+                    url: '/v1/product/list',
+                    type:'GET',
+                    success: function (data) {
+                        console.log(data)
+                        if (data.data.key == 0) {
+                            methods.bindData(data.data.msg);
+                        } else {
+                            $.alert({
+                                showText: data.data.msg
+                            });
+                        }
+                    }
+                });
+            },
+            bindData: function (list) {
+                if (!list) {
+                    return;
+                }
+                if (!Array.isArray(list)) {
+                    return;
+                }
+                var contain = $("#dvList").empty();
+                
+                $.each(list, function (i, item) {
+                    console.log(item);
+                    console.log(item.logoUrl)
+                    var div = $('<div class="am-list am-list-twoline"></div>').appendTo(contain),
+                        dvItem = $('<div class="am-list-item"></div>').appendTo(div),
+                        thumb = $('<div class="am-list-thumb"></div>').appendTo(dvItem),
+                        img = $('<img style="width:100px;height:80px;" src="' + item.logoUrl + '" alt="" onerror=\'javascript:this.src = "images/base/empty.png"\'/>').appendTo(thumb),
+                        content = $('<div class="am-list-content"></div >').appendTo(dvItem),
+                        title = $('<div class= "am-list-title" >' + item.name + '</div >').appendTo(content),
+                        brief = $(`<div class="${item.canApply?'am-list-brief':''}" style="font-size:10px;white-space:${item.canApply?'nowrap':'normal'}" title="` + item.desc + '">' + item.desc + '</div>').appendTo(content),
+                        button = $(`<div class="" style="font-size:10px;display:${item.canApply?'block':'none'}">&nbsp;</div>`).appendTo(content),
+
+                        a = $('<a class="am-button dynamic right">申请</a>').appendTo(button);
+
+                    $('<div class="" style="font-size:10px;">&nbsp;</div>').appendTo(content);
+
+                    a.click(function () {
+                        // methods.openApplyProduct(item._id);
+                        window.location.href = '/v1/product?id='+item._id;
+                    });
+                });
+            },
+            openApplyProduct: function (id) {
+                $.getAjaxData({
+                    url: '/v1/products/getauthurl?id=' + id,
+                    success: function (data) {
+                        if (data.data.key == 0) {
+                            window.location.href = data.data.msg;
+                        } else {
+                            $.alert({
+                                showText: "无法获取产品信息"
+                            });
+                        }
+                    }
+                });
+            }
+        };
+    </script>
+
+    <style>
+        .weui-dialog__hd {
+            padding: 10px 5px 15px 5px;
+        }
+
+        .weui-dialog__bd:first-child {
+            padding: 20px 5px 10px 10px;
+            color: #353535;
+        }
+
+        .demo-swiper.swiper-container {
+            height: 120px;
+            overflow: hidden;
+            margin: 0 2px;
+            padding-top: 2px;
+        }
+
+        .demo-swiper .swiper-slide {
+            line-height: 110px;
+            text-align: center;
+            background: #108EE9;
+            color: #ffffff;
+        }
+
+        .am-list .am-list-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .am-list.am-list-twoline .am-list-item {
+            min-height: 50px;
+        }
+
+        .right {
+            position: absolute;
+            right: 5px;
+        }
+    </style>
+
+</head>
+
+
+<body ontouchstart="">
+    <div class="swiper-container am-carousel demo-swiper" id="J-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/imgs/img1.jpg" style="width:100%;height:100%;"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="am-notice" role="alert" style="margin-top:5px;margin-left:2px;margin-right:2px;">
+        <div class="am-notice-content">POS机，玩转便捷支付，刷出精彩生活。</div>
+        <!--<div class="am-notice-operation">
+            <a class="am-notice-go" href="#"></a>
+        </div>-->
+    </div>
+    <div style="margin:0 2px;text-align:center;"><img src="/imgs/img1.jpg" style="width:100%;height:80px;margin-top:5px; display:block;" /></div>
+
+    <div style="padding:5px 2px 5px 5px;margin-top:10px;margin-left:2px;margin-right:2px; height:30px;line-height:30px;font-size:14px; background-color:#fff;">
+        <img src="/imgs/product.png" style="width:28px;height:28px;" /> <label style="position:relative;top:-8px;">产品列表</label>
+    </div>
+    <div id="dvList" style="padding-top:5px;">
+        <div class="am-list am-list-twoline">
+            <div class="am-list-item">
+                <div class="am-list-thumb"><img style="width:100px;height:80px;" src="images/product/pos.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">POS机</div>
+                    <div class="am-list-brief" style="font-size:10px;">费率低，安全放心</div>
+                    <div class="am-list-brief" style="font-size:10px;">刷卡秒到账，易积分</div>
+                    <div class="am-list-brief" style="font-size:10px;">随时随地，方便快捷</div>
+                </div>
+                <a id="mchPos" class="am-button dynamic" href="productapply.html?productId=1">申请</a>
+            </div>
+        </div>
+
+        <div class="am-list am-list-twoline">
+            <div class="am-list-item">
+                <div class="am-list-thumb"><img style="width:100px;height:80px;" src="images/product/lakala.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">卡拉卡</div>
+                    <div class="am-list-brief" style="font-size:10px;">体积小，单手操作</div>
+                    <div class="am-list-brief" style="font-size:10px;">您个人的专属超级银行</div>
+                    <div class="am-list-brief" style="font-size:10px;">手机拉卡拉，移动支付神器</div>
+                </div>
+                <a id="mchLaKala" class="am-button dynamic" href="productapply.html?productId=2">申请</a>
+            </div>
+        </div>
+    </div>
+    <!-- <div style="padding:5px 2px 5px 5px;margin-top:10px;margin-left:2px;margin-right:2px; height:30px;line-height:30px;font-size:14px; background-color:#fff;">
+        <img src="/imgs/defaultBankLogo.png" style="width:28px;height:28px;" /> <label style="position:relative;top:-8px;">支持银行</label>
+    </div> -->
+
+    <!-- <div class="am-list am-list-twoline" style="padding:5px 0;">
+        <div class="am-list-body">
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/gs.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">工商银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/bj.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">北京银行</div>
+                </div>
+            </div>
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/zx.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">中信银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/js.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">建设银行</div>
+                </div>
+            </div>
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/zg.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">中国银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/hx.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">华夏银行</div>
+                </div>
+            </div>
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/ny.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">农业银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/ms.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">民生银行</div>
+                </div>
+            </div>
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/pf.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">浦发银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/zs.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">招商银行</div>
+                </div>
+            </div>
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/jt.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">交通银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/gd.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">光大银行</div>
+                </div>
+            </div>
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/pa.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">平安银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/yz.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">邮政储蓄</div>
+                </div>
+            </div>
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/yy.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">兴业银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/sh.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">上海银行</div>
+                </div>
+            </div>
+            <div class="am-list-item am-list-item-indent line-twoline">
+                <div class="am-list-thumb"><img src="images/bank/gf.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">广发银行</div>
+                </div>
+                <div class="am-list-thumb"><img src="images/bank/defaultBankLogo.png" alt=""></div>
+                <div class="am-list-content">
+                    <div class="am-list-title">其它</div>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+</body>
+</html>
