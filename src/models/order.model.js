@@ -14,6 +14,7 @@ const OrderSchema = new mongoose.Schema({
     totalFreezeAmount:Number,
     totalPayAmount:Number,
     operationId:String,
-    authNo:String
+    authNo:String,
+    status:Number // 0：冻结中 1：解冻 2：支付
 }, { versionKey: false });
 export const OrderModel = MongoDB.getInstance().model('Orders', OrderSchema);

@@ -26,7 +26,7 @@ async function fundAuthFreeze($ctx) {
         if (!result) {
             return;
         }
-        const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, status, operation_id, auth_no, payer_user_id } = $ctx.request.body;
+        const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, operation_id, auth_no, payer_user_id } = $ctx.request.body;
         let order = await redisClient.get(out_order_no);
         const { userName, productId, userTelphone, province, area, county, address } = JSON.parse(order);
         await OrderModel.create({
@@ -45,6 +45,7 @@ async function fundAuthFreeze($ctx) {
             outOrderNo: out_order_no,
             operationId: operation_id,
             authNo: auth_no,
+            status: 0
         });
         sendMail({
             pid: productId,
