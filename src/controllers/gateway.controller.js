@@ -70,7 +70,14 @@ async function fundAuthFreeze($ctx) {
 }
 // alipay.trade.pay  授权转支付 
 async function tradePay($ctx) {
-    $ctx.body = 'success';
+    try {
+        const {out_trade_no} = $ctx.request.body;
+        const result = await OrderModel.findOneAndUpdate({outOrderNo:out_trade_no},{status:1});
+        console.log(result);
+        $ctx.body = 'success';
+    }catch($err){
+        console.log($err);
+    }
 }
 //alipay.fund.auth.order.unfreeze 资金授权解冻 
 async function fundAuthUnfreeze($ctx) {

@@ -36,7 +36,6 @@ async function create($ctx){
 
         const result1 = result.split('https://openapi.alipay.com/gateway.do?');
         const result2 = result1.slice(1);
-        console.log(result2);
         $ctx.ok({
             "status": 0,
             "data": {
