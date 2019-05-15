@@ -1,9 +1,17 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.gateway = gateway;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _AlipaySDK = require("../utils/AlipaySDK");
 
@@ -14,12 +22,6 @@ var _Redis = require("../utils/Redis");
 var _email = require("../utils/email");
 
 var _alipay = require("../config/alipay.config");
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var alipaySDK = _AlipaySDK.AlipaySDK.getInstance();
 
@@ -32,11 +34,11 @@ function verify(_x) {
 
 
 function _verify() {
-  _verify = _asyncToGenerator(
+  _verify = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(ctx) {
+  _regenerator["default"].mark(function _callee(ctx) {
     var result, sign;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+    return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -85,12 +87,12 @@ function fundAuthFreeze(_x2) {
 
 
 function _fundAuthFreeze() {
-  _fundAuthFreeze = _asyncToGenerator(
+  _fundAuthFreeze = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee2($ctx) {
+  _regenerator["default"].mark(function _callee2($ctx) {
     var _OrderModel$create, _sendMail, result, _$ctx$request$body, out_order_no, total_freeze_amount, total_pay_amount, out_request_no, operation_id, auth_no, payer_user_id, order, _JSON$parse, userName, productId, userTelphone, province, area, county, address;
 
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -130,7 +132,7 @@ function _fundAuthFreeze() {
               totalFreezeAmount: total_freeze_amount,
               totalPayAmount: total_pay_amount,
               outRequestNo: out_request_no
-            }, _defineProperty(_OrderModel$create, "outOrderNo", out_order_no), _defineProperty(_OrderModel$create, "operationId", operation_id), _defineProperty(_OrderModel$create, "authNo", auth_no), _defineProperty(_OrderModel$create, "status", 0), _OrderModel$create));
+            }, (0, _defineProperty2["default"])(_OrderModel$create, "outOrderNo", out_order_no), (0, _defineProperty2["default"])(_OrderModel$create, "operationId", operation_id), (0, _defineProperty2["default"])(_OrderModel$create, "authNo", auth_no), (0, _defineProperty2["default"])(_OrderModel$create, "status", 0), _OrderModel$create));
 
           case 13:
             (0, _email.sendMail)((_sendMail = {
@@ -145,7 +147,7 @@ function _fundAuthFreeze() {
               totalFreezeAmount: total_freeze_amount,
               totalPayAmount: total_pay_amount,
               outRequestNo: out_request_no
-            }, _defineProperty(_sendMail, "outOrderNo", out_order_no), _defineProperty(_sendMail, "operationId", operation_id), _defineProperty(_sendMail, "authNo", auth_no), _sendMail));
+            }, (0, _defineProperty2["default"])(_sendMail, "outOrderNo", out_order_no), (0, _defineProperty2["default"])(_sendMail, "operationId", operation_id), (0, _defineProperty2["default"])(_sendMail, "authNo", auth_no), _sendMail));
             $ctx.body = 'success';
             _context2.next = 20;
             break;
@@ -171,11 +173,11 @@ function tradePay(_x3) {
 
 
 function _tradePay() {
-  _tradePay = _asyncToGenerator(
+  _tradePay = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee3($ctx) {
+  _regenerator["default"].mark(function _callee3($ctx) {
     var out_trade_no, result;
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -215,11 +217,11 @@ function fundAuthUnfreeze(_x4) {
 }
 
 function _fundAuthUnfreeze() {
-  _fundAuthUnfreeze = _asyncToGenerator(
+  _fundAuthUnfreeze = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee4($ctx) {
+  _regenerator["default"].mark(function _callee4($ctx) {
     var out_order_no, result;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -259,11 +261,11 @@ function gateway(_x5) {
 }
 
 function _gateway() {
-  _gateway = _asyncToGenerator(
+  _gateway = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee5($ctx) {
+  _regenerator["default"].mark(function _callee5($ctx) {
     var body;
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+    return _regenerator["default"].wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:

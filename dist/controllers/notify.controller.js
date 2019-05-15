@@ -1,18 +1,20 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getNotify = getNotify;
 exports.postNotify = postNotify;
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
 var _email = require("../utils/email");
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function getNotify(_x) {
   return _getNotify.apply(this, arguments);
@@ -51,10 +53,10 @@ function getNotify(_x) {
 
 
 function _getNotify() {
-  _getNotify = _asyncToGenerator(
+  _getNotify = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee($ctx) {
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+  _regenerator["default"].mark(function _callee($ctx) {
+    return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -76,12 +78,12 @@ function postNotify(_x2) {
 }
 
 function _postNotify() {
-  _postNotify = _asyncToGenerator(
+  _postNotify = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee2($ctx) {
+  _regenerator["default"].mark(function _callee2($ctx) {
     var result, _$ctx$request$body, out_order_no, total_freeze_amount, total_pay_amount, out_request_no, status, operation_id, auth_no, _sendMail, _global$userInfoMap$g, pid, userName, userTelphone, userEmail, province, area, county, address;
 
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -121,7 +123,7 @@ function _postNotify() {
                 totalFreezeAmount: total_freeze_amount,
                 totalPayAmount: total_pay_amount,
                 outRequestNo: out_request_no
-              }, _defineProperty(_sendMail, "outOrderNo", out_order_no), _defineProperty(_sendMail, "operationId", operation_id), _defineProperty(_sendMail, "authNo", auth_no), _sendMail));
+              }, (0, _defineProperty2["default"])(_sendMail, "outOrderNo", out_order_no), (0, _defineProperty2["default"])(_sendMail, "operationId", operation_id), (0, _defineProperty2["default"])(_sendMail, "authNo", auth_no), _sendMail));
             }
 
             $ctx.ok('success');

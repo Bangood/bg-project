@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -20,8 +22,6 @@ var _alipay = _interopRequireDefault(require("./alipay.route"));
 var _notify = _interopRequireDefault(require("./notify.route"));
 
 var _gateway = _interopRequireDefault(require("./gateway.route"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var router = new _koaRouter["default"]();
 router.prefix('/v1');

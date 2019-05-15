@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -26,8 +28,6 @@ var _path = _interopRequireDefault(require("path"));
 var _koaStatic = _interopRequireDefault(require("koa-static"));
 
 var _fs = _interopRequireDefault(require("fs"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var crypto = require("crypto");
 

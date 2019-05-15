@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -10,23 +12,23 @@ exports.list = list;
 exports.findOne = findOne;
 exports.showPage = showPage;
 
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
 var _product = require("../models/product.model");
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function create(_x) {
   return _create.apply(this, arguments);
 }
 
 function _create() {
-  _create = _asyncToGenerator(
+  _create = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee($ctx) {
+  _regenerator["default"].mark(function _callee($ctx) {
     var _$ctx$request$body, name, desc, creditAmount, canApply, logoUrl, createTime, result;
 
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+    return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -70,11 +72,11 @@ function update(_x2) {
 }
 
 function _update() {
-  _update = _asyncToGenerator(
+  _update = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee2($ctx) {
+  _regenerator["default"].mark(function _callee2($ctx) {
     var id, result;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -110,11 +112,11 @@ function del(_x3) {
 }
 
 function _del() {
-  _del = _asyncToGenerator(
+  _del = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee3($ctx) {
+  _regenerator["default"].mark(function _callee3($ctx) {
     var id, result;
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -156,11 +158,11 @@ function list(_x4) {
 }
 
 function _list() {
-  _list = _asyncToGenerator(
+  _list = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee4($ctx) {
+  _regenerator["default"].mark(function _callee4($ctx) {
     var result;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -201,11 +203,11 @@ function findOne(_x5) {
 }
 
 function _findOne() {
-  _findOne = _asyncToGenerator(
+  _findOne = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee5($ctx) {
+  _regenerator["default"].mark(function _callee5($ctx) {
     var id, product;
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+    return _regenerator["default"].wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
@@ -250,10 +252,10 @@ function showPage(_x6) {
 }
 
 function _showPage() {
-  _showPage = _asyncToGenerator(
+  _showPage = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee6($ctx) {
-    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+  _regenerator["default"].mark(function _callee6($ctx) {
+    return _regenerator["default"].wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
