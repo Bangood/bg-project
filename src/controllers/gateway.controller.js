@@ -74,7 +74,14 @@ async function tradePay($ctx) {
 }
 //alipay.fund.auth.order.unfreeze 资金授权解冻 
 async function fundAuthUnfreeze($ctx) {
-
+    try {
+        const {out_order_no} = $ctx.request.body;
+        const result = await OrderModel.findOneAndUpdate({outOrderNo:out_order_no},{status:2});
+        console.log(result);
+        $ctx.body = 'success';
+    }catch($err){
+        console.log($err);
+    }
 }
 async function gateway($ctx) {
     const body = $ctx.request.body;
@@ -90,7 +97,7 @@ async function gateway($ctx) {
         return tradePay($ctx);
     }
     if ($ctx.request.body.notify_type === 'fund_auth_unfreeze') {
-
+        return fundAuthUnfreeze($ctx);
     }
 }
 export { gateway };
