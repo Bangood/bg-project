@@ -23,14 +23,15 @@ async function verify(ctx) {
 async function fundAuthFreeze($ctx) {
     try {
         let result = await alipaySDK.checkNotifySign($ctx.request.body);
-        if(!result){
+        if (!result) {
             return;
         }
-        const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, status, operation_id, auth_no } = $ctx.request.body;
+        const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, status, operation_id, auth_no, payer_user_id } = $ctx.request.body;
         let order = await redisClient.get(out_order_no);
         const { userName, productId, userTelphone, province, area, county, address } = JSON.parse(order);
         await OrderModel.create({
             userName,
+            userId: payer_user_id,
             productId,
             userTelphone,
             province,
@@ -67,11 +68,11 @@ async function fundAuthFreeze($ctx) {
     }
 }
 // alipay.trade.pay  授权转支付 
-async function tradePay($ctx){
+async function tradePay($ctx) {
     $ctx.body = 'success';
 }
 //alipay.fund.auth.order.unfreeze 资金授权解冻 
-async function fundAuthUnfreeze($ctx){
+async function fundAuthUnfreeze($ctx) {
 
 }
 async function gateway($ctx) {
@@ -84,11 +85,11 @@ async function gateway($ctx) {
     if ($ctx.request.body.notify_type === 'fund_auth_freeze') {
         return fundAuthFreeze($ctx);
     }
-    if($ctx.request.body.notify_type === 'trade_status_sync'){
+    if ($ctx.request.body.notify_type === 'trade_status_sync') {
         return tradePay($ctx);
     }
-    if($ctx.request.body.notify_type === 'fund_auth_unfreeze'){
-        
+    if ($ctx.request.body.notify_type === 'fund_auth_unfreeze') {
+
     }
 }
 export { gateway };

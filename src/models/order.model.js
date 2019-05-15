@@ -3,6 +3,7 @@ import {MongoDB} from '../utils/MongoDB';
 const OrderSchema = new mongoose.Schema({
     productId:String,
     userName:String,
+    userId:String,
     userTelphone:String,
     province:String,
     area: String,
