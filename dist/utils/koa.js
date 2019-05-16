@@ -27,6 +27,10 @@ var _path = _interopRequireDefault(require("path"));
 
 var _koaStatic = _interopRequireDefault(require("koa-static"));
 
+var _cors = _interopRequireDefault(require("@koa/cors"));
+
+var _koaJwt = _interopRequireDefault(require("koa-jwt"));
+
 var _fs = _interopRequireDefault(require("fs"));
 
 var crypto = require("crypto");
@@ -42,8 +46,12 @@ var alipaySdk = new _alipaySdk["default"]({
 var app = new _koa["default"]();
 var allMidlewares = (0, _koaCompose["default"])([(0, _koaRespond["default"])(), (0, _koaBodyparser["default"])({
   enableTypes: ['json', 'form']
-}), (0, _koaStatic["default"])(_path["default"].join(__dirname, '../../assets')), (0, _koaViews["default"])(__dirname + '/../views', {
+}), (0, _cors["default"])(), (0, _koaStatic["default"])(_path["default"].join(__dirname, '../../assets')), (0, _koaViews["default"])(__dirname + '/../views', {
   extension: 'html'
+}), (0, _koaJwt["default"])({
+  secret: '#production#Bangood#'
+}).unless({
+  path: [/^\/v1\/auth\/login/, /^\/v1\/auth\/register/, /^\/v1\/oauth\/\w+$/, /^\/v1\/share\/\w+$/]
 }), _routes["default"].routes()]);
 app.use(allMidlewares); // 格式化 key
 

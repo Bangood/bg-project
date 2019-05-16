@@ -12,6 +12,6 @@ var _koaRouter = _interopRequireDefault(require("koa-router"));
 var _auth = require("../controllers/auth.controller");
 
 var router = new _koaRouter["default"]();
-router.get('/:id', _auth.queryUser).post('/:id', _auth.updateUser);
+router.post('/login', _auth.login).post('/register', _auth.register);
 var _default = router;
 exports["default"] = _default;

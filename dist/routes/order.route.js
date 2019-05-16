@@ -12,6 +12,6 @@ var _koaRouter = _interopRequireDefault(require("koa-router"));
 var _order = require("../controllers/order.controller");
 
 var router = new _koaRouter["default"]();
-router.post('/', _order.create);
+router.post('/', _order.create).get('/list', _order.list);
 var _default = router;
 exports["default"] = _default;

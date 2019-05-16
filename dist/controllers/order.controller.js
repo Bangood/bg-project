@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.create = create;
+exports.list = list;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -156,4 +157,47 @@ function _del() {
     }, _callee3);
   }));
   return _del.apply(this, arguments);
+}
+
+function list(_x2) {
+  return _list.apply(this, arguments);
+}
+
+function _list() {
+  _list = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee4($ctx) {
+    var result;
+    return _regenerator["default"].wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return _order.OrderModel.find({});
+
+          case 3:
+            result = _context4.sent;
+            $ctx.ok({
+              data: result
+            });
+            _context4.next = 11;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+            $ctx.ok({
+              error: _context4.t0.message
+            });
+
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+  return _list.apply(this, arguments);
 }

@@ -23,6 +23,10 @@ var _notify = _interopRequireDefault(require("./notify.route"));
 
 var _gateway = _interopRequireDefault(require("./gateway.route"));
 
+var _auth = _interopRequireDefault(require("./auth.route"));
+
+var _user = _interopRequireDefault(require("./user.route"));
+
 var router = new _koaRouter["default"]();
 router.prefix('/v1');
 router.use('/product', _product["default"].routes());
@@ -32,5 +36,7 @@ router.use('/aliapi', _aliapi["default"].routes());
 router.use('/alipay', _alipay["default"].routes());
 router.use('/notify', _notify["default"].routes());
 router.use('/gateway', _gateway["default"].routes());
+router.use('/auth', _auth["default"].routes());
+router.use('/user', _user["default"].routes());
 var _default = router;
 exports["default"] = _default;
