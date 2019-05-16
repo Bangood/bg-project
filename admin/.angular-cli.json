@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "D:/workspace/GuangZi/quan_node/public",
+      "outDir": "D:/workspace/Bangood/bg-project/assets",
       "assets": [
         "assets",
         "favicon.ico"

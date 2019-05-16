@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build":"ng build --prod",
     "prod": "ng build --deploy-url http://rs.mgapp.com.cn/web-etcd/ --prod",
     "test": "ng test",
     "lint": "ng lint",
