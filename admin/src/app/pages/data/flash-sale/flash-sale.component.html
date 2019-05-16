@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-11">
+        <nb-card>
+            <nb-card-header></nb-card-header>
+            <nb-card-body>
+                <form class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">startHours</label>
+                        <div class="col-sm-9">
+                            <p-chips [(ngModel)]="startHoursConf" name="startHours"></p-chips>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="startHoursConf" name="startHours"> -->
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" class="btn btn-primary" (click)="changeStartHours()">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xxxl-3 col-md-6">
+        <button class="btn  btn-primary btn-icon" (click)="showFormPanel('add')">
+            <i class="nb-plus"></i>
+        </button>
+    </div>
+    <div class="col-xxxl-3 col-md-6">
+        <button class="btn  btn-primary btn-icon" (click)="showFormPanel('update',1)">
+            <i class="nb-edit"></i>
+        </button>
+    </div>
+</div>
+<dx-tabs #apiTabs [dataSource]="tabs" [selectedIndex]="6" (onItemClick)="selectTab($event)">
+
+</dx-tabs>
+<p-carousel headerText="商品列表" [value]="flashSale.GoodsList" *ngIf="flashSale">
+    <ng-template let-goods pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-12">
+                    <a href="{{goods.GoodsUrl}}" target="_blank">
+                        <img src="{{goods.PicUrl}}" width="60">
+                    </a>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6">商品ID</div>
+                <div class="ui-grid-col-6">{{goods.GoodsId}}</div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6">商品名</div>
+                <div class="ui-grid-col-6">{{goods.Title}}</div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6">月销量</div>
+                <div class="ui-grid-col-6">{{goods.Biz30Day}}</div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6">价格</div>
+                <div class="ui-grid-col-6">{{showNormalPrice(goods.Price)}}</div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6">优惠券面值</div>
+                <div class="ui-grid-col-6">{{showNormalPrice(goods.CouponAmount)}}</div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6">折后价</div>
+                <div class="ui-grid-col-6">{{showNormalPrice(goods.ActualPrice)}}</div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>
+
+<dx-popup [(visible)]="popupVisible" height="auto" [title]="actionType.label" [closeOnOutsideClick]="false" [fullScreen]="false">
+    <div *dxTemplate="let data of 'content'">
+        <dx-form [formData]="flashSale" [colCount]="2" [showRequiredMark]="false">
+
+            <dxi-item [label]="{text: '商品列表'}" dataField="GoodsList" [colSpan]="2">
+                <hyp-goods-list-editor [(goodsList)]="flashSale.GoodsList" [(channelType)]="channelType"></hyp-goods-list-editor>
+            </dxi-item>
+        </dx-form>
+
+        <dx-button [height]="51" (onClick)="submit()" text="提交"></dx-button>
+    </div>
+</dx-popup>

@@ -1,0 +1,89 @@
+<!-- <p-treeTable [value]="serviceList">
+  <p-header>订单列表</p-header>
+  <p-column field="userName" header="用户名"></p-column>
+  <p-column field="address" header="订单号"></p-column>
+  <p-column field="Port" header="订单状态"></p-column>
+</p-treeTable> -->
+<p-dataView #dv [value]="orderList" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="status"
+    [sortField]="sortField" [sortOrder]="sortOrder">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative">
+                        <input type="search" pInputText placeholder="0:冻结中,1:已解冻,2:已支付" (keyup)="dv.filter($event.target.value)">
+                    </div>
+                </div>
+                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                    <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-order pTemplate="listItem">
+        <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+            <div class="ui-g-12 ui-md-2" style="text-align:center">
+                <img src="{{environment.ASSETS_ENDPOINT}}{{productList[order.productId]}}" style="width: 120px;height: 120px;">
+            </div>
+            <div class="ui-g-12 ui-md-8 car-details">
+                <div class="ui-g">
+                    <div class="ui-g-2 ui-sm-6">姓名： </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{order.userName}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">联系电话: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{order.userTelphone}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">地址: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{order.province+order.area+order.county+order.address}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">状态: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{statusMap[order.status]}}</b></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-2 search-icon">
+                <button *ngIf="order.status===0" pButton type="button" label="资金授权解冻" (click)="fundAuthUnfreeze($event, order)"></button>
+                <button *ngIf="order.status===0" pButton type="button" label="授权转支付" (click)="tradePay($event, order)"></button>
+                <button pButton type="button" label="查看详情" (click)="selectOrder($event, order)"></button>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template let-car pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-3">
+            <p-panel [header]="car.vin" [style]="{'text-align':'center'}">
+                <img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60">
+                <div class="car-detail">{{car.year}} - {{car.color}}</div>
+                <hr class="ui-widget-content" style="border-top:0">
+                <button pButton type="button" icon="fa-search" (click)="selectCar($event, car)" style="margin-top:0"></button>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>
+
+<p-dialog header="订单详情" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"  (onAfterHide)="onDialogHide()">
+    <div class="ui-g" *ngIf="selectedOrder">
+        <div class="ui-g-12" style="text-align:center">
+            <img src="{{environment.ASSETS_ENDPOINT}}{{productList[selectedOrder.productId]}}" style="width: 120px;height: 120px;">
+        </div>
+        <div class="ui-g-4">姓名: </div>
+        <div class="ui-g-8">{{selectedOrder.userName}}</div>
+
+        <div class="ui-g-4">电话: </div>
+        <div class="ui-g-8">{{selectedOrder.userTelphone}}</div>
+
+        <div class="ui-g-4">地址: </div>
+        <div class="ui-g-8">{{selectedOrder.province+selectedOrder.area+selectedOrder.county+selectedOrder.address}}</div>
+
+        <div class="ui-g-4">订单状态: </div>
+        <div class="ui-g-8">{{statusMap[selectedOrder.status]}}</div>
+        <div class="ui-g-4">冻结资金: </div>
+        <div class="ui-g-8">{{selectedOrder.totalFreezeAmount}}</div>
+        <div class="ui-g-4">产品编号: </div>
+        <div class="ui-g-8">{{selectedOrder.productId}}</div>
+        <div class="ui-g-4">订单号: </div>
+        <div class="ui-g-8">{{selectedOrder.outOrderNo}}</div>
+    </div>
+</p-dialog>
+<p-confirmDialog header="提示" icon="fa fa-question-circle" width="425"></p-confirmDialog>

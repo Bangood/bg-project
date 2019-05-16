@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-xxxl-3 col-md-6">
+        <button class="btn  btn-primary btn-icon" (click)="showFormPanel('add')">
+            <i class="nb-plus"></i>
+        </button>
+    </div>
+</div>
+<p-fieldset *ngFor="let item of shopList;let i = index" [style]="{'margin-top':'10px'}">
+    <p-header>
+
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+
+                <div class="ui-g-12 ui-md-11">
+                    <img src="{{item.ShopLogo}}" width="60">
+                    <span>{{item.ShopName}}</span>
+                    <img src="{{item.ShopBanner}}" width="60">
+                </div>
+                <div class="ui-g-12 ui-md-1">
+                    <i class="fa fa-edit" (click)="showFormPanel('update',i)" style="cursor:pointer;padding-right: 10px;"></i>
+                    <i class="fa fa-trash" (click)="deleteShop(i)" style="cursor:pointer;"></i>
+                    <i class="fa fa-refresh" (click)="refresh(i)" style="cursor:pointer;"></i>
+
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <p-carousel headerText="商品列表" [value]="item.GoodList">
+        <ng-template let-goods pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-12">
+                        <a href="{{goods.GoodsUrl}}" target="_blank">
+                            <img src="{{goods.PicUrl}}" width="60">
+                        </a>
+                    </div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">商品ID</div>
+                    <div class="ui-grid-col-6">{{goods.GoodsId}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">商品名</div>
+                    <div class="ui-grid-col-6">{{goods.Title}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">月销量</div>
+                    <div class="ui-grid-col-6">{{goods.Biz30Day}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">价格</div>
+                    <div class="ui-grid-col-6">{{showNormalPrice(goods.Price)}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">优惠券面值</div>
+                    <div class="ui-grid-col-6">{{showNormalPrice(goods.CouponAmount)}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">折后价</div>
+                    <div class="ui-grid-col-6">{{showNormalPrice(goods.ActualPrice)}}</div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</p-fieldset>
+
+<dx-popup [(visible)]="popupVisible" height="auto" [title]="actionType.label" [closeOnOutsideClick]="false" [fullScreen]="false">
+    <div *dxTemplate="let data of 'content'">
+        <dx-form [formData]="shop" [colCount]="2" [showRequiredMark]="false">
+            <dxi-item [label]="{text: '店铺ID'}" dataField="ShopId" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item [label]="{text: '店铺名'}" dataField="ShopName">
+                <dxi-validation-rule type="required" message="此项为必填">
+                </dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item [label]="{text: '店铺Logo'}" dataField="ShopLogo">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '店铺Banner'}" dataField="ShopBanner" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [colSpan]="2">
+                <dx-file-uploader #fileUploader [(uploadUrl)]="uploadUrl" (onUploaded)="onUploaded($event)" name="file" [multiple]="false"
+                    accept="image/*" [(value)]="value" uploadMode="instantly"></dx-file-uploader>
+            </dxi-item>
+            <dxi-item [label]="{text: '商品列表'}" dataField="GoodList" [colSpan]="2">
+                <hyp-goods-list-editor [(goodsList)]="shop.GoodList"></hyp-goods-list-editor>
+            </dxi-item>
+        </dx-form>
+
+        <dx-button [height]="51" (onClick)="submit()" text="提交"></dx-button>
+    </div>
+</dx-popup>
+
+<p-confirmDialog header="提示" icon="fa fa-question-circle" width="425"></p-confirmDialog>

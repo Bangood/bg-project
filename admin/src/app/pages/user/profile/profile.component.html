@@ -1,0 +1,37 @@
+<div *ngIf="user">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-md-offset-4">
+                <div class="our-team">
+                    <div class="pic" (click)="popupVisible=true">
+                        <img src="{{user.userHead}}">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="title">{{user.userName}}</h3>
+                        <Span class="post">{{user.email}}</Span>
+                    </div>
+                    <ul class="social">
+                        <li>
+                            <i class="fa fa-edit" (click)="popupVisible=true" style="cursor:pointer;padding-right: 10px;color:white"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<dx-popup [(visible)]="popupVisible" height="auto" [title]="type" [closeOnOutsideClick]="false" [fullScreen]="false">
+    <div *dxTemplate="let data of 'content'">
+        <dx-form [formData]="user" [colCount]="2" #form [showRequiredMark]="false">
+            <dxi-item [label]="{text: '图标'}" dataField="userHead" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+        </dx-form>
+        <dx-file-uploader #fileUploader [(uploadUrl)]="uploadUrl" (onUploaded)="onUploaded($event)" name="file" [multiple]="false"
+            accept="image/*" [(value)]="value" uploadMode="instantly"></dx-file-uploader>
+        <dx-button [height]="51" (onClick)="submit()" text="提交">
+        </dx-button>
+    </div>
+</dx-popup>

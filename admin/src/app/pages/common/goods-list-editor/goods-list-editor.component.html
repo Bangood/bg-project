@@ -1,0 +1,48 @@
+<dx-data-grid [dataSource]="goodsList" keyExpr="GoodsId" (onCellPrepared)="onCellPrepared($event)" (onRowInserting)="onRowInserting($event)" (onEditorPreparing)="onEditorPreparing($event)"  (onEditingStart)="onEditingStart($event)" (onInitNewRow)="onInitNewRow($event)">
+    <dxo-editing mode="popup" [allowAdding]="true" [allowDeleting]="true" [allowUpdating]="true">
+    </dxo-editing>
+    <dxi-column dataField="GoodsUrl" caption="商品链接">
+        <!-- <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule> -->
+        <dxi-validation-rule type="pattern" [pattern]="urlPattern" message="此项必须为标准Url链接"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="GoodsId" caption="商品ID" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="Title" caption="商品名" [editorOptions]="{ disabled: true }">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="ShopName" caption="店铺名" [editorOptions]="{ disabled: true }">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="Biz30Day" caption="月销量" dataType="number" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="Price" caption="价格" cellTemplate="cellTemplate" dataType="number" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="CouponAmount" caption="优惠券面值" cellTemplate="cellTemplate" dataType="number" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="ActualPrice" caption="折后价" cellTemplate="cellTemplate" dataType="number" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    
+    <dxi-column dataField="PicUrl" caption="图片链接" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="SharePrice" caption="分享可得" cellTemplate="cellTemplate" dataType="number" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="TotalCouponCnt" caption="优惠券总数" cellTemplate="cellTemplate" dataType="number" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="RemainCouponCnt" caption="优惠券剩余数" cellTemplate="cellTemplate" dataType="number" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="Source" caption="来源" dataType="number" [editorOptions]="{ disabled: true }" *ngIf="!isMobile">
+        <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+    </dxi-column>
+    <div *dxTemplate="let data of 'cellTemplate'">
+        <p>{{data.value/100}}</p>
+    </div>
+</dx-data-grid>

@@ -1,24 +1,24 @@
 import microtime from 'microtime';
-import {OrderModel} from '../models/order.model';
-import {ProductModel} from '../models/product.model';
-import {Redis} from '../utils/Redis';
-import {AlipaySDK} from '../utils/AlipaySDK';
+import { OrderModel } from '../models/order.model';
+import { ProductModel } from '../models/product.model';
+import { Redis } from '../utils/Redis';
+import { AlipaySDK } from '../utils/AlipaySDK';
 import AlipayFormData from 'alipay-sdk/lib/form';
 const redisClient = Redis.getInstance();
 const alipaySDK = AlipaySDK.getInstance();
 
-async function create($ctx){
-  const id = microtime.now();
-  const {productId, userName, userTelphone, province, area, county, address} = $ctx.request.body;
-  const outOrderNo = `${productId}oon${id}`;
-  const outRequestNo = `${productId}orn${id}`;
+async function create($ctx) {
+    const id = microtime.now();
+    const { productId, userName, userTelphone, province, area, county, address } = $ctx.request.body;
+    const outOrderNo = `${productId}oon${id}`;
+    const outRequestNo = `${productId}orn${id}`;
 
-  try {
-    await redisClient.set(outOrderNo,JSON.stringify({productId,outOrderNo,outRequestNo,userName, userTelphone, province, area, county, address}))
-    console.log(productId)
-    const product = await ProductModel.findById(productId);
-    console.log(product);
-    const formData = new AlipayFormData();
+    try {
+        await redisClient.set(outOrderNo, JSON.stringify({ productId, outOrderNo, outRequestNo, userName, userTelphone, province, area, county, address }))
+        console.log(productId)
+        const product = await ProductModel.findById(productId);
+        console.log(product);
+        const formData = new AlipayFormData();
         formData.setMethod('get');
         formData.addField('notifyUrl', 'http://39.100.71.78/v1/gateway');
         formData.addField('bizContent', {
@@ -45,10 +45,19 @@ async function create($ctx){
                 }
             }
         })
-  }catch($err){}
+    } catch ($err) {}
 
 
 }
-async function update(){}
-async function del(){}
-export {create};
+async function update() {}
+async function del() {}
+async function list($ctx) {
+    try {
+        const result = await OrderModel.find({});
+        $ctx.ok({ data: result });
+    } catch ($err) {
+        console.log($err);
+        $ctx.ok({ error: $err.message });
+    }
+}
+export { create, list };

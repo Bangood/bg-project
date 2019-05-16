@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row" *ngFor="let circle of circleList; let i=index">
+        <div class="col-md-6">
+            <nb-card>
+                <nb-card-header>
+                    <nb-user [picture]="circle.UserHead" [name]="circle.UserName" [title]="transferTime(circle.Timestamp)" size="large"></nb-user>
+                    <pre style="color: white;white-space: pre-line">
+                        {{circle.TextContent}}
+                    </pre>
+                </nb-card-header>
+                <nb-card-body>
+                    <div class="row">
+                        <div class="col-4 goods" (click)="editGoods(i,j)" *ngFor="let goods of circle.GoodList; let j=index">
+                            <img src="{{goods.PicUrl}}" class="img-fluid rounded" />
+                            <span class="badge badge-danger">￥{{showNormalPrice(goods.ActualPrice)}}</span>
+                        </div>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+</div>
+<dx-action-sheet #actionSheet title="" [items]="commands" [(visible)]="actionSheetVisible" [showTitle]="false" [showCancelButton]="true"
+    (onItemClick)="doAction($event.itemData.text)">
+</dx-action-sheet>
+
+<dx-popup [(visible)]="popupVisible" height="auto" [showTitle]="true" title="-" [closeOnOutsideClick]="false" [fullScreen]="true"
+    [showCloseButton]="true">
+    <div *dxTemplate="let data of 'content'">
+        <dx-form [formData]="circle" [colCount]="2" [showRequiredMark]="false">
+            <dxi-item [label]="{text: '描述'}" dataField="TextContent" editorType="dxTextArea" [colSpan]="2" [editorOptions]="{ height: 120 }">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+        </dx-form>
+        <dxi-item [label]="{text: '商品列表'}" dataField="GoodList" [colSpan]="2">
+            <hyp-goods-list-editor [(goodsList)]="circle.GoodList" isMobile="true"></hyp-goods-list-editor>
+
+        </dxi-item>
+        <dx-button [height]="51" (onClick)="submit()" text="提交"></dx-button>
+    </div>
+</dx-popup>

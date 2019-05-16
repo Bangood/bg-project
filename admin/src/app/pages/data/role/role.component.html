@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <nb-card>
+            <nb-card-header></nb-card-header>
+            <nb-card-body>
+                <form class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">邀请码</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [(ngModel)]="invitedCode" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">总粉丝数</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [value]="fansInfo.TotalCnt" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">一级粉丝数</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [value]="fansInfo.Lv1Cnt" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">当前角色</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [value]="fansInfo.Role" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="offset-sm-4 col-sm-3">
+                            <button type="submit" class="btn btn-primary" (click)="queryFans()">查询粉丝</button>
+                            <button type="submit" class="btn btn-primary" (click)="popupVisible=true">切换角色</button>
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+
+<dx-popup [(visible)]="popupVisible" height="auto" title="更改角色" [closeOnOutsideClick]="false" [fullScreen]="false">
+    <div *dxTemplate="let data of 'content'">
+
+        <dx-form [formData]="rqstData" [colCount]="2" #form [showRequiredMark]="false">
+            <dxi-item [label]="{text: '角色'}" dataField="Role" editorType="dxSelectBox" [editorOptions]="selectOptions">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+        </dx-form>
+
+        <dx-button [height]="51" (onClick)="submit()" text="提交">
+        </dx-button>
+    </div>
+</dx-popup>

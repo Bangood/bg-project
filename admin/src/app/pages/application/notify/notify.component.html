@@ -1,0 +1,77 @@
+<p-dataGrid [value]="goodsNotifyList" [paginator]="true" [rows]="20">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative">
+                        待推送消息 列表
+                    </div>
+                </div>
+                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                    <i class="fa fa-plus" (click)="popupVisible=true" style="cursor:pointer;padding-right: 10px;"></i>
+                </div>
+            </div>
+        </div>
+    </p-header>
+
+    <ng-template let-goodsNotify let-i="index" pTemplate="item">
+        <div style="padding:3px" class="ui-g-12 ui-md-3">
+            <p-panel [header]="this._notificationService.translate(goodsNotify.Notify.SysPushType)" [style]="{'text-align':'center'}">
+                <img src="{{goodsNotify.PicUrl||'http://via.placeholder.com/120'}}" width="120">
+                <div>消息：{{goodsNotify.Alert}}</div>
+                <div class="banner-detail">发送时间：{{goodsNotify.Timestamp|timing}}</div>
+                <hr class="ui-widget-content" style="border-top:0">
+                <i class="fa fa-trash" (click)="delete(i)" style="cursor:pointer"></i>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataGrid>
+
+
+<dx-popup [(visible)]="popupVisible" height="auto" title="新增" [closeOnOutsideClick]="false" [fullScreen]="false">
+    <div *dxTemplate="let data of 'content'">
+
+        <dx-form [formData]="goodsNotify" [colCount]="2" #form [showRequiredMark]="false" (onFieldDataChanged)="autoFillGoodsInfo($event)">
+            <dxi-item [label]="{text: '类型'}" dataField="Notify.SysPushType" editorType="dxSelectBox" [editorOptions]="selectOptions">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '发送时间'}" dataField="Timestamp" editorType="dxDateBox" [editorOptions]="{'type':'datetime',width: '100%'}">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '标题'}" dataField="Title" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '消息'}" dataField="Alert">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '商品链接'}" dataField="Notify.SourceId" *ngIf="goodsNotify.Notify.SysPushType===0">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '专场ID'}" dataField="Notify.SourceId" *ngIf="goodsNotify.Notify.SysPushType===1" editorType="dxSelectBox"
+                [editorOptions]="specialSellSelectOptions">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '公告ID'}" dataField="Notify.SourceId" *ngIf="goodsNotify.Notify.SysPushType===2" editorType="dxSelectBox"
+                [editorOptions]="bulletinSelectOptions">
+                <dxi-validation-rule type="required" message="此项为必填">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '图片地址'}" dataField="PicUrl" [colSpan]="2">
+
+            </dxi-item>
+
+        </dx-form>
+        <dx-file-uploader #fileUploader [(uploadUrl)]="uploadUrl" (onUploaded)="onUploaded($event)" name="file" [multiple]="false"
+            accept="image/*" [(value)]="value" uploadMode="instantly"></dx-file-uploader>
+
+
+        <dx-button [height]="51" (onClick)="add()" text="提交">
+        </dx-button>
+        <dx-button [height]="51" (onClick)="pushInstantly()" text="立即推送">
+        </dx-button>
+    </div>
+</dx-popup>
+
+<p-confirmDialog header="提示" icon="fa fa-question-circle" width="425"></p-confirmDialog>

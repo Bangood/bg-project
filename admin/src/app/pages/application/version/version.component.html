@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <nb-card>
+            <nb-card-header>版本管理</nb-card-header>
+            <nb-card-body>
+                <form class="form-horizontal">
+                    <div class="form-group row" *ngIf='versionInfo'>
+                        <label class="col-sm-3 form-control-label">设备</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [value]="getDeviceName(versionInfo.Device)" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf='versionInfo'>
+                        <label class="col-sm-3 form-control-label">版本号</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [value]="versionInfo.Version" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf='versionInfo'>
+                        <label class="col-sm-3 form-control-label">最低版本号</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [value]="versionInfo.LowVersion" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf='versionInfo'>
+                        <label class="col-sm-3 form-control-label">包路径</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [value]="versionInfo.PackagePath" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf='versionInfo'>
+                        <label class="col-sm-3 form-control-label">描述</label>
+                        <div class="col-sm-9">
+                            <textarea rows="5" [value]="versionInfo.Desc" disabled class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" class="btn btn-primary" (click)="popupVisible=true">编辑</button>
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+
+<dx-popup [(visible)]="popupVisible" height="auto" title="编辑" [closeOnOutsideClick]="false" [fullScreen]="false">
+    <div *dxTemplate="let data of 'content'">
+
+        <dx-form [formData]="versionInfo" [colCount]="2" #form [showRequiredMark]="false">
+            <dxi-item [label]="{text: '设备'}" dataField="Device" editorType="dxSelectBox" [editorOptions]="selectOptions">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item [label]="{text: '版本'}" dataField="Version">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '最低版本'}" dataField="LowVersion">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item [label]="{text: '包路径'}" dataField="PackagePath" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '描述'}" dataField="Desc" editorType="dxTextArea" [colSpan]="2" [editorOptions]="{ height: 120 }">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+        </dx-form>
+
+        <dx-button [height]="51" (onClick)="submit()" text="提交">
+        </dx-button>
+    </div>
+</dx-popup>

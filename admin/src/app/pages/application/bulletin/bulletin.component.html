@@ -1,0 +1,56 @@
+<p-dataGrid [value]="bulletinInfos" [paginator]="true" [rows]="20">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative">
+                        公告 列表
+                    </div>
+                </div>
+                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                    <i class="fa fa-plus" (click)="showFormPanel('add')" style="cursor:pointer;padding-right: 10px;"></i>
+                </div>
+            </div>
+        </div>
+    </p-header>
+
+    <ng-template let-bulletinInfo let-i="index" pTemplate="item">
+        <div style="padding:3px" class="ui-g-12 ui-md-3">
+            <p-panel [header]="bulletinInfo.Title" [style]="{'text-align':'center'}">
+                <a href="{{bulletinInfo.Url}}" target="_blank">
+                    <img src="{{bulletinInfo.Pic}}" width="120">
+                </a>
+
+                <hr class="ui-widget-content" style="border-top:0">
+                <i class="fa fa-edit" (click)="showFormPanel('update', i)" style="cursor:pointer;padding-right: 10px"></i>
+                <i class="fa fa-trash" (click)="deleteBulletin(i)" style="cursor:pointer"></i>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataGrid>
+
+
+<dx-popup [(visible)]="popupVisible" height="auto" [title]="actionType.label" [closeOnOutsideClick]="false" [fullScreen]="false">
+    <div *dxTemplate="let data of 'content'">
+
+        <dx-form [formData]="bulletinInfo" [colCount]="2" #form [showRequiredMark]="false">
+            <dxi-item [label]="{text: '名称'}" dataField="Title" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+
+            <dxi-item [label]="{text: 'URL'}" dataField="Url" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: 'PIC'}" dataField="Pic" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item> -->
+        </dx-form>
+
+        <dx-button [height]="51" (onClick)="submit()" text="提交">
+        </dx-button>
+    </div>
+</dx-popup>
+
+<p-confirmDialog header="提示" icon="fa fa-question-circle" width="425"></p-confirmDialog>
