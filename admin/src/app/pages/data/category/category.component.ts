@@ -3,15 +3,15 @@ import { Component, ViewChild } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 
 import { DxFormComponent } from 'devextreme-angular';
+import { CategoryService } from '../../../core/service/category.service';
 import { QiniuService } from '../../../core/service/qiniu.service';
 import { Category } from '../../../core/models/category.model';
-import {OrderService} from '../../../core/service/order.service';
 
 @Component({
     selector: 'hyp-category',
     styleUrls: ['./category.component.scss'],
     templateUrl: './category.component.html',
-    providers: [ConfirmationService, OrderService, QiniuService]
+    providers: [ConfirmationService, CategoryService, QiniuService]
 })
 export class CategoryComponent {
     @ViewChild(DxFormComponent)
@@ -29,11 +29,11 @@ export class CategoryComponent {
     uploadUrl: string;
     constructor(
         private _confirmationService: ConfirmationService,
-        private _OrderService: OrderService,
+        private _categoryService: CategoryService,
         private _qiniuService: QiniuService,
     ) {
-        this._OrderService.list()
-            .then(($res: any[] = []) => this.categoryList = $res);
+        this._categoryService.queryCategory()
+            .then(($res: Category[] = []) => this.categoryList = $res);
         this._qiniuService.queryUploadUrl()
             .then($res => this.uploadUrl = $res);
     }
@@ -53,7 +53,7 @@ export class CategoryComponent {
 
     addCategory() {
         const data = [...this.categoryList, this.category];
-        this._OrderService.set(data)
+        this._categoryService.set(data)
             .then($res => {
                 this.categoryList = $res;
                 this.popupVisible = false;
@@ -62,7 +62,7 @@ export class CategoryComponent {
 
     updateCategory() {
         this.categoryList[this.currentIndex] = this.category;
-        this._OrderService.set(this.categoryList)
+        this._categoryService.set(this.categoryList)
             .then(() => this.popupVisible = false);
     }
 
@@ -71,7 +71,7 @@ export class CategoryComponent {
             message: '确定删除该条目吗？',
             accept: () => {
                 this.categoryList.splice($index, 1);
-                this._OrderService.set(this.categoryList)
+                this._categoryService.set(this.categoryList)
                     .then($res => this.categoryList = $res);
             }
         });
