@@ -13,14 +13,8 @@ const routes: Routes = [{
     path: 'user',
     loadChildren: './user/user.module#UserModule'
   }, {
-    path: 'application',
-    loadChildren: './application/application.module#ApplicationModule'
-  }, {
     path: 'data',
     loadChildren: './data/data.module#DataModule'
-  }, {
-    path: 'normal',
-    loadChildren: './normal/normal.module#NormalModule'
   },
   {
     path: 'others',
