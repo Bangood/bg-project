@@ -34,6 +34,7 @@ const allMidlewares = Compose([
             /^\/v1\/auth\/register/,
             /^\/v1\/product/,
             /^\/v1\/products/,
+            /^\/v1\/order/,
             /^\/v1\/oauth\/\w+$/,
             /^\/v1\/share\/\w+$/,
             /^\/v1\/gateway/,
