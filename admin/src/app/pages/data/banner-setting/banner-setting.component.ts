@@ -65,7 +65,7 @@ export class BannerSettingComponent {
     channelType = 99;
     productList: any[];
     environment = environment;
-    product = {};
+    product = { _id: null, canApply: false, creditAmount: 0.01, name: '', logoUrl: '' };
     constructor(
         private _bannerService: BannerService,
         private _toasterService: ToasterService,
@@ -147,7 +147,7 @@ export class BannerSettingComponent {
     showFormPanel($type: string, $index: number = -1) {
         this.actionType = this.actionList[$type];
         if ($index === -1) {
-            this.product = { canApply: false };
+            this.product = { _id: null, canApply: false, creditAmount: 0.01, name: '', logoUrl: '' };
         } else {
             this.product = this.productList[$index];
             this.currentIndex = $index;
