@@ -10,4 +10,23 @@ export class ProductService extends BaseService {
                 return $res;
             });
     }
+    create(data): any {
+        return this.post('/product', data)
+            .then(res => {
+                return res;
+            });
+    }
+    deleteOne(id): any {
+        console.log(id);
+        return this.delete(`/product/${id}`)
+            .then(res => {
+                return res;
+            });
+    }
+    update(id, data) {
+        return this.post(`/product/${id}`, data)
+            .then(res => {
+                return res;
+            });
+    }
 }

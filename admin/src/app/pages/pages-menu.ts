@@ -97,6 +97,10 @@ export const ADMIN_MENU_ITEM: NbMenuItem[] = [
       {
         title: '订单管理',
         link: '/pages/others/service'
+      },
+      {
+        title: '产品管理',
+        link: '/pages/data/banner-setting'
       }
     ]
   },
@@ -108,10 +112,10 @@ export const MENU_ITEM: NbMenuItem[] = [
     icon: 'nb-keypad',
     link: '/pages/normal',
     children: [
-      {
-        title: '朋友圈',
-        link: groupLink
-      }
+      // {
+      //   title: '朋友圈',
+      //   link: groupLink
+      // }
     ]
   }
 ];

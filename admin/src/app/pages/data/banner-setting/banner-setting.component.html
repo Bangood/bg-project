@@ -1,4 +1,4 @@
-<p-dataGrid [value]="bannerList" [paginator]="true" [rows]="20">
+<p-dataGrid [value]="productList" [paginator]="true" [rows]="20">
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
@@ -6,22 +6,25 @@
                 </div>
                 <div class="ui-g-6 ui-md-4 filter-container">
                     <div style="position:relative">
-                        {{isBannerMode?'Banner':'SubBanner'}} 列表
+                        产品列表
                     </div>
                 </div>
                 <div class="ui-g-6 ui-md-4" style="text-align:right">
-                    <p-toggleButton (onChange)="bannerModeChange($event)" [(ngModel)]="isBannerMode" onLabel="banner" offLabel="subBanner"></p-toggleButton>
                     <i class="fa fa-plus" (click)="showFormPanel('add')" style="cursor:pointer;padding-right: 10px;"></i>
                 </div>
             </div>
         </div>
     </p-header>
 
-    <ng-template let-banner let-i="index" pTemplate="item">
+    <ng-template let-product let-i="index" pTemplate="item">
         <div style="padding:3px" class="ui-g-12 ui-md-3">
-            <p-panel [header]="_bannerService.translate(banner.BannerType)" [style]="{'text-align':'center'}">
-                <img src="{{banner.BannerPic}}" width="120">
-                <div class="banner-detail">过期时间：{{banner.EndTime|timing}}</div>
+            <p-panel [header]="_bannerService.translate(product.BannerType)" [style]="{'text-align':'center'}">
+                <img src="{{environment.ASSETS_ENDPOINT+product.logoUrl}}" width="120">
+                <div class="banner-detail">产品名称：{{product.name}}</div>
+                <div class="banner-detail">冻结资金：{{product.creditAmount}}</div>
+                <div class="banner-detail">是否能申请：{{product.canApply}}</div>
+                <!-- <div class="banner-detail">产品描述:{{product.desc}}</div> -->
+                <div class="banner-detail">创建时间:{{product.createTime|timing}}</div>
                 <hr class="ui-widget-content" style="border-top:0">
                 <i class="fa fa-edit" (click)="showFormPanel('update', i)" style="cursor:pointer;padding-right: 10px"></i>
                 <i class="fa fa-trash" (click)="deleteBanner(i)" style="cursor:pointer"></i>
@@ -34,8 +37,8 @@
 <dx-popup [(visible)]="popupVisible" height="auto" [title]="actionType.label" [closeOnOutsideClick]="false" [fullScreen]="false">
     <div *dxTemplate="let data of 'content'">
 
-        <dx-form [formData]="banner" [colCount]="2" #form [showRequiredMark]="false" (onFieldDataChanged)="autoFillGoodsInfo($event)">
-            <dxi-item [label]="{text: '类型'}" dataField="BannerType" editorType="dxSelectBox" [editorOptions]="selectOptions">
+        <dx-form [formData]="product" [colCount]="2" #form [showRequiredMark]="false" (onFieldDataChanged)="autoFillGoodsInfo($event)">
+            <!-- <dxi-item [label]="{text: '类型'}" dataField="BannerType" editorType="dxSelectBox" [editorOptions]="selectOptions">
                 <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
             </dxi-item>
             <dxi-item [label]="{text: '商品ID'}" dataField="Id" *ngIf="banner.BannerType===0">
@@ -43,16 +46,26 @@
             </dxi-item>
             <dxi-item [label]="{text: '专场ID'}" dataField="Id" *ngIf="banner.BannerType===1" editorType="dxSelectBox" [editorOptions]="specialSellSelectOptins">
                 <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
-            </dxi-item>
-            <dxi-item [label]="{text: '过期时间'}" dataField="EndTime" editorType="dxDateBox" [editorOptions]="{'type':'datetime',width: '100%'}">
+            </dxi-item> -->
+            
+            <dxi-item [label]="{text: '图片链接'}" dataField="logoUrl" [colSpan]="2">
                 <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
             </dxi-item>
-            <dxi-item [label]="{text: '图片链接'}" dataField="BannerPic" [colSpan]="2">
+            <dxi-item [label]="{text: '产品名称'}" dataField="name" [colSpan]="2">
                 <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '产品描述'}" dataField="desc" editorType="dxTextArea"  [editorOptions]="{ height: 120 }"  [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '冻结资金'}" dataField="creditAmount" editorType="dxNumberBox" [colSpan]="2">
+                <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [label]="{text: '是否能申请'}" dataField="canApply" [colSpan]="2">
+                <!-- <dxi-validation-rule type="required" message="此项为必填"></dxi-validation-rule> -->
             </dxi-item>
 
         </dx-form>
-        <dx-file-uploader #fileUploader [(uploadUrl)]="uploadUrl" (onUploaded)="onUploaded($event)" name="file" [multiple]="false" accept="image/*" [(value)]="value" uploadMode="instantly"></dx-file-uploader>
+        <!-- <dx-file-uploader #fileUploader [(uploadUrl)]="uploadUrl" (onUploaded)="onUploaded($event)" name="file" [multiple]="false" accept="image/*" [(value)]="value" uploadMode="instantly"></dx-file-uploader> -->
 
         <dx-button [height]="51" (onClick)="submit()" text="提交">
         </dx-button>

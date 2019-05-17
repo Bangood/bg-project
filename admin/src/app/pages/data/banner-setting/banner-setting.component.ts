@@ -11,12 +11,14 @@ import { GoodsService } from '../../../core/service/goods.service';
 import { Banner } from '../../../core/models/banner.model';
 import { QiniuService } from '../../../core/service/qiniu.service';
 import { SpecialSellService } from '../../../core/service/specialSell.service';
+import { ProductService } from '../../../core/service/product.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'hyp-banner-setting',
     styleUrls: ['./banner-setting.component.scss'],
     templateUrl: './banner-setting.component.html',
-    providers: [ConfirmationService, BannerService, GoodsService, QiniuService, SpecialSellService]
+    providers: [ConfirmationService, BannerService, GoodsService, QiniuService, SpecialSellService, ProductService]
 })
 export class BannerSettingComponent {
     @ViewChild(DxFormComponent)
@@ -61,6 +63,9 @@ export class BannerSettingComponent {
     uploadUrl: string;
     specialSellListMap = {};
     channelType = 99;
+    productList: any[];
+    environment = environment;
+    product = {};
     constructor(
         private _bannerService: BannerService,
         private _toasterService: ToasterService,
@@ -68,11 +73,13 @@ export class BannerSettingComponent {
         private _goodsService: GoodsService,
         private _qiniuService: QiniuService,
         private _specialSellService: SpecialSellService,
+        private _productService: ProductService,
     ) {
-        this._bannerService.queryList()
-            .then($res => this.bannerList = $res);
-        this._qiniuService.queryUploadUrl()
-            .then($res => this.uploadUrl = $res);
+        this._productService.list()
+            .then(res => {
+                console.log(res.msg);
+                this.productList = res.msg;
+            });
     }
     changeBannerType($event) {
         if ($event.value === 1) {
@@ -112,32 +119,26 @@ export class BannerSettingComponent {
     }
 
     addBanner() {
-        const methodName = this.isBannerMode ? 'set' : 'setSub';
-        const data = [...this.bannerList, this.banner];
-        this._bannerService[methodName](data)
-            .then($res => {
-                this.bannerList = $res;
+        this._productService.create(this.product)
+            .then(res => {
                 this.popupVisible = false;
             });
     }
 
     updateBanner() {
-        const methodName = this.isBannerMode ? 'set' : 'setSub';
-        this.bannerList[this.currentIndex] = this.banner;
-        this._bannerService[methodName](this.bannerList).then(() => {
-            this.popupVisible = false;
-        });
+        this._productService.update(this.product._id, this.product)
+            .then(res => {
+                this.popupVisible = false;
+            });
     }
 
     deleteBanner($index: number) {
         this._confirmationService.confirm({
-            message: '确定删除该条目吗？',
+            message: '确定删除该产品吗吗？',
             accept: () => {
-                const methodName = this.isBannerMode ? 'set' : 'setSub';
-                this.bannerList.splice($index, 1);
-                this._bannerService[methodName](this.bannerList)
-                    .then($res => {
-                        this.bannerList = $res;
+                this._productService.deleteOne(this.productList[$index]._id)
+                    .then(res => {
+                        console.log(res);
                     });
             }
         });
@@ -146,9 +147,9 @@ export class BannerSettingComponent {
     showFormPanel($type: string, $index: number = -1) {
         this.actionType = this.actionList[$type];
         if ($index === -1) {
-            this.banner = new Banner();
+            this.product = { canApply: false };
         } else {
-            this.banner = this.bannerList[$index];
+            this.product = this.productList[$index];
             this.currentIndex = $index;
         }
         this.popupVisible = true;
