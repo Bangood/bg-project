@@ -51,7 +51,7 @@ var allMidlewares = (0, _koaCompose["default"])([(0, _koaRespond["default"])(), 
 }), (0, _koaJwt["default"])({
   secret: '#production#Bangood#'
 }).unless({
-  path: [/^\/v1\/auth\/login/, /^\/v1\/auth\/register/, /^\/v1\/oauth\/\w+$/, /^\/v1\/share\/\w+$/, /^\/v1\/gateway\/\w+$/, /^\/v1\/aliapi\/\w+$/, /^\/v1\/product\/\w+$/]
+  path: [/^\/v1\/auth\/login/, /^\/v1\/auth\/register/, /^\/v1\/product/, /^\/v1\/products/, /^\/v1\/oauth\/\w+$/, /^\/v1\/share\/\w+$/, /^\/v1\/gateway/, /^\/v1\/aliapi/]
 }), _routes["default"].routes()]);
 app.use(allMidlewares); // 格式化 key
 
