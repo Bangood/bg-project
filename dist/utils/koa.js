@@ -51,7 +51,7 @@ var allMidlewares = (0, _koaCompose["default"])([(0, _koaRespond["default"])(), 
 }), (0, _koaJwt["default"])({
   secret: '#production#Bangood#'
 }).unless({
-  path: [/^\/v1\/auth\/login/, /^\/v1\/auth\/register/, /^\/v1\/product/, /^\/v1\/products/, /^\/v1\/order/, /^\/v1\/oauth\/\w+$/, /^\/v1\/share\/\w+$/, /^\/v1\/gateway/, /^\/v1\/aliapi/]
+  path: [/^\/v1\/auth\/login/, /^\/v1\/auth\/register/, /\/v1\/product\/public/, /^\/v1\/products/, /^\/v1\/order\/public/, /^\/v1\/gateway/]
 }), _routes["default"].routes()]);
 app.use(allMidlewares); // 格式化 key
 
@@ -71,37 +71,7 @@ function formatKey(key, type) {
   }
 
   return "-----BEGIN ".concat(type, "-----\n").concat(item.join(''), "\n-----END ").concat(type, "-----");
-} // router.get('/pug', async(ctx)=>{
-//     await ctx.render('products/list',{title:'产品列表'})
-// })
-// router.post('/gateway.do',async (ctx,next)=>{
-//     const {sign,charset,biz_content,sign_type,service} = ctx.request.body;
-//     try {
-//         // let bb = `biz_content=${biz_content}&charset=${charset}&sign_type=${sign_type},${service}`;
-//         const result = await alipaySdk.checkNotifySign(ctx.request.body)
-//         // if(result){
-//         //     let return_xml = `
-//         //     <?xml version="1.0" encoding="GBK"?>
-//         //     <alipay>
-//         //         <response>
-//         //             <biz_content>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy0Ohf6pq+u9SYY/kTt0VffzdtglGFo0mK5cd+l6BzUrX2SFZaSxqaC98hrGYSvx0cjVCztKK+W7Ob7vjYhHk1+zHA8WO2KFSYQrfRPJNzJivLKSu3N7SwGMDW51kGFkVxJqafnBVm/r7wksaCeQkOA8rNFnPF0epv4jPEX3ua4++syFikneYvx0j6zPT7xefLfm858fOwHq+u1ES+xrO/HCxmG3yzwtHFQsqnxlmAHadC4VOBcU45W6rnhVH144+7hVEGieV7u9grRfuhfLZlkYyphMVHoyWsUSbzKN4V3Pha9S0PFQG4p9txKbY9mxbuzkp2WOsopyQ7EBwKf6n2QIDAQAB</biz_content>
-//         //             <success>true</success>
-//         //         </response>
-//         //         <sign_type>RSA2</sign_type>
-//         //     </alipay>
-//         //     `
-//         // }
-//         let sign = crypto.createSign('RSA-SHA256').update('<biz_content>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy0Ohf6pq+u9SYY/kTt0VffzdtglGFo0mK5cd+l6BzUrX2SFZaSxqaC98hrGYSvx0cjVCztKK+W7Ob7vjYhHk1+zHA8WO2KFSYQrfRPJNzJivLKSu3N7SwGMDW51kGFkVxJqafnBVm/r7wksaCeQkOA8rNFnPF0epv4jPEX3ua4++syFikneYvx0j6zPT7xefLfm858fOwHq+u1ES+xrO/HCxmG3yzwtHFQsqnxlmAHadC4VOBcU45W6rnhVH144+7hVEGieV7u9grRfuhfLZlkYyphMVHoyWsUSbzKN4V3Pha9S0PFQG4p9txKbY9mxbuzkp2WOsopyQ7EBwKf6n2QIDAQAB</biz_content><success>true</success>', 'utf8').sign(formatKey(privateKey,'RSA PRIVATE KEY'), 'base64');
-//         ctx.response.type='text/xml;charset=GBK'
-//         return ctx.body = `<?xml version="1.0" encoding="GBK"?><alipay><response><biz_content>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy0Ohf6pq+u9SYY/kTt0VffzdtglGFo0mK5cd+l6BzUrX2SFZaSxqaC98hrGYSvx0cjVCztKK+W7Ob7vjYhHk1+zHA8WO2KFSYQrfRPJNzJivLKSu3N7SwGMDW51kGFkVxJqafnBVm/r7wksaCeQkOA8rNFnPF0epv4jPEX3ua4++syFikneYvx0j6zPT7xefLfm858fOwHq+u1ES+xrO/HCxmG3yzwtHFQsqnxlmAHadC4VOBcU45W6rnhVH144+7hVEGieV7u9grRfuhfLZlkYyphMVHoyWsUSbzKN4V3Pha9S0PFQG4p9txKbY9mxbuzkp2WOsopyQ7EBwKf6n2QIDAQAB</biz_content><success>true</success></response><sign>${sign}</sign><sign_type>RSA2</sign_type></alipay>
-//         `
-//     }catch(err){
-//         console.log('errrrrrrr')
-//         console.log(err);
-//     }
-// });
-// app.use(router.routes());
-
+}
 
 global.userInfoMap = new Map();
 

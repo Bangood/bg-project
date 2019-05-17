@@ -59,8 +59,11 @@ async function findOne($ctx){
         console.log($err);
     }
 }
-async function showPage($ctx) {
+async function renderPage($ctx) {
    await $ctx.render('products/product');
 }
+async function renderListPage($ctx){
+    await $ctx.render('products/list');
+}
 
-export { create, update, del, list, findOne,showPage };
+export { create, update, del, list, findOne,renderPage,renderListPage };

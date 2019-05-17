@@ -10,7 +10,8 @@ exports.update = update;
 exports.del = del;
 exports.list = list;
 exports.findOne = findOne;
-exports.showPage = showPage;
+exports.renderPage = renderPage;
+exports.renderListPage = renderListPage;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -247,12 +248,12 @@ function _findOne() {
   return _findOne.apply(this, arguments);
 }
 
-function showPage(_x6) {
-  return _showPage.apply(this, arguments);
+function renderPage(_x6) {
+  return _renderPage.apply(this, arguments);
 }
 
-function _showPage() {
-  _showPage = (0, _asyncToGenerator2["default"])(
+function _renderPage() {
+  _renderPage = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee6($ctx) {
     return _regenerator["default"].wrap(function _callee6$(_context6) {
@@ -269,5 +270,30 @@ function _showPage() {
       }
     }, _callee6);
   }));
-  return _showPage.apply(this, arguments);
+  return _renderPage.apply(this, arguments);
+}
+
+function renderListPage(_x7) {
+  return _renderListPage.apply(this, arguments);
+}
+
+function _renderListPage() {
+  _renderListPage = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee7($ctx) {
+    return _regenerator["default"].wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.next = 2;
+            return $ctx.render('products/list');
+
+          case 2:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7);
+  }));
+  return _renderListPage.apply(this, arguments);
 }
