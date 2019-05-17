@@ -43,7 +43,7 @@
             getList: function () {
                 console.log('hi')
                 $.getAjaxData({
-                    url: '/v1/product/list',
+                    url: '/v1/product/public/list',
                     type:'GET',
                     success: function (data) {
                         console.log(data)
@@ -84,7 +84,7 @@
 
                     a.click(function () {
                         // methods.openApplyProduct(item._id);
-                        window.location.href = '/v1/product?id='+item._id;
+                        window.location.href = '/v1/product/public?id='+item._id;
                     });
                 });
             },

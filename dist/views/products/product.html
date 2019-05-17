@@ -120,7 +120,7 @@
                 //     return false;
                 // }
                 $.getAjaxData({
-                    url: '/v1/product/' + getRequest('id'),
+                    url: '/v1/product/public/' + getRequest('id'),
                     type:'GET',
                     data: {
                         productId: methods.settings.productId
@@ -293,7 +293,7 @@
                             isWithhold: 1 //methods.settings.isWithhold
                         };
                         $.getAjaxData({
-                            url: '/v1/order',
+                            url: '/v1/order/public/',
                             data: {
                                 ...param
                             },
