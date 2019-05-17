@@ -12,6 +12,6 @@ async function check(){
   
 }
 async function init(){
-  koaInit(8000);
+  koaInit(80);
 }
 init();
