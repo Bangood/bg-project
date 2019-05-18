@@ -187,7 +187,7 @@ function _tradePay() {
             return _order.OrderModel.findOneAndUpdate({
               outOrderNo: out_trade_no
             }, {
-              status: 1
+              status: 2
             });
 
           case 4:
@@ -231,7 +231,7 @@ function _fundAuthUnfreeze() {
             return _order.OrderModel.findOneAndUpdate({
               outOrderNo: out_order_no
             }, {
-              status: 2
+              status: 1
             });
 
           case 4:
