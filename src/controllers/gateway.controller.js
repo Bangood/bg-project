@@ -72,7 +72,7 @@ async function fundAuthFreeze($ctx) {
 async function tradePay($ctx) {
     try {
         const {out_trade_no} = $ctx.request.body;
-        const result = await OrderModel.findOneAndUpdate({outOrderNo:out_trade_no},{status:1});
+        const result = await OrderModel.findOneAndUpdate({outOrderNo:out_trade_no},{status:2});
         console.log(result);
         $ctx.body = 'success';
     }catch($err){
@@ -83,7 +83,7 @@ async function tradePay($ctx) {
 async function fundAuthUnfreeze($ctx) {
     try {
         const {out_order_no} = $ctx.request.body;
-        const result = await OrderModel.findOneAndUpdate({outOrderNo:out_order_no},{status:2});
+        const result = await OrderModel.findOneAndUpdate({outOrderNo:out_order_no},{status:1});
         console.log(result);
         $ctx.body = 'success';
     }catch($err){

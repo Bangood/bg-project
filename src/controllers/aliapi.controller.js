@@ -11,7 +11,7 @@ async function tradePay($ctx){
                 authNo,
                 subject: '预授权转支付',
                 totalAmount,
-                sellerId,
+                sellerId:'2088431978724276',
                 buyerId,
                 storeId,
                 body: '预授权解冻转支付',
@@ -38,6 +38,7 @@ async function fundAuthUnfreeze($ctx){
             },
              notifyUrl: 'http://39.100.71.78/v1/gateway'
         })
+        $ctx.ok(result);
     }catch($err){
         console.log($err);
     }

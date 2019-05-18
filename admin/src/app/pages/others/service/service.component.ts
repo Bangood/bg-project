@@ -75,6 +75,25 @@ export class ServiceComponent implements OnDestroy {
       message: '确定对该笔订单进行授权转支付吗？',
       accept: () => {
         this._AlipayService.tradePay({
+          outTradeNo: order.outOrderNo,
+          authNo: order.authNo,
+          sellerId: '',
+          buyerId: order.userId,
+          storeId: '',
+          totalAmount: order.totalFreezeAmount
+        }).then($res => {
+          console.log($res);
+        });
+
+      }
+    });
+  }
+  fundAuthUnfreeze(event, order) {
+    console.log(order)
+    this._confirmationService.confirm({
+      message: '确定对该笔订单进行资金授权解冻吗？',
+      accept: () => {
+        this._AlipayService.fundAuthUnfreeze({
           authNo: order.authNo,
           outRequestNo: order.outRequestNo,
           amount: order.totalFreezeAmount,
@@ -82,23 +101,6 @@ export class ServiceComponent implements OnDestroy {
         })
           .then(res => {
           });
-      }
-    });
-  }
-  fundAuthUnfreeze(event, order) {
-    this._confirmationService.confirm({
-      message: '确定对该笔订单进行资金授权解冻吗？',
-      accept: () => {
-        this._AlipayService.fundAuthUnfreeze({
-          outTradeNo: '',
-          authNo: '',
-          sellerId: '',
-          buyerId: '',
-          storeId: '',
-          totalAmount: 0.01
-        }).then($res => {
-          console.log($res);
-        });
       }
     });
   }
