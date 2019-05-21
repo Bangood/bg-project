@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
-import * as moment from 'moment';
 import { ConfirmationService } from 'primeng/api';
 
 import { DxFormComponent } from 'devextreme-angular';
@@ -12,6 +11,7 @@ import { Banner } from '../../../core/models/banner.model';
 import { QiniuService } from '../../../core/service/qiniu.service';
 import { SpecialSellService } from '../../../core/service/specialSell.service';
 import { ProductService } from '../../../core/service/product.service';
+import { Product } from '../../../core/models/product.model';
 import { environment } from '../../../../environments/environment';
 
 @Component({
