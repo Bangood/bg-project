@@ -1,4 +1,6 @@
 import {AlipaySDK} from '../utils/AlipaySDK';
+import bgLogger from 'bg-logger';
+const logger = new bgLogger();
 const alipaySDK = AlipaySDK.getInstance();
 // alipay.trade.pay(统一收单交易支付接口)
 async function tradePay($ctx){
@@ -19,16 +21,15 @@ async function tradePay($ctx){
             },
             notifyUrl: 'http://39.100.71.78/v1/gateway'
         });
-        console.log('tradePay-result:',result);
+        logger.info('tradePay-result:',result);
     }catch(err){
-        console.log(err);
+        logger.error(err);
     }
 }
 // alipay.fund.auth.order.unfreeze 资金授权解冻 
 async function fundAuthUnfreeze($ctx){
     try {
         let {authNo,outRequestNo,amount,remark} = $ctx.request.body;
-        console.log( $ctx.request.body)
         let result = await alipaySDK.exec('alipay.fund.auth.order.unfreeze',{
             bizContent:{
                 authNo,
@@ -40,11 +41,10 @@ async function fundAuthUnfreeze($ctx){
         })
         $ctx.ok(result);
     }catch($err){
-        console.log($err);
+        logger.error($err);
     }
 }
 async function redirect($ctx) {
-    console.log($ctx.params['id']);
     let { app_id, source, scope, auth_code } = $ctx.query;
     try {
         let result = await alipaySdk.exec('alipay.system.oauth.token', {
@@ -54,11 +54,10 @@ async function redirect($ctx) {
             validateSign: true,
             log: console
         });
-        console.log(result);
 
         $ctx.redirect(`/v1/products/${$ctx.params['id']}?productId=`+$ctx.params['id']+`&paa_id=${app_id}&source=${source}&scope=${scope}&auth_code=${auth_code}`)
     } catch (err) {
-        console.log(err);
+        logger.error(err);
     }
 
 }

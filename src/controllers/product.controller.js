@@ -1,4 +1,6 @@
 import { ProductModel } from '../models/product.model';
+import bgLogger from 'bg-logger';
+const logger = new bgLogger();
 
 async function create($ctx) {
     try {
@@ -7,7 +9,7 @@ async function create($ctx) {
         const result = await ProductModel.create({ name, desc, creditAmount, logoUrl, canApply, createTime })
         $ctx.ok(result);
     } catch ($err) {
-        console.log($err);
+        logger.error($err);
         $ctx.ok($err);
     }
 }
@@ -17,7 +19,7 @@ async function update($ctx) {
         const result = await ProductModel.findByIdAndUpdate(id, $ctx.request.body);
         $ctx.ok(result);
     } catch ($err) {
-        console.log($err);
+        logger.error($err);
         $ctx.ok($err);
     }
 }
@@ -27,7 +29,7 @@ async function del($ctx) {
         const result = await ProductModel.findByIdAndRemove(id);
         $ctx.ok({ status: 0, data: { key: 0, msg: result } });
     } catch ($err) {
-        console.log($err);
+        logger.error($err);
         $ctx.ok($err);
     }
 }
@@ -36,7 +38,7 @@ async function list($ctx) {
         const result = await ProductModel.find({});
         $ctx.ok({ status: 0, data: { key: 0, msg: result } });
     } catch ($err) {
-        console.log($err);
+        logger.error($err);
         $ctx.ok($err);
     }
 }
@@ -56,7 +58,7 @@ async function findOne($ctx){
             }
         })
     } catch ($err) {
-        console.log($err);
+        logger.error($err);
     }
 }
 async function renderPage($ctx) {

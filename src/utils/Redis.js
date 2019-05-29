@@ -1,5 +1,7 @@
 import redisClient from 'redis';
 import { promisify } from 'util';
+import bgLogger from 'bg-logger';
+const logger = new bgLogger();
 export class Redis {
     constructor() {
         this.instance = null;
@@ -26,16 +28,16 @@ export class Redis {
             }
         });
         this.client.on("error", function($err) {
-            console.log("Error" + $err);
+            logger.error("Error" + $err);
         })
         this.client.on('connect', () => {
-            console.log('redis connection');
+            logger.success('redis connection');
         })
         this.client.on('end', () => {
-            console.log('an established Redis server connection has closed');
+            logger.error('an established Redis server connection has closed');
         })
         this.client.on('reconnecting', ($err) => {
-            console.log(`redis 正在重新连接......${$err.attempt}`);
+            logger.info(`redis 正在重新连接......${$err.attempt}`);
         })
         this.getAsync = promisify(this.client.get).bind(this.client);
         this.setAsync = promisify(this.client.set).bind(this.client);

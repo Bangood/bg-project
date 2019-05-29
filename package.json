@@ -4,7 +4,7 @@
   "description": "��#\u0000 \u0000b\u0000g\u0000-\u0000p\u0000r\u0000o\u0000j\u0000e\u0000c\u0000t\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "cross-env NODE_ENV=development nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/index",
     "test": "nodemon --exec babel-node src/utils/Redis.js",
@@ -33,6 +33,7 @@
     "@koa/cors": "3.0.0",
     "alipay-sdk": "3.0.4",
     "bcrypt": "3.0.6",
+    "bg-logger": "1.0.4",
     "config": "3.1.0",
     "jsonwebtoken": "8.5.1",
     "koa": "2.7.0",

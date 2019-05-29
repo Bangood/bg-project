@@ -11,7 +11,8 @@ import Jwt from 'koa-jwt';
 import Helmet from 'koa-helmet';
 import Conditional from 'koa-conditional-get';
 import Etag from 'koa-etag';
-
+import bgLogger from 'bg-logger';
+const logger = new bgLogger();
 const app = new Koa();
 const allMidlewares = Compose([
     Helmet(),
@@ -41,5 +42,5 @@ app.use(allMidlewares);
 global.userInfoMap = new Map();
 export function init(port) {
     app.listen(port);
-    console.log('listen on :', port);
+    logger.success(`listen on :${port}`);
 }

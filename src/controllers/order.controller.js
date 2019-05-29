@@ -4,6 +4,8 @@ import { ProductModel } from '../models/product.model';
 import { Redis } from '../utils/Redis';
 import { AlipaySDK } from '../utils/AlipaySDK';
 import AlipayFormData from 'alipay-sdk/lib/form';
+import bgLogger from 'bg-logger';
+const logger = new bgLogger();
 const redisClient = Redis.getInstance();
 const alipaySDK = AlipaySDK.getInstance();
 
@@ -17,7 +19,6 @@ async function create($ctx) {
         await redisClient.set(outOrderNo, JSON.stringify({ productId, outOrderNo, outRequestNo, userName, userTelphone, province, area, county, address }))
         console.log(productId)
         const product = await ProductModel.findById(productId);
-        console.log(product);
         const formData = new AlipayFormData();
         formData.setMethod('get');
         formData.addField('notifyUrl', 'http://39.100.71.78/v1/gateway');
@@ -45,7 +46,9 @@ async function create($ctx) {
                 }
             }
         })
-    } catch ($err) {}
+    } catch ($err) {
+        logger.error($err)
+    }
 
 
 }
@@ -56,7 +59,7 @@ async function list($ctx) {
         const result = await OrderModel.find({});
         $ctx.ok({ data: result });
     } catch ($err) {
-        console.log($err);
+        logger.error($err);
         $ctx.ok({ error: $err.message });
     }
 }
