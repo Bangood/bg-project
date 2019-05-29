@@ -14,6 +14,10 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _AlipaySDK = require("../utils/AlipaySDK");
 
+var _bgLogger = _interopRequireDefault(require("bg-logger"));
+
+var logger = new _bgLogger["default"]();
+
 var alipaySDK = _AlipaySDK.AlipaySDK.getInstance(); // alipay.trade.pay(统一收单交易支付接口)
 
 
@@ -53,14 +57,14 @@ function _tradePay() {
 
           case 4:
             result = _context.sent;
-            console.log('tradePay-result:', result);
+            logger.info('tradePay-result:', result);
             _context.next = 11;
             break;
 
           case 8:
             _context.prev = 8;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
+            logger.error(_context.t0);
 
           case 11:
           case "end":
@@ -88,8 +92,7 @@ function _fundAuthUnfreeze() {
           case 0:
             _context2.prev = 0;
             _$ctx$request$body2 = $ctx.request.body, authNo = _$ctx$request$body2.authNo, outRequestNo = _$ctx$request$body2.outRequestNo, amount = _$ctx$request$body2.amount, remark = _$ctx$request$body2.remark;
-            console.log($ctx.request.body);
-            _context2.next = 5;
+            _context2.next = 4;
             return alipaySDK.exec('alipay.fund.auth.order.unfreeze', {
               bizContent: {
                 authNo: authNo,
@@ -100,23 +103,23 @@ function _fundAuthUnfreeze() {
               notifyUrl: 'http://39.100.71.78/v1/gateway'
             });
 
-          case 5:
+          case 4:
             result = _context2.sent;
             $ctx.ok(result);
-            _context2.next = 12;
+            _context2.next = 11;
             break;
 
-          case 9:
-            _context2.prev = 9;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
+            logger.error(_context2.t0);
 
-          case 12:
+          case 11:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 9]]);
+    }, _callee2, null, [[0, 8]]);
   }));
   return _fundAuthUnfreeze.apply(this, arguments);
 }
@@ -135,10 +138,9 @@ function _redirect() {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            console.log($ctx.params['id']);
             _$ctx$query = $ctx.query, app_id = _$ctx$query.app_id, source = _$ctx$query.source, scope = _$ctx$query.scope, auth_code = _$ctx$query.auth_code;
-            _context3.prev = 2;
-            _context3.next = 5;
+            _context3.prev = 1;
+            _context3.next = 4;
             return alipaySdk.exec('alipay.system.oauth.token', {
               grantType: 'authorization_code',
               code: auth_code
@@ -147,24 +149,23 @@ function _redirect() {
               log: console
             });
 
-          case 5:
+          case 4:
             result = _context3.sent;
-            console.log(result);
             $ctx.redirect("/v1/products/".concat($ctx.params['id'], "?productId=") + $ctx.params['id'] + "&paa_id=".concat(app_id, "&source=").concat(source, "&scope=").concat(scope, "&auth_code=").concat(auth_code));
-            _context3.next = 13;
+            _context3.next = 11;
             break;
 
-          case 10:
-            _context3.prev = 10;
-            _context3.t0 = _context3["catch"](2);
-            console.log(_context3.t0);
+          case 8:
+            _context3.prev = 8;
+            _context3.t0 = _context3["catch"](1);
+            logger.error(_context3.t0);
 
-          case 13:
+          case 11:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[2, 10]]);
+    }, _callee3, null, [[1, 8]]);
   }));
   return _redirect.apply(this, arguments);
 }

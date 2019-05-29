@@ -33,6 +33,9 @@ var _koaConditionalGet = _interopRequireDefault(require("koa-conditional-get"));
 
 var _koaEtag = _interopRequireDefault(require("koa-etag"));
 
+var _bgLogger = _interopRequireDefault(require("bg-logger"));
+
+var logger = new _bgLogger["default"]();
 var app = new _koa["default"]();
 var allMidlewares = (0, _koaCompose["default"])([(0, _koaHelmet["default"])(), (0, _koaConditionalGet["default"])(), (0, _koaEtag["default"])(), (0, _koaRespond["default"])(), (0, _koaBodyparser["default"])({
   enableTypes: ['json', 'form']
@@ -48,5 +51,5 @@ global.userInfoMap = new Map();
 
 function init(port) {
   app.listen(port);
-  console.log('listen on :', port);
+  logger.success("listen on :".concat(port));
 }

@@ -8,10 +8,13 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _config = _interopRequireDefault(require("config"));
 
+var _bgLogger = _interopRequireDefault(require("bg-logger"));
+
 var _koa = require("./utils/koa");
 
-console.log(_config["default"]);
-console.log(process.env.NODE_ENV);
+var logger = new _bgLogger["default"]({
+  env: process.env.NODE_ENV
+});
 
 function init() {
   return _init.apply(this, arguments);

@@ -13,6 +13,10 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
+var _bgLogger = _interopRequireDefault(require("bg-logger"));
+
+var logger = new _bgLogger["default"]();
+
 var MongoDB =
 /*#__PURE__*/
 function () {
@@ -35,10 +39,10 @@ function () {
           autoIndex: false
         });
         this.instance.once('open', function () {
-          console.log('数据库已连接');
+          logger.success('数据库已连接');
         });
         this.instance.once('close', function () {
-          console.log('数据库已断开');
+          logger.error('数据库已断开');
         });
       }
 

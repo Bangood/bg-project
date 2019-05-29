@@ -24,6 +24,10 @@ var _AlipaySDK = require("../utils/AlipaySDK");
 
 var _form = _interopRequireDefault(require("alipay-sdk/lib/form"));
 
+var _bgLogger = _interopRequireDefault(require("bg-logger"));
+
+var logger = new _bgLogger["default"]();
+
 var redisClient = _Redis.Redis.getInstance();
 
 var alipaySDK = _AlipaySDK.AlipaySDK.getInstance();
@@ -67,7 +71,6 @@ function _create() {
 
           case 10:
             product = _context.sent;
-            console.log(product);
             formData = new _form["default"]();
             formData.setMethod('get');
             formData.addField('notifyUrl', 'http://39.100.71.78/v1/gateway');
@@ -82,12 +85,12 @@ function _create() {
               enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"},{\"payChannelType\":\"MONEY_FUND\"}]",
               extraParam: "{\"category\":\"RENT_DIGITAL\"}"
             });
-            _context.next = 18;
+            _context.next = 17;
             return alipaySDK.exec('alipay.fund.auth.order.app.freeze', {}, {
               formData: formData
             });
 
-          case 18:
+          case 17:
             result = _context.sent;
             result1 = result.split('https://openapi.alipay.com/gateway.do?');
             result2 = result1.slice(1);
@@ -103,16 +106,17 @@ function _create() {
             _context.next = 26;
             break;
 
-          case 24:
-            _context.prev = 24;
+          case 23:
+            _context.prev = 23;
             _context.t0 = _context["catch"](4);
+            logger.error(_context.t0);
 
           case 26:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[4, 24]]);
+    }, _callee, null, [[4, 23]]);
   }));
   return _create.apply(this, arguments);
 }
@@ -187,7 +191,7 @@ function _list() {
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
+            logger.error(_context4.t0);
             $ctx.ok({
               error: _context4.t0.message
             });

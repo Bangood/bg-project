@@ -19,6 +19,10 @@ var _redis = _interopRequireDefault(require("redis"));
 
 var _util = require("util");
 
+var _bgLogger = _interopRequireDefault(require("bg-logger"));
+
+var logger = new _bgLogger["default"]();
+
 var Redis =
 /*#__PURE__*/
 function () {
@@ -51,16 +55,16 @@ function () {
       }
     });
     this.client.on("error", function ($err) {
-      console.log("Error" + $err);
+      logger.error("Error" + $err);
     });
     this.client.on('connect', function () {
-      console.log('redis connection');
+      logger.success('redis connection');
     });
     this.client.on('end', function () {
-      console.log('an established Redis server connection has closed');
+      logger.error('an established Redis server connection has closed');
     });
     this.client.on('reconnecting', function ($err) {
-      console.log("redis \u6B63\u5728\u91CD\u65B0\u8FDE\u63A5......".concat($err.attempt));
+      logger.info("redis \u6B63\u5728\u91CD\u65B0\u8FDE\u63A5......".concat($err.attempt));
     });
     this.getAsync = (0, _util.promisify)(this.client.get).bind(this.client);
     this.setAsync = (0, _util.promisify)(this.client.set).bind(this.client);

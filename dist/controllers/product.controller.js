@@ -19,6 +19,10 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _product = require("../models/product.model");
 
+var _bgLogger = _interopRequireDefault(require("bg-logger"));
+
+var logger = new _bgLogger["default"]();
+
 function create(_x) {
   return _create.apply(this, arguments);
 }
@@ -55,7 +59,7 @@ function _create() {
           case 9:
             _context.prev = 9;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
+            logger.error(_context.t0);
             $ctx.ok(_context.t0);
 
           case 13:
@@ -95,7 +99,7 @@ function _update() {
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
+            logger.error(_context2.t0);
             $ctx.ok(_context2.t0);
 
           case 12:
@@ -141,7 +145,7 @@ function _del() {
           case 8:
             _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
-            console.log(_context3.t0);
+            logger.error(_context3.t0);
             $ctx.ok(_context3.t0);
 
           case 12:
@@ -186,7 +190,7 @@ function _list() {
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
+            logger.error(_context4.t0);
             $ctx.ok(_context4.t0);
 
           case 11:
@@ -236,7 +240,7 @@ function _findOne() {
           case 8:
             _context5.prev = 8;
             _context5.t0 = _context5["catch"](0);
-            console.log(_context5.t0);
+            logger.error(_context5.t0);
 
           case 11:
           case "end":

@@ -23,6 +23,10 @@ var _email = require("../utils/email");
 
 var _alipay = require("../config/alipay.config");
 
+var _bgLogger = _interopRequireDefault(require("bg-logger"));
+
+var logger = new _bgLogger["default"]();
+
 var alipaySDK = _AlipaySDK.AlipaySDK.getInstance();
 
 var redisClient = _Redis.Redis.getInstance(); //网关验证
@@ -69,7 +73,7 @@ function _verify() {
           case 12:
             _context.prev = 12;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
+            logger.error(_context.t0);
 
           case 15:
           case "end":
@@ -155,7 +159,7 @@ function _fundAuthFreeze() {
           case 17:
             _context2.prev = 17;
             _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
+            logger.error(_context2.t0);
 
           case 20:
           case "end":
@@ -192,22 +196,21 @@ function _tradePay() {
 
           case 4:
             result = _context3.sent;
-            console.log(result);
             $ctx.body = 'success';
-            _context3.next = 12;
+            _context3.next = 11;
             break;
 
-          case 9:
-            _context3.prev = 9;
+          case 8:
+            _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
-            console.log(_context3.t0);
+            logger.error(_context3.t0);
 
-          case 12:
+          case 11:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 9]]);
+    }, _callee3, null, [[0, 8]]);
   }));
   return _tradePay.apply(this, arguments);
 }
@@ -236,22 +239,21 @@ function _fundAuthUnfreeze() {
 
           case 4:
             result = _context4.sent;
-            console.log(result);
             $ctx.body = 'success';
-            _context4.next = 12;
+            _context4.next = 11;
             break;
 
-          case 9:
-            _context4.prev = 9;
+          case 8:
+            _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
+            logger.error(_context4.t0);
 
-          case 12:
+          case 11:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 9]]);
+    }, _callee4, null, [[0, 8]]);
   }));
   return _fundAuthUnfreeze.apply(this, arguments);
 }
@@ -270,41 +272,39 @@ function _gateway() {
         switch (_context5.prev = _context5.next) {
           case 0:
             body = $ctx.request.body;
-            console.log($ctx.request.body);
 
             if (!(body.service === 'alipay.service.check')) {
-              _context5.next = 5;
+              _context5.next = 3;
               break;
             }
 
-            console.log('alipay.service.check');
             return _context5.abrupt("return", verify($ctx));
 
-          case 5:
+          case 3:
             if (!($ctx.request.body.notify_type === 'fund_auth_freeze')) {
-              _context5.next = 7;
+              _context5.next = 5;
               break;
             }
 
             return _context5.abrupt("return", fundAuthFreeze($ctx));
 
-          case 7:
+          case 5:
             if (!($ctx.request.body.notify_type === 'trade_status_sync')) {
-              _context5.next = 9;
+              _context5.next = 7;
               break;
             }
 
             return _context5.abrupt("return", tradePay($ctx));
 
-          case 9:
+          case 7:
             if (!($ctx.request.body.notify_type === 'fund_auth_unfreeze')) {
-              _context5.next = 11;
+              _context5.next = 9;
               break;
             }
 
             return _context5.abrupt("return", fundAuthUnfreeze($ctx));
 
-          case 11:
+          case 9:
           case "end":
             return _context5.stop();
         }
