@@ -1,6 +1,6 @@
 import { ProductModel } from '../models/product.model';
 import bgLogger from 'bg-logger';
-const logger = new bgLogger();
+const logger = new bgLogger({env:process.env.NODE_ENV});
 
 async function create($ctx) {
     try {

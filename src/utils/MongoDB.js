@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bgLogger from 'bg-logger';
-const logger = new bgLogger();
+const logger = new bgLogger({env:process.env.NODE_ENV});
 export class MongoDB{
     constructor(){
         this.instance = null;

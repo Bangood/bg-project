@@ -4,7 +4,7 @@ import { Redis } from '../utils/Redis';
 import { sendMail } from '../utils/email';
 import { merchantPublicKey } from '../config/alipay.config';
 import bgLogger from 'bg-logger';
-const logger = new bgLogger();
+const logger = new bgLogger({env:process.env.NODE_ENV});
 const alipaySDK = AlipaySDK.getInstance();
 const redisClient = Redis.getInstance();
 //网关验证

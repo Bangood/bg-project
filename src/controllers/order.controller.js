@@ -5,7 +5,7 @@ import { Redis } from '../utils/Redis';
 import { AlipaySDK } from '../utils/AlipaySDK';
 import AlipayFormData from 'alipay-sdk/lib/form';
 import bgLogger from 'bg-logger';
-const logger = new bgLogger();
+const logger = new bgLogger({env:process.env.NODE_ENV});
 const redisClient = Redis.getInstance();
 const alipaySDK = AlipaySDK.getInstance();
 
