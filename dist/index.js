@@ -10,6 +10,9 @@ var _config = _interopRequireDefault(require("config"));
 
 var _koa = require("./utils/koa");
 
+console.log(_config["default"]);
+console.log(process.env.NODE_ENV);
+
 function init() {
   return _init.apply(this, arguments);
 }
