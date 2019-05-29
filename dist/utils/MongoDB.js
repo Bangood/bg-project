@@ -27,13 +27,18 @@ function () {
       if (!this.instance) {
         this.instance = _mongoose["default"].createConnection('mongodb://bangood:alipay15196634454@ds155076.mlab.com:55076/alipay', {
           useNewUrlParser: true,
-          useFindAndModify: false
+          useFindAndModify: false,
+          reconnectTries: Number.MAX_VALUE,
+          reconnectInterval: 500,
+          poolSize: 10,
+          useCreateIndex: true,
+          autoIndex: false
         });
         this.instance.once('open', function () {
-          console.log('hi');
+          console.log('数据库已连接');
         });
         this.instance.once('close', function () {
-          console.log('hiclose');
+          console.log('数据库已断开');
         });
       }
 

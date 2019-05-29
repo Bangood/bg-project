@@ -120,3 +120,51 @@ function _fundAuthUnfreeze() {
   }));
   return _fundAuthUnfreeze.apply(this, arguments);
 }
+
+function redirect(_x3) {
+  return _redirect.apply(this, arguments);
+}
+
+function _redirect() {
+  _redirect = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee3($ctx) {
+    var _$ctx$query, app_id, source, scope, auth_code, result;
+
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            console.log($ctx.params['id']);
+            _$ctx$query = $ctx.query, app_id = _$ctx$query.app_id, source = _$ctx$query.source, scope = _$ctx$query.scope, auth_code = _$ctx$query.auth_code;
+            _context3.prev = 2;
+            _context3.next = 5;
+            return alipaySdk.exec('alipay.system.oauth.token', {
+              grantType: 'authorization_code',
+              code: auth_code
+            }, {
+              validateSign: true,
+              log: console
+            });
+
+          case 5:
+            result = _context3.sent;
+            console.log(result);
+            $ctx.redirect("/v1/products/".concat($ctx.params['id'], "?productId=") + $ctx.params['id'] + "&paa_id=".concat(app_id, "&source=").concat(source, "&scope=").concat(scope, "&auth_code=").concat(auth_code));
+            _context3.next = 13;
+            break;
+
+          case 10:
+            _context3.prev = 10;
+            _context3.t0 = _context3["catch"](2);
+            console.log(_context3.t0);
+
+          case 13:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[2, 10]]);
+  }));
+  return _redirect.apply(this, arguments);
+}
