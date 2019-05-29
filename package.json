@@ -32,6 +32,7 @@
     "@koa/cors": "3.0.0",
     "alipay-sdk": "3.0.4",
     "bcrypt": "3.0.6",
+    "config": "3.1.0",
     "jsonwebtoken": "8.5.1",
     "koa": "2.7.0",
     "koa-bodyparser": "4.2.1",
