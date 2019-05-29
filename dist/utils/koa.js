@@ -35,7 +35,9 @@ var _koaEtag = _interopRequireDefault(require("koa-etag"));
 
 var _bgLogger = _interopRequireDefault(require("bg-logger"));
 
-var logger = new _bgLogger["default"]();
+var logger = new _bgLogger["default"]({
+  env: process.env.NODE_ENV
+});
 var app = new _koa["default"]();
 var allMidlewares = (0, _koaCompose["default"])([(0, _koaHelmet["default"])(), (0, _koaConditionalGet["default"])(), (0, _koaEtag["default"])(), (0, _koaRespond["default"])(), (0, _koaBodyparser["default"])({
   enableTypes: ['json', 'form']

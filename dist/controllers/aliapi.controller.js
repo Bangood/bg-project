@@ -16,7 +16,9 @@ var _AlipaySDK = require("../utils/AlipaySDK");
 
 var _bgLogger = _interopRequireDefault(require("bg-logger"));
 
-var logger = new _bgLogger["default"]();
+var logger = new _bgLogger["default"]({
+  env: process.env.NODE_ENV
+});
 
 var alipaySDK = _AlipaySDK.AlipaySDK.getInstance(); // alipay.trade.pay(统一收单交易支付接口)
 

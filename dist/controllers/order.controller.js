@@ -26,7 +26,9 @@ var _form = _interopRequireDefault(require("alipay-sdk/lib/form"));
 
 var _bgLogger = _interopRequireDefault(require("bg-logger"));
 
-var logger = new _bgLogger["default"]();
+var logger = new _bgLogger["default"]({
+  env: process.env.NODE_ENV
+});
 
 var redisClient = _Redis.Redis.getInstance();
 

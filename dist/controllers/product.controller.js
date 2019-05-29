@@ -21,7 +21,9 @@ var _product = require("../models/product.model");
 
 var _bgLogger = _interopRequireDefault(require("bg-logger"));
 
-var logger = new _bgLogger["default"]();
+var logger = new _bgLogger["default"]({
+  env: process.env.NODE_ENV
+});
 
 function create(_x) {
   return _create.apply(this, arguments);

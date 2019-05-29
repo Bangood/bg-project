@@ -25,7 +25,9 @@ var _alipay = require("../config/alipay.config");
 
 var _bgLogger = _interopRequireDefault(require("bg-logger"));
 
-var logger = new _bgLogger["default"]();
+var logger = new _bgLogger["default"]({
+  env: process.env.NODE_ENV
+});
 
 var alipaySDK = _AlipaySDK.AlipaySDK.getInstance();
 

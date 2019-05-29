@@ -15,7 +15,9 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _bgLogger = _interopRequireDefault(require("bg-logger"));
 
-var logger = new _bgLogger["default"]();
+var logger = new _bgLogger["default"]({
+  env: process.env.NODE_ENV
+});
 
 var MongoDB =
 /*#__PURE__*/
