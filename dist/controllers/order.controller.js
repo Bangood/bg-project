@@ -67,11 +67,10 @@ function _create() {
             }));
 
           case 7:
-            console.log(productId);
-            _context.next = 10;
+            _context.next = 9;
             return _product.ProductModel.findById(productId);
 
-          case 10:
+          case 9:
             product = _context.sent;
             formData = new _form["default"]();
             formData.setMethod('get');
@@ -84,15 +83,15 @@ function _create() {
               productCode: 'PRE_AUTH_ONLINE',
               payeeLogonId: '396493396@qq.com',
               payTimeout: '30m',
-              enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"},{\"payChannelType\":\"MONEY_FUND\"}]",
+              enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"},{\"payChannelType\":\"MONEY_FUND\"},{\"payChannelType\":\"PCREDIT_PAY\"}]",
               extraParam: "{\"category\":\"RENT_DIGITAL\"}"
             });
-            _context.next = 17;
+            _context.next = 16;
             return alipaySDK.exec('alipay.fund.auth.order.app.freeze', {}, {
               formData: formData
             });
 
-          case 17:
+          case 16:
             result = _context.sent;
             result1 = result.split('https://openapi.alipay.com/gateway.do?');
             result2 = result1.slice(1);
@@ -105,20 +104,20 @@ function _create() {
                 }
               }
             });
-            _context.next = 26;
+            _context.next = 25;
             break;
 
-          case 23:
-            _context.prev = 23;
+          case 22:
+            _context.prev = 22;
             _context.t0 = _context["catch"](4);
             logger.error(_context.t0);
 
-          case 26:
+          case 25:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[4, 23]]);
+    }, _callee, null, [[4, 22]]);
   }));
   return _create.apply(this, arguments);
 }
