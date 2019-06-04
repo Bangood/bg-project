@@ -17,7 +17,6 @@ async function create($ctx) {
 
     try {
         await redisClient.set(outOrderNo, JSON.stringify({ productId, outOrderNo, outRequestNo, userName, userTelphone, province, area, county, address }))
-        console.log(productId)
         const product = await ProductModel.findById(productId);
         const formData = new AlipayFormData();
         formData.setMethod('get');
@@ -30,7 +29,7 @@ async function create($ctx) {
             productCode: 'PRE_AUTH_ONLINE',
             payeeLogonId: '396493396@qq.com',
             payTimeout: '30m',
-            enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"},{\"payChannelType\":\"MONEY_FUND\"}]",
+            enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"},{\"payChannelType\":\"MONEY_FUND\"},{\"payChannelType\":\"PCREDIT_PAY\"}]",
             extraParam: "{\"category\":\"RENT_DIGITAL\"}"
         })
         let result = await alipaySDK.exec('alipay.fund.auth.order.app.freeze', {}, { formData: formData })
