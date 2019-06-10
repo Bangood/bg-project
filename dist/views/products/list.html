@@ -83,14 +83,14 @@
                     $('<div class="" style="font-size:10px;">&nbsp;</div>').appendTo(content);
 
                     a.click(function () {
-                        // methods.openApplyProduct(item._id);
-                        window.location.href = '/v1/product/public?id='+item._id;
+                        methods.openApplyProduct(item._id);
+                        // window.location.href = '/v1/product/public?id='+item._id;
                     });
                 });
             },
             openApplyProduct: function (id) {
                 $.getAjaxData({
-                    url: '/v1/products/getauthurl?id=' + id,
+                    url: '/v1/product/getauthurl?id=' + id,
                     success: function (data) {
                         if (data.data.key == 0) {
                             window.location.href = data.data.msg;
