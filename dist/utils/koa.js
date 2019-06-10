@@ -46,7 +46,7 @@ var allMidlewares = (0, _koaCompose["default"])([(0, _koaHelmet["default"])(), (
 }), (0, _koaJwt["default"])({
   secret: '#production#Bangood#'
 }).unless({
-  path: [/^\/v1\/auth\/login/, /^\/v1\/auth\/register/, /\/v1\/product\/public/, /^\/v1\/products/, /^\/v1\/order\/public/, /^\/v1\/gateway/]
+  path: [/^\/v1\/auth\/login/, /^\/v1\/auth\/register/, /\/v1\/product\/public/, /^\/v1\/products/, /^\/v1\/order\/public/, /^\/v1\/gateway/, /^\/v1\/alipay\/redirect/]
 }), _routes["default"].routes()]);
 app.use(allMidlewares);
 global.userInfoMap = new Map();

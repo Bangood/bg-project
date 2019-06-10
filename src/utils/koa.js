@@ -32,6 +32,7 @@ const allMidlewares = Compose([
             /^\/v1\/products/,
             /^\/v1\/order\/public/,
             /^\/v1\/gateway/,
+            /^\/v1\/alipay\/redirect/,
         ],
     }),
     router.routes(),
