@@ -144,7 +144,7 @@ function _redirect() {
             _$ctx$query = $ctx.query, app_id = _$ctx$query.app_id, source = _$ctx$query.source, scope = _$ctx$query.scope, auth_code = _$ctx$query.auth_code, pid = _$ctx$query.pid;
             _context3.prev = 1;
             _context3.next = 4;
-            return alipaySdk.exec('alipay.system.oauth.token', {
+            return alipaySDK.exec('alipay.system.oauth.token', {
               grantType: 'authorization_code',
               code: auth_code
             }, {

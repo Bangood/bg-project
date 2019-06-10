@@ -47,7 +47,7 @@ async function fundAuthUnfreeze($ctx){
 async function redirect($ctx) {
     let { app_id, source, scope, auth_code,pid } = $ctx.query;
     try {
-        let result = await alipaySdk.exec('alipay.system.oauth.token', {
+        let result = await alipaySDK.exec('alipay.system.oauth.token', {
             grantType: 'authorization_code',
             code: auth_code,
         }, {
