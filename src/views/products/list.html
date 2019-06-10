@@ -90,7 +90,7 @@
             },
             openApplyProduct: function (id) {
                 $.getAjaxData({
-                    url: '/v1/products/getauthurl?id=' + id,
+                    url: '/v1/product/getauthurl?id=' + id,
                     success: function (data) {
                         if (data.data.key == 0) {
                             window.location.href = data.data.msg;

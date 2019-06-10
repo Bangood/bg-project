@@ -1,6 +1,6 @@
 import { ProductModel } from '../models/product.model';
 import bgLogger from 'bg-logger';
-const logger = new bgLogger({env:process.env.NODE_ENV});
+const logger = new bgLogger({ env: process.env.NODE_ENV });
 
 async function create($ctx) {
     try {
@@ -42,7 +42,7 @@ async function list($ctx) {
         $ctx.ok($err);
     }
 }
-async function findOne($ctx){
+async function findOne($ctx) {
     try {
         const id = $ctx.params.id;
         const product = await ProductModel.findById(id);
@@ -62,10 +62,15 @@ async function findOne($ctx){
     }
 }
 async function renderPage($ctx) {
-   await $ctx.render('products/product');
+
+    //    await $ctx.render('products/product');
+    await $ctx.redirect('https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Fgateway')
 }
-async function renderListPage($ctx){
+async function getAuthUrl($ctx) {
+    $ctx.ok({ status: 0, data: { key: 0, msg: 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Falipay%2Fredirect&pid='+$ctx.query.id } })
+}
+async function renderListPage($ctx) {
     await $ctx.render('products/list');
 }
 
-export { create, update, del, list, findOne,renderPage,renderListPage };
+export { create, update, del, list, findOne, renderPage, renderListPage, getAuthUrl };

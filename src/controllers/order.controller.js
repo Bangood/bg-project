@@ -36,6 +36,8 @@ async function create($ctx) {
 
         const result1 = result.split('https://openapi.alipay.com/gateway.do?');
         const result2 = result1.slice(1);
+        logger.info(`临时订单信息：${JSON.stringify({outOrderNo, outRequestNo,productId, outOrderNo, outRequestNo, userName, userTelphone, province, area, county, address })}`);
+        logger.info(`授权串：${result2}`);
         $ctx.ok({
             "status": 0,
             "data": {

@@ -45,7 +45,7 @@ async function fundAuthUnfreeze($ctx){
     }
 }
 async function redirect($ctx) {
-    let { app_id, source, scope, auth_code } = $ctx.query;
+    let { app_id, source, scope, auth_code,pid } = $ctx.query;
     try {
         let result = await alipaySdk.exec('alipay.system.oauth.token', {
             grantType: 'authorization_code',
@@ -55,10 +55,12 @@ async function redirect($ctx) {
             log: console
         });
 
-        $ctx.redirect(`/v1/products/${$ctx.params['id']}?productId=`+$ctx.params['id']+`&paa_id=${app_id}&source=${source}&scope=${scope}&auth_code=${auth_code}`)
+        // $ctx.redirect(`/v1/products/${$ctx.params['id']}?productId=`+$ctx.params['id']+`&paa_id=${app_id}&source=${source}&scope=${scope}&auth_code=${auth_code}`)
+        logger.info(result);
+        $ctx.redirect('/v1/product/public?id='+pid);
     } catch (err) {
         logger.error(err);
     }
 
 }
-export {tradePay,fundAuthUnfreeze};
+export {tradePay,fundAuthUnfreeze,redirect};
