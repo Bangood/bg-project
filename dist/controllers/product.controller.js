@@ -12,6 +12,7 @@ exports.list = list;
 exports.findOne = findOne;
 exports.renderPage = renderPage;
 exports.renderListPage = renderListPage;
+exports.getAuthUrl = getAuthUrl;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -267,7 +268,7 @@ function _renderPage() {
         switch (_context6.prev = _context6.next) {
           case 0:
             _context6.next = 2;
-            return $ctx.render('products/product');
+            return $ctx.redirect('https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Fgateway');
 
           case 2:
           case "end":
@@ -279,27 +280,57 @@ function _renderPage() {
   return _renderPage.apply(this, arguments);
 }
 
-function renderListPage(_x7) {
-  return _renderListPage.apply(this, arguments);
+function getAuthUrl(_x7) {
+  return _getAuthUrl.apply(this, arguments);
 }
 
-function _renderListPage() {
-  _renderListPage = (0, _asyncToGenerator2["default"])(
+function _getAuthUrl() {
+  _getAuthUrl = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee7($ctx) {
     return _regenerator["default"].wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            _context7.next = 2;
-            return $ctx.render('products/list');
+            $ctx.ok({
+              status: 0,
+              data: {
+                key: 0,
+                msg: 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Falipay%2Fredirect&pid=' + $ctx.query.id
+              }
+            });
 
-          case 2:
+          case 1:
           case "end":
             return _context7.stop();
         }
       }
     }, _callee7);
+  }));
+  return _getAuthUrl.apply(this, arguments);
+}
+
+function renderListPage(_x8) {
+  return _renderListPage.apply(this, arguments);
+}
+
+function _renderListPage() {
+  _renderListPage = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee8($ctx) {
+    return _regenerator["default"].wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            _context8.next = 2;
+            return $ctx.render('products/list');
+
+          case 2:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8);
   }));
   return _renderListPage.apply(this, arguments);
 }

@@ -10,6 +10,8 @@ exports.list = list;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _microtime = _interopRequireDefault(require("microtime"));
@@ -42,7 +44,7 @@ function _create() {
   _create = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee($ctx) {
-    var id, _$ctx$request$body, productId, userName, userTelphone, province, area, county, address, outOrderNo, outRequestNo, product, formData, result, result1, result2;
+    var id, _$ctx$request$body, productId, userName, userTelphone, province, area, county, address, outOrderNo, outRequestNo, _JSON$stringify, product, formData, result, result1, result2;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
@@ -95,6 +97,12 @@ function _create() {
             result = _context.sent;
             result1 = result.split('https://openapi.alipay.com/gateway.do?');
             result2 = result1.slice(1);
+            logger.info("\u4E34\u65F6\u8BA2\u5355\u4FE1\u606F\uFF1A".concat(JSON.stringify((_JSON$stringify = {
+              outOrderNo: outOrderNo,
+              outRequestNo: outRequestNo,
+              productId: productId
+            }, (0, _defineProperty2["default"])(_JSON$stringify, "outOrderNo", outOrderNo), (0, _defineProperty2["default"])(_JSON$stringify, "outRequestNo", outRequestNo), (0, _defineProperty2["default"])(_JSON$stringify, "userName", userName), (0, _defineProperty2["default"])(_JSON$stringify, "userTelphone", userTelphone), (0, _defineProperty2["default"])(_JSON$stringify, "province", province), (0, _defineProperty2["default"])(_JSON$stringify, "area", area), (0, _defineProperty2["default"])(_JSON$stringify, "county", county), (0, _defineProperty2["default"])(_JSON$stringify, "address", address), _JSON$stringify))));
+            logger.info("\u6388\u6743\u4E32\uFF1A".concat(result2));
             $ctx.ok({
               "status": 0,
               "data": {
@@ -104,20 +112,20 @@ function _create() {
                 }
               }
             });
-            _context.next = 25;
+            _context.next = 27;
             break;
 
-          case 22:
-            _context.prev = 22;
+          case 24:
+            _context.prev = 24;
             _context.t0 = _context["catch"](4);
             logger.error(_context.t0);
 
-          case 25:
+          case 27:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[4, 22]]);
+    }, _callee, null, [[4, 24]]);
   }));
   return _create.apply(this, arguments);
 }

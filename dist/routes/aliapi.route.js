@@ -12,6 +12,6 @@ var _koaRouter = _interopRequireDefault(require("koa-router"));
 var _aliapi = require("../controllers/aliapi.controller");
 
 var router = new _koaRouter["default"]();
-router.post('/trade-pay', _aliapi.tradePay).post('/fund-auth-unfreeze', _aliapi.fundAuthUnfreeze);
+router.post('/trade-pay', _aliapi.tradePay).post('/fund-auth-unfreeze', _aliapi.fundAuthUnfreeze).get('/redirect', _aliapi.redirect);
 var _default = router;
 exports["default"] = _default;

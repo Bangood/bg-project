@@ -15,7 +15,7 @@ var router = new _koaRouter["default"]();
 router.get('/public/', _product.renderPage) //获取产品页面 public
 .get('/public/list-page', _product.renderListPage) //获取产品列表页面 public
 .get('/public/list', _product.list) //获取产品列表 public
-.get('/public/:id', _product.findOne) //查询产品 public
+.get('/public/getauthurl', _product.getAuthUrl).get('/public/:id', _product.findOne) //查询产品 public
 .post('/private', _product.create) //创建产品
 .post('/private/:id', _product.update) //更新产品
 ["delete"]('/private/:id', _product.del); //删除产品

@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.tradePay = tradePay;
 exports.fundAuthUnfreeze = fundAuthUnfreeze;
+exports.redirect = redirect;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -134,13 +135,13 @@ function _redirect() {
   _redirect = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee3($ctx) {
-    var _$ctx$query, app_id, source, scope, auth_code, result;
+    var _$ctx$query, app_id, source, scope, auth_code, pid, result;
 
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _$ctx$query = $ctx.query, app_id = _$ctx$query.app_id, source = _$ctx$query.source, scope = _$ctx$query.scope, auth_code = _$ctx$query.auth_code;
+            _$ctx$query = $ctx.query, app_id = _$ctx$query.app_id, source = _$ctx$query.source, scope = _$ctx$query.scope, auth_code = _$ctx$query.auth_code, pid = _$ctx$query.pid;
             _context3.prev = 1;
             _context3.next = 4;
             return alipaySdk.exec('alipay.system.oauth.token', {
@@ -153,21 +154,23 @@ function _redirect() {
 
           case 4:
             result = _context3.sent;
-            $ctx.redirect("/v1/products/".concat($ctx.params['id'], "?productId=") + $ctx.params['id'] + "&paa_id=".concat(app_id, "&source=").concat(source, "&scope=").concat(scope, "&auth_code=").concat(auth_code));
-            _context3.next = 11;
+            // $ctx.redirect(`/v1/products/${$ctx.params['id']}?productId=`+$ctx.params['id']+`&paa_id=${app_id}&source=${source}&scope=${scope}&auth_code=${auth_code}`)
+            logger.info(result);
+            $ctx.redirect('/v1/product/public?id=' + pid);
+            _context3.next = 12;
             break;
 
-          case 8:
-            _context3.prev = 8;
+          case 9:
+            _context3.prev = 9;
             _context3.t0 = _context3["catch"](1);
             logger.error(_context3.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[1, 8]]);
+    }, _callee3, null, [[1, 9]]);
   }));
   return _redirect.apply(this, arguments);
 }
