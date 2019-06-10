@@ -155,7 +155,7 @@ function _redirect() {
           case 4:
             result = _context3.sent;
             // $ctx.redirect(`/v1/products/${$ctx.params['id']}?productId=`+$ctx.params['id']+`&paa_id=${app_id}&source=${source}&scope=${scope}&auth_code=${auth_code}`)
-            logger.info(result);
+            logger.info(JSON.stringify(result));
             $ctx.redirect('/v1/product/public?id=' + pid);
             _context3.next = 12;
             break;
