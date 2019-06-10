@@ -91,6 +91,7 @@
             openApplyProduct: function (id) {
                 $.getAjaxData({
                     url: '/v1/product/public/getauthurl?id=' + id,
+                    type:'GET',
                     success: function (data) {
                         if (data.data.key == 0) {
                             window.location.href = data.data.msg;
