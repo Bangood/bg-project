@@ -63,11 +63,10 @@ async function findOne($ctx) {
 }
 async function renderPage($ctx) {
 
-    //    await $ctx.render('products/product');
-    await $ctx.redirect('https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Fgateway')
+    await $ctx.render('products/product');
 }
 async function getAuthUrl($ctx) {
-    $ctx.ok({ status: 0, data: { key: 0, msg: 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Faliapi%2Fredirect&pid='+$ctx.query.id } })
+    $ctx.ok({ status: 0, data: { key: 0, msg: 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Faliapi%2Fredirect&pid=' + $ctx.query.id } })
 }
 async function renderListPage($ctx) {
     await $ctx.render('products/list');

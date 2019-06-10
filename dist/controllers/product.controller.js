@@ -268,7 +268,7 @@ function _renderPage() {
         switch (_context6.prev = _context6.next) {
           case 0:
             _context6.next = 2;
-            return $ctx.redirect('https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Fgateway');
+            return $ctx.render('products/product');
 
           case 2:
           case "end":
