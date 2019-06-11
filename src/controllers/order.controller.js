@@ -43,7 +43,7 @@ async function create($ctx) {
             "data": {
                 "key": 0,
                 "msg": {
-                    // body: result2[0]
+                    body: result2[0]
                 }
             }
         })

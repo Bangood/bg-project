@@ -107,7 +107,8 @@ function _create() {
               "status": 0,
               "data": {
                 "key": 0,
-                "msg": {// body: result2[0]
+                "msg": {
+                  body: result2[0]
                 }
               }
             });
