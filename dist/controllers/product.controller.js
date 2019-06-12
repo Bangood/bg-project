@@ -226,6 +226,7 @@ function _findOne() {
 
           case 4:
             product = _context5.sent;
+            logger.info("\u83B7\u53D6\u4EA7\u54C1\u4FE1\u606F\uFF1A".concat(product));
             $ctx.ok({
               status: 0,
               data: {
@@ -237,20 +238,20 @@ function _findOne() {
                 }
               }
             });
-            _context5.next = 11;
+            _context5.next = 12;
             break;
 
-          case 8:
-            _context5.prev = 8;
+          case 9:
+            _context5.prev = 9;
             _context5.t0 = _context5["catch"](0);
             logger.error(_context5.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 8]]);
+    }, _callee5, null, [[0, 9]]);
   }));
   return _findOne.apply(this, arguments);
 }
