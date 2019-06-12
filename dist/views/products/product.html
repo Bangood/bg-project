@@ -283,22 +283,20 @@
                     primaryText: "确定", //主方法显示文本
                     secondaryText: "取消", //次方法显示文本
                     primaryFun: function() {
-                        var param = {
-                            openId: methods.settings.openId,
-                            productId: methods.settings.productId,
-                            userName: $.trim(txtUserName.val()),
-                            userTelphone: $.trim(txtTelphone.val()),
-                            userEmail: $.trim(txtMail.val()),
-                            province: $.trim(ddlProvince.val()),
-                            area: $.trim(ddlRegion.val()),
-                            county: $.trim(ddlCity.val()),
-                            address: $.trim(txtStreetAddress.val()),
-                            isWithhold: 1 //methods.settings.isWithhold
-                        };
+                        
                         $.getAjaxData({
                             url: '/v1/order/public/',
                             data: {
-                                ...param
+                                openId: methods.settings.openId,
+                                productId: methods.settings.productId,
+                                userName: $.trim(txtUserName.val()),
+                                userTelphone: $.trim(txtTelphone.val()),
+                                userEmail: $.trim(txtMail.val()),
+                                province: $.trim(ddlProvince.val()),
+                                area: $.trim(ddlRegion.val()),
+                                county: $.trim(ddlCity.val()),
+                                address: $.trim(txtStreetAddress.val()),
+                                isWithhold: 1 //methods.settings.isWithhold
                             },
                             success: function(data) {
                                 if (data.data.key == 0) {
