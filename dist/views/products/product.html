@@ -143,6 +143,9 @@
                         }
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $.alert({
+                            showText:textStatus+errorThrown
+                        })
                         //日志4
                         var content = "【产品申请界面】--ajax Error方法：返回结果：" + textStatus + "--" + errorThrown;
                         methods.saveErrLog(content);
