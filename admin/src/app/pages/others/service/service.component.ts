@@ -54,9 +54,9 @@ export class ServiceComponent implements OnDestroy {
       }
     });
     this.sortOptions = [
-      { label: 'Newest First', value: '!year' },
-      { label: 'Oldest First', value: 'year' },
-      { label: 'Brand', value: 'brand' }
+      { label: '创建时间', value: 'createTime' },
+      { label: '状态', value: 'status' },
+      { label: '用户名', value: 'userName' }
     ];
   }
   onSortChange(event) {

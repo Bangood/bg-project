@@ -14,4 +14,5 @@ export class Order {
     operationId: string;
     authNo: string;
     status: number;
+    createTime: number;
 }
