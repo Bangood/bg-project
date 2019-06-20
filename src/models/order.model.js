@@ -15,6 +15,10 @@ const OrderSchema = new mongoose.Schema({
     totalPayAmount:Number,
     operationId:String,
     authNo:String,
+    createTime:{
+        type: Number,
+        default:Date.now()
+    },
     status:Number // 0：冻结中 1：解冻 2：支付
 }, { versionKey: false });
 export const OrderModel = MongoDB.getInstance().model('Orders', OrderSchema);
