@@ -46,7 +46,7 @@ async function findOne($ctx) {
     try {
         const id = $ctx.params.id;
         const product = await ProductModel.findById(id);
-        logger.info(`获取产品信息：${product}`);
+        logger.info(`获取产品信息：${product.name}`);
         $ctx.ok({
             status: 0,
             data: {

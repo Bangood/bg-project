@@ -31,6 +31,7 @@ async function fundAuthFreeze($ctx) {
         const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, operation_id, auth_no, payer_user_id } = $ctx.request.body;
         let order = await redisClient.get(out_order_no);
         const { userName, productId, userTelphone, province, area, county, address } = JSON.parse(order);
+        logger.info(`开始创建新订单-${out_order_no}`);
         await OrderModel.create({
             userName,
             userId: payer_user_id,
@@ -49,6 +50,7 @@ async function fundAuthFreeze($ctx) {
             authNo: auth_no,
             status: 0
         });
+        logger.info(`创建新订单-${out_order_no}成功,并发送邮件`);
         sendMail({
             pid: productId,
             userName,

@@ -124,7 +124,8 @@ function _fundAuthFreeze() {
           case 9:
             order = _context2.sent;
             _JSON$parse = JSON.parse(order), userName = _JSON$parse.userName, productId = _JSON$parse.productId, userTelphone = _JSON$parse.userTelphone, province = _JSON$parse.province, area = _JSON$parse.area, county = _JSON$parse.county, address = _JSON$parse.address;
-            _context2.next = 13;
+            logger.info("\u5F00\u59CB\u521B\u5EFA\u65B0\u8BA2\u5355-".concat(out_order_no));
+            _context2.next = 14;
             return _order.OrderModel.create((_OrderModel$create = {
               userName: userName,
               userId: payer_user_id,
@@ -140,7 +141,8 @@ function _fundAuthFreeze() {
               outRequestNo: out_request_no
             }, (0, _defineProperty2["default"])(_OrderModel$create, "outOrderNo", out_order_no), (0, _defineProperty2["default"])(_OrderModel$create, "operationId", operation_id), (0, _defineProperty2["default"])(_OrderModel$create, "authNo", auth_no), (0, _defineProperty2["default"])(_OrderModel$create, "status", 0), _OrderModel$create));
 
-          case 13:
+          case 14:
+            logger.info("\u521B\u5EFA\u65B0\u8BA2\u5355-".concat(out_order_no, "\u6210\u529F,\u5E76\u53D1\u9001\u90AE\u4EF6"));
             (0, _email.sendMail)((_sendMail = {
               pid: productId,
               userName: userName,
@@ -155,20 +157,20 @@ function _fundAuthFreeze() {
               outRequestNo: out_request_no
             }, (0, _defineProperty2["default"])(_sendMail, "outOrderNo", out_order_no), (0, _defineProperty2["default"])(_sendMail, "operationId", operation_id), (0, _defineProperty2["default"])(_sendMail, "authNo", auth_no), _sendMail));
             $ctx.body = 'success';
-            _context2.next = 20;
+            _context2.next = 22;
             break;
 
-          case 17:
-            _context2.prev = 17;
+          case 19:
+            _context2.prev = 19;
             _context2.t0 = _context2["catch"](0);
             logger.error(_context2.t0);
 
-          case 20:
+          case 22:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 17]]);
+    }, _callee2, null, [[0, 19]]);
   }));
   return _fundAuthFreeze.apply(this, arguments);
 }

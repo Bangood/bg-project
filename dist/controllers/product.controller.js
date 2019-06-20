@@ -226,7 +226,7 @@ function _findOne() {
 
           case 4:
             product = _context5.sent;
-            logger.info("\u83B7\u53D6\u4EA7\u54C1\u4FE1\u606F\uFF1A".concat(product));
+            logger.info("\u83B7\u53D6\u4EA7\u54C1\u4FE1\u606F\uFF1A".concat(product.name));
             $ctx.ok({
               status: 0,
               data: {
