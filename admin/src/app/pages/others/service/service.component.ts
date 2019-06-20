@@ -54,9 +54,10 @@ export class ServiceComponent implements OnDestroy {
       }
     });
     this.sortOptions = [
-      { label: '创建时间', value: 'createTime' },
+      { label: '创建时间', value: '!createTime' },
       { label: '状态', value: 'status' },
-      { label: '用户名', value: 'userName' }
+      { label: '用户名', value: 'userName' },
+      { label: '订单编号', value: '!outOrderNo' }
     ];
   }
   onSortChange(event) {
