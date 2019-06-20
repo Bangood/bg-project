@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- A11Y：注意设置页面的 lang 属性 -->
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <!-- A11Y：打开页面时，屏幕阅读器会首先阅读 title 的内容，确保 title 准确描述页面 -->
+    <title>信用借还须知</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="https://gw.alipayobjects.com/as/g/antui/antui/10.1.10/dpl/widget/agreement.css" />
+    <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#lnkReturn').click(function () {
+                window.history.go(-1);
+            });
+        });
+    </script>
+</head>
+
+
+<body>
+    <div class="am-agreement">
+        <h2 class="am-agreement-title">支付宝预授权须知</h2>
+        <div class="am-agreement-content">
+            <h4>支付宝预授权产品介绍</h4>
+            <p>
+                1.1  在实物租赁行业，支付宝预授权产品为商户对借用人是否可以享受免押金服务进行评估，并代商户向支付宝发起结算请求扣取相应费用。
+            </p>            
+        </div>
+        <h2 class="am-agreement-title">产品特色</h2>
+        <div class="am-agreement-content">
+            <p>1.1  支付宝预授权服务一站式实现方案。通过对接本产品的下单和归还等接口，实现用户能否免押、租金支付、押金冻结/解冻、联合奖惩等全套能力。</p>
+            <p>1.2  联合奖惩。借还产品提供了一种可以进行同行业或跨行业联合惩戒的机制，来约束借用人的违约行为。从而更好的实现坏账控制。</p>
+            <p>1.3 集成风控能力。支付宝预授权集成了基础风控能力，为商户提供一站式订单风险咨询服务。如免押限额、反欺诈等。商户无需对接多个芝麻信用产品来进行用户风险判断。</p>
+            <p>1.4 集成代扣和预授权功能。免押金用户可直接代扣租金；免押金不准入的用户可使用支付宝预授权能力支付押金。</p>
+            <p>1.5 用户感知和触达。对于违约预警、逾期或被惩戒会通过支付宝客户端的通知能力，及时通知用户。</p>
+            <p>1.6 其它功能须知<a href="https://docs.open.alipay.com/360。" style="color:#108ee9;">点击此处</a>了解。</p>
+            
+
+        </div>
+    </div>
+    <div style="margin:0 auto;text-align:center;">
+        <a id="lnkReturn" style="color:#108ee9;font-size:16px;text-decoration:underline;">我已了解，返回</a>
+    </div>
+</body>
+</html>
