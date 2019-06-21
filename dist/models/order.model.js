@@ -28,7 +28,7 @@ var OrderSchema = new _mongoose["default"].Schema({
   authNo: String,
   createTime: {
     type: Number,
-    "default": Date.now()
+    "default": Date.now
   },
   status: Number // 0：冻结中 1：解冻 2：支付
 

@@ -108,21 +108,22 @@ function _fundAuthUnfreeze() {
 
           case 4:
             result = _context2.sent;
+            logger.info("\u5F00\u59CB\u8D44\u91D1\u6388\u6743\u89E3\u51BB\uFF1A".concat(outRequestNo));
             $ctx.ok(result);
-            _context2.next = 11;
+            _context2.next = 12;
             break;
 
-          case 8:
-            _context2.prev = 8;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
             logger.error(_context2.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[0, 9]]);
   }));
   return _fundAuthUnfreeze.apply(this, arguments);
 }

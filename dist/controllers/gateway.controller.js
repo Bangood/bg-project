@@ -227,13 +227,14 @@ function _fundAuthUnfreeze() {
   _fundAuthUnfreeze = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee4($ctx) {
-    var out_order_no, result;
+    var _$ctx$request$body2, out_order_no, out_request_no, result;
+
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            out_order_no = $ctx.request.body.out_order_no;
+            _$ctx$request$body2 = $ctx.request.body, out_order_no = _$ctx$request$body2.out_order_no, out_request_no = _$ctx$request$body2.out_request_no;
             _context4.next = 4;
             return _order.OrderModel.findOneAndUpdate({
               outOrderNo: out_order_no
@@ -243,21 +244,22 @@ function _fundAuthUnfreeze() {
 
           case 4:
             result = _context4.sent;
+            logger.info("\u8D44\u91D1\u6388\u6743\u89E3\u51BB\u6210\u529F\uFF1A".concat(outRequestNo));
             $ctx.body = 'success';
-            _context4.next = 11;
+            _context4.next = 12;
             break;
 
-          case 8:
-            _context4.prev = 8;
+          case 9:
+            _context4.prev = 9;
             _context4.t0 = _context4["catch"](0);
             logger.error(_context4.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 8]]);
+    }, _callee4, null, [[0, 9]]);
   }));
   return _fundAuthUnfreeze.apply(this, arguments);
 }
