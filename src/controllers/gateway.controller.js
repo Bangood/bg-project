@@ -85,8 +85,9 @@ async function tradePay($ctx) {
 //alipay.fund.auth.order.unfreeze 资金授权解冻 
 async function fundAuthUnfreeze($ctx) {
     try {
-        const {out_order_no} = $ctx.request.body;
+        const {out_order_no,out_request_no} = $ctx.request.body;
         const result = await OrderModel.findOneAndUpdate({outOrderNo:out_order_no},{status:1});
+        logger.info(`资金授权解冻成功：${outRequestNo}`)
         $ctx.body = 'success';
     }catch($err){
         logger.error($err);

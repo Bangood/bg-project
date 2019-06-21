@@ -39,6 +39,7 @@ async function fundAuthUnfreeze($ctx){
             },
              notifyUrl: 'http://39.100.71.78/v1/gateway'
         })
+        logger.info(`开始资金授权解冻：${outRequestNo}`);
         $ctx.ok(result);
     }catch($err){
         logger.error($err);
