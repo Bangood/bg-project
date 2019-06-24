@@ -1,10 +1,11 @@
 import Router from 'koa-router';
-import { create, update, del, list, renderPage, renderListPage, findOne,getAuthUrl } from '../controllers/product.controller';
+import { create, update, del, list, renderPage, renderListPage, findOne,getAuthUrl,h5InvokeAlipay } from '../controllers/product.controller';
 const router = new Router();
 router
     
     .get('/public/', renderPage) //获取产品页面 public
     .get('/public/list-page', renderListPage) //获取产品列表页面 public
+    .get('/public/h5InvokeAlipay',h5InvokeAlipay) //获取产品页面，h5唤起支付宝 public
     .get('/public/list', list) //获取产品列表 public
     .get('/public/getauthurl',getAuthUrl)
     .get('/public/:id', findOne) //查询产品 public

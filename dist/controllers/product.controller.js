@@ -13,6 +13,7 @@ exports.findOne = findOne;
 exports.renderPage = renderPage;
 exports.renderListPage = renderListPage;
 exports.getAuthUrl = getAuthUrl;
+exports.h5InvokeAlipay = h5InvokeAlipay;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -334,4 +335,29 @@ function _renderListPage() {
     }, _callee8);
   }));
   return _renderListPage.apply(this, arguments);
+}
+
+function h5InvokeAlipay(_x9) {
+  return _h5InvokeAlipay.apply(this, arguments);
+}
+
+function _h5InvokeAlipay() {
+  _h5InvokeAlipay = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee9($ctx) {
+    return _regenerator["default"].wrap(function _callee9$(_context9) {
+      while (1) {
+        switch (_context9.prev = _context9.next) {
+          case 0:
+            _context9.next = 2;
+            return $ctx.redirect('alipays://platformapi/startapp?appId=20000067&url=https%3A%2F%2Fopenauth.alipay.com%2Foauth2%2FpublicAppAuthorize.htm%3Fapp_id%3D2019042364291281%26scope%3Dauth_base%26redirect_uri%3Dhttp%253A%252F%252F39.100.71.78%252Fv1%252Faliapi%252Fredirect%26pid%3D5cda6bd18d205f4ea85377e1');
+
+          case 2:
+          case "end":
+            return _context9.stop();
+        }
+      }
+    }, _callee9);
+  }));
+  return _h5InvokeAlipay.apply(this, arguments);
 }
