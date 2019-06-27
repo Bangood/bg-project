@@ -244,7 +244,7 @@ function _fundAuthUnfreeze() {
 
           case 4:
             result = _context4.sent;
-            logger.info("\u8D44\u91D1\u6388\u6743\u89E3\u51BB\u6210\u529F\uFF1A".concat(outRequestNo));
+            logger.info("\u8D44\u91D1\u6388\u6743\u89E3\u51BB\u6210\u529F\uFF1A".concat(out_request_no));
             $ctx.body = 'success';
             _context4.next = 12;
             break;

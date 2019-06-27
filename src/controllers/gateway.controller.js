@@ -87,7 +87,7 @@ async function fundAuthUnfreeze($ctx) {
     try {
         const {out_order_no,out_request_no} = $ctx.request.body;
         const result = await OrderModel.findOneAndUpdate({outOrderNo:out_order_no},{status:1});
-        logger.info(`资金授权解冻成功：${outRequestNo}`)
+        logger.info(`资金授权解冻成功：${out_request_no}`)
         $ctx.body = 'success';
     }catch($err){
         logger.error($err);
