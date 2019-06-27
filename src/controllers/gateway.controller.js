@@ -95,6 +95,7 @@ async function fundAuthUnfreeze($ctx) {
 }
 async function gateway($ctx) {
     const body = $ctx.request.body;
+    logger.info('网关来信息了');
     if (body.service === 'alipay.service.check') {
         return verify($ctx);
     }
@@ -107,5 +108,7 @@ async function gateway($ctx) {
     if ($ctx.request.body.notify_type === 'fund_auth_unfreeze') {
         return fundAuthUnfreeze($ctx);
     }
+    logger.info(body);
+    return $ctx.ok('无效来源数据！');
 }
 export { gateway };

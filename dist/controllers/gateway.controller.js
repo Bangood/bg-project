@@ -278,39 +278,44 @@ function _gateway() {
         switch (_context5.prev = _context5.next) {
           case 0:
             body = $ctx.request.body;
+            logger.info('网关来信息了');
 
             if (!(body.service === 'alipay.service.check')) {
-              _context5.next = 3;
+              _context5.next = 4;
               break;
             }
 
             return _context5.abrupt("return", verify($ctx));
 
-          case 3:
+          case 4:
             if (!($ctx.request.body.notify_type === 'fund_auth_freeze')) {
-              _context5.next = 5;
+              _context5.next = 6;
               break;
             }
 
             return _context5.abrupt("return", fundAuthFreeze($ctx));
 
-          case 5:
+          case 6:
             if (!($ctx.request.body.notify_type === 'trade_status_sync')) {
-              _context5.next = 7;
+              _context5.next = 8;
               break;
             }
 
             return _context5.abrupt("return", tradePay($ctx));
 
-          case 7:
+          case 8:
             if (!($ctx.request.body.notify_type === 'fund_auth_unfreeze')) {
-              _context5.next = 9;
+              _context5.next = 10;
               break;
             }
 
             return _context5.abrupt("return", fundAuthUnfreeze($ctx));
 
-          case 9:
+          case 10:
+            logger.info(body);
+            return _context5.abrupt("return", $ctx.ok('无效来源数据！'));
+
+          case 12:
           case "end":
             return _context5.stop();
         }
