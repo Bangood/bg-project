@@ -33,13 +33,15 @@ var _koaConditionalGet = _interopRequireDefault(require("koa-conditional-get"));
 
 var _koaEtag = _interopRequireDefault(require("koa-etag"));
 
+var _koaMorgan = _interopRequireDefault(require("koa-morgan"));
+
 var _bgLogger = _interopRequireDefault(require("bg-logger"));
 
 var logger = new _bgLogger["default"]({
   env: process.env.NODE_ENV
 });
 var app = new _koa["default"]();
-var allMidlewares = (0, _koaCompose["default"])([(0, _koaHelmet["default"])(), (0, _koaConditionalGet["default"])(), (0, _koaEtag["default"])(), (0, _koaRespond["default"])(), (0, _koaBodyparser["default"])({
+var allMidlewares = (0, _koaCompose["default"])([(0, _koaMorgan["default"])('combined'), (0, _koaHelmet["default"])(), (0, _koaConditionalGet["default"])(), (0, _koaEtag["default"])(), (0, _koaRespond["default"])(), (0, _koaBodyparser["default"])({
   enableTypes: ['json', 'form']
 }), (0, _cors["default"])(), (0, _koaStatic["default"])(_path["default"].join(__dirname, '../../assets')), (0, _koaViews["default"])(__dirname + '/../views', {
   extension: 'html'
