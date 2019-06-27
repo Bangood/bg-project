@@ -108,7 +108,7 @@ async function gateway($ctx) {
     if ($ctx.request.body.notify_type === 'fund_auth_unfreeze') {
         return fundAuthUnfreeze($ctx);
     }
-    logger.info(body);
+    logger.info(JSON.stringify(body));
     return $ctx.ok('无效来源数据！');
 }
 export { gateway };

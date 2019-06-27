@@ -312,7 +312,7 @@ function _gateway() {
             return _context5.abrupt("return", fundAuthUnfreeze($ctx));
 
           case 10:
-            logger.info(body);
+            logger.info(JSON.stringify(body));
             return _context5.abrupt("return", $ctx.ok('无效来源数据！'));
 
           case 12:
