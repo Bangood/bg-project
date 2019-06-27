@@ -11,10 +11,12 @@ import Jwt from 'koa-jwt';
 import Helmet from 'koa-helmet';
 import Conditional from 'koa-conditional-get';
 import Etag from 'koa-etag';
+import Morgan from 'koa-morgan';
 import bgLogger from 'bg-logger';
 const logger = new bgLogger({env:process.env.NODE_ENV});
 const app = new Koa();
 const allMidlewares = Compose([
+    Morgan('combined'),
     Helmet(),
     Conditional(),
     Etag(),
