@@ -91,7 +91,7 @@ export class ServiceComponent implements OnDestroy {
     });
   }
   fundAuthUnfreeze(event, order) {
-    console.log(order)
+    console.log(order);
     this._confirmationService.confirm({
       message: '确定对该笔订单进行资金授权解冻吗？',
       accept: () => {
@@ -99,7 +99,7 @@ export class ServiceComponent implements OnDestroy {
           authNo: order.authNo,
           outRequestNo: order.outRequestNo,
           amount: order.totalFreezeAmount,
-          remark: '解冻0.01元'
+          remark: '押金解冻'
         })
           .then(res => {
           });
