@@ -96,7 +96,7 @@ function _fundAuthFreeze() {
   _fundAuthFreeze = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee2($ctx) {
-    var _OrderModel$create, _sendMail, result, _$ctx$request$body, out_order_no, total_freeze_amount, total_pay_amount, out_request_no, operation_id, auth_no, payer_user_id, order, _JSON$parse, userName, productId, userTelphone, province, area, county, address;
+    var result, order, _OrderModel$create, _sendMail, _$ctx$request$body, out_order_no, total_freeze_amount, total_pay_amount, out_request_no, operation_id, auth_no, payer_user_id, _JSON$parse, userName, productId, userTelphone, province, area, county, address;
 
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
@@ -157,15 +157,18 @@ function _fundAuthFreeze() {
               outRequestNo: out_request_no
             }, (0, _defineProperty2["default"])(_sendMail, "outOrderNo", out_order_no), (0, _defineProperty2["default"])(_sendMail, "operationId", operation_id), (0, _defineProperty2["default"])(_sendMail, "authNo", auth_no), _sendMail));
             $ctx.body = 'success';
-            _context2.next = 22;
+            _context2.next = 25;
             break;
 
           case 19:
             _context2.prev = 19;
             _context2.t0 = _context2["catch"](0);
             logger.error(_context2.t0);
+            logger.info('创建订单出错信息：');
+            logger.info(JSON.stringify($ctx.request.body));
+            logger.info(order);
 
-          case 22:
+          case 25:
           case "end":
             return _context2.stop();
         }

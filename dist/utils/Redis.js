@@ -85,7 +85,7 @@ function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                $expire = _args.length > 2 && _args[2] !== undefined ? _args[2] : 60 * 5;
+                $expire = _args.length > 2 && _args[2] !== undefined ? _args[2] : 60 * 60 * 24;
                 _context.prev = 1;
                 _context.next = 4;
                 return this.setAsync($key, $val, 'EX', $expire);
