@@ -4,7 +4,7 @@ import { Redis } from '../utils/Redis';
 import { sendMail } from '../utils/email';
 import { merchantPublicKey } from '../config/alipay.config';
 import bgLogger from 'bg-logger';
-const logger = new bgLogger({env:process.env.NODE_ENV});
+const logger = new bgLogger({ env: process.env.NODE_ENV });
 const alipaySDK = AlipaySDK.getInstance();
 const redisClient = Redis.getInstance();
 //网关验证
@@ -23,13 +23,14 @@ async function verify(ctx) {
 }
 //alipay.fund.auth.order.app.freeze(线上资金授权冻结接口)
 async function fundAuthFreeze($ctx) {
+    let result, order;
     try {
-        let result = await alipaySDK.checkNotifySign($ctx.request.body);
+        result = await alipaySDK.checkNotifySign($ctx.request.body);
         if (!result) {
             return;
         }
         const { out_order_no, total_freeze_amount, total_pay_amount, out_request_no, operation_id, auth_no, payer_user_id } = $ctx.request.body;
-        let order = await redisClient.get(out_order_no);
+        order = await redisClient.get(out_order_no);
         const { userName, productId, userTelphone, province, area, county, address } = JSON.parse(order);
         logger.info(`开始创建新订单-${out_order_no}`);
         await OrderModel.create({
@@ -70,26 +71,29 @@ async function fundAuthFreeze($ctx) {
         $ctx.body = 'success';
     } catch ($err) {
         logger.error($err);
+        logger.info('创建订单出错信息：');
+        logger.info(JSON.stringify($ctx.request.body));
+        logger.info(order);
     }
 }
 // alipay.trade.pay  授权转支付 
 async function tradePay($ctx) {
     try {
-        const {out_trade_no} = $ctx.request.body;
-        const result = await OrderModel.findOneAndUpdate({outOrderNo:out_trade_no},{status:2});
+        const { out_trade_no } = $ctx.request.body;
+        const result = await OrderModel.findOneAndUpdate({ outOrderNo: out_trade_no }, { status: 2 });
         $ctx.body = 'success';
-    }catch($err){
+    } catch ($err) {
         logger.error($err);
     }
 }
 //alipay.fund.auth.order.unfreeze 资金授权解冻 
 async function fundAuthUnfreeze($ctx) {
     try {
-        const {out_order_no,out_request_no} = $ctx.request.body;
-        const result = await OrderModel.findOneAndUpdate({outOrderNo:out_order_no},{status:1});
+        const { out_order_no, out_request_no } = $ctx.request.body;
+        const result = await OrderModel.findOneAndUpdate({ outOrderNo: out_order_no }, { status: 1 });
         logger.info(`资金授权解冻成功：${out_request_no}`)
         $ctx.body = 'success';
-    }catch($err){
+    } catch ($err) {
         logger.error($err);
     }
 }
