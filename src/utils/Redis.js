@@ -1,7 +1,7 @@
 import redisClient from 'redis';
 import { promisify } from 'util';
 import bgLogger from 'bg-logger';
-const logger = new bgLogger({env:process.env.NODE_ENV});
+const logger = new bgLogger({ env: process.env.NODE_ENV });
 export class Redis {
     constructor() {
         this.instance = null;
@@ -27,7 +27,7 @@ export class Redis {
                 return Math.min($options.attempt * 100, 3000);
             }
         });
-        this.client.on("error", function($err) {
+        this.client.on("error", function ($err) {
             logger.error("Error" + $err);
         })
         this.client.on('connect', () => {
@@ -48,7 +48,7 @@ export class Redis {
         }
         return this.instance;
     }
-    async set($key, $val, $expire = 60 * 5) {
+    async set($key, $val, $expire = 60 * 60 * 24) {
         try {
             const res = await this.setAsync($key, $val, 'EX', $expire);
             return res;
