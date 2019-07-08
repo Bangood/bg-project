@@ -48,41 +48,42 @@ function _verify() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
+            logger.info('这是一条网关验证信息');
+            _context.prev = 1;
+            _context.next = 4;
             return alipaySDK.checkNotifySignForGateway(ctx.request.body);
 
-          case 3:
+          case 4:
             result = _context.sent;
 
             if (!result) {
-              _context.next = 10;
+              _context.next = 11;
               break;
             }
 
-            _context.next = 7;
+            _context.next = 8;
             return alipaySDK.signForGateway();
 
-          case 7:
+          case 8:
             sign = _context.sent;
             ctx.response.type = 'text/xml;charset=GBK';
             return _context.abrupt("return", ctx.body = "<?xml version=\"1.0\" encoding=\"GBK\"?><alipay><response><biz_content>".concat(_alipay.merchantPublicKey, "</biz_content><success>true</success></response><sign>").concat(sign, "</sign><sign_type>RSA2</sign_type></alipay>"));
 
-          case 10:
-            _context.next = 15;
+          case 11:
+            _context.next = 16;
             break;
 
-          case 12:
-            _context.prev = 12;
-            _context.t0 = _context["catch"](0);
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](1);
             logger.error(_context.t0);
 
-          case 15:
+          case 16:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[1, 13]]);
   }));
   return _verify.apply(this, arguments);
 }
@@ -102,30 +103,31 @@ function _fundAuthFreeze() {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
+            logger.info('这是一条线上资金授权冻结信息');
+            _context2.prev = 1;
+            _context2.next = 4;
             return alipaySDK.checkNotifySign($ctx.request.body);
 
-          case 3:
+          case 4:
             result = _context2.sent;
 
             if (result) {
-              _context2.next = 6;
+              _context2.next = 7;
               break;
             }
 
             return _context2.abrupt("return");
 
-          case 6:
+          case 7:
             _$ctx$request$body = $ctx.request.body, out_order_no = _$ctx$request$body.out_order_no, total_freeze_amount = _$ctx$request$body.total_freeze_amount, total_pay_amount = _$ctx$request$body.total_pay_amount, out_request_no = _$ctx$request$body.out_request_no, operation_id = _$ctx$request$body.operation_id, auth_no = _$ctx$request$body.auth_no, payer_user_id = _$ctx$request$body.payer_user_id;
-            _context2.next = 9;
+            _context2.next = 10;
             return redisClient.get(out_order_no);
 
-          case 9:
+          case 10:
             order = _context2.sent;
             _JSON$parse = JSON.parse(order), userName = _JSON$parse.userName, productId = _JSON$parse.productId, userTelphone = _JSON$parse.userTelphone, province = _JSON$parse.province, area = _JSON$parse.area, county = _JSON$parse.county, address = _JSON$parse.address;
             logger.info("\u5F00\u59CB\u521B\u5EFA\u65B0\u8BA2\u5355-".concat(out_order_no));
-            _context2.next = 14;
+            _context2.next = 15;
             return _order.OrderModel.create((_OrderModel$create = {
               userName: userName,
               userId: payer_user_id,
@@ -141,7 +143,7 @@ function _fundAuthFreeze() {
               outRequestNo: out_request_no
             }, (0, _defineProperty2["default"])(_OrderModel$create, "outOrderNo", out_order_no), (0, _defineProperty2["default"])(_OrderModel$create, "operationId", operation_id), (0, _defineProperty2["default"])(_OrderModel$create, "authNo", auth_no), (0, _defineProperty2["default"])(_OrderModel$create, "status", 0), _OrderModel$create));
 
-          case 14:
+          case 15:
             logger.info("\u521B\u5EFA\u65B0\u8BA2\u5355-".concat(out_order_no, "\u6210\u529F,\u5E76\u53D1\u9001\u90AE\u4EF6"));
             (0, _email.sendMail)((_sendMail = {
               pid: productId,
@@ -157,23 +159,23 @@ function _fundAuthFreeze() {
               outRequestNo: out_request_no
             }, (0, _defineProperty2["default"])(_sendMail, "outOrderNo", out_order_no), (0, _defineProperty2["default"])(_sendMail, "operationId", operation_id), (0, _defineProperty2["default"])(_sendMail, "authNo", auth_no), _sendMail));
             $ctx.body = 'success';
-            _context2.next = 25;
+            _context2.next = 26;
             break;
 
-          case 19:
-            _context2.prev = 19;
-            _context2.t0 = _context2["catch"](0);
+          case 20:
+            _context2.prev = 20;
+            _context2.t0 = _context2["catch"](1);
             logger.error(_context2.t0);
             logger.info('创建订单出错信息：');
             logger.info(JSON.stringify($ctx.request.body));
             logger.info(order);
 
-          case 25:
+          case 26:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 19]]);
+    }, _callee2, null, [[1, 20]]);
   }));
   return _fundAuthFreeze.apply(this, arguments);
 }
@@ -192,32 +194,33 @@ function _tradePay() {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.prev = 0;
+            logger.info('这是一条授权转支付信息');
+            _context3.prev = 1;
             out_trade_no = $ctx.request.body.out_trade_no;
-            _context3.next = 4;
+            _context3.next = 5;
             return _order.OrderModel.findOneAndUpdate({
               outOrderNo: out_trade_no
             }, {
               status: 2
             });
 
-          case 4:
+          case 5:
             result = _context3.sent;
             $ctx.body = 'success';
-            _context3.next = 11;
+            _context3.next = 12;
             break;
 
-          case 8:
-            _context3.prev = 8;
-            _context3.t0 = _context3["catch"](0);
+          case 9:
+            _context3.prev = 9;
+            _context3.t0 = _context3["catch"](1);
             logger.error(_context3.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 8]]);
+    }, _callee3, null, [[1, 9]]);
   }));
   return _tradePay.apply(this, arguments);
 }
@@ -236,33 +239,34 @@ function _fundAuthUnfreeze() {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _context4.prev = 0;
+            logger.info('这是一条资金授权解冻信息');
+            _context4.prev = 1;
             _$ctx$request$body2 = $ctx.request.body, out_order_no = _$ctx$request$body2.out_order_no, out_request_no = _$ctx$request$body2.out_request_no;
-            _context4.next = 4;
+            _context4.next = 5;
             return _order.OrderModel.findOneAndUpdate({
               outOrderNo: out_order_no
             }, {
               status: 1
             });
 
-          case 4:
+          case 5:
             result = _context4.sent;
             logger.info("\u8D44\u91D1\u6388\u6743\u89E3\u51BB\u6210\u529F\uFF1A".concat(out_request_no));
             $ctx.body = 'success';
-            _context4.next = 12;
+            _context4.next = 13;
             break;
 
-          case 9:
-            _context4.prev = 9;
-            _context4.t0 = _context4["catch"](0);
+          case 10:
+            _context4.prev = 10;
+            _context4.t0 = _context4["catch"](1);
             logger.error(_context4.t0);
 
-          case 12:
+          case 13:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 9]]);
+    }, _callee4, null, [[1, 10]]);
   }));
   return _fundAuthUnfreeze.apply(this, arguments);
 }
@@ -315,10 +319,11 @@ function _gateway() {
             return _context5.abrupt("return", fundAuthUnfreeze($ctx));
 
           case 10:
+            logger.info('这是一条无法解读的信息');
             logger.info(JSON.stringify(body));
             return _context5.abrupt("return", $ctx.ok('无效来源数据！'));
 
-          case 12:
+          case 13:
           case "end":
             return _context5.stop();
         }

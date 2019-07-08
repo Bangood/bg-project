@@ -61,20 +61,21 @@ function _tradePay() {
           case 4:
             result = _context.sent;
             logger.info('tradePay-result:', result);
-            _context.next = 11;
+            $ctx.ok(result);
+            _context.next = 12;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             logger.error(_context.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 9]]);
   }));
   return _tradePay.apply(this, arguments);
 }
