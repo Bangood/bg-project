@@ -21,7 +21,7 @@ async function tradePay($ctx){
             },
             notifyUrl: 'http://39.100.71.78/v1/gateway'
         });
-        logger.info('tradePay-result:',result);
+        logger.info(`tradePay-result:${JSON.stringify(result)}`);
         $ctx.ok(result);
     }catch(err){
         logger.error(err);

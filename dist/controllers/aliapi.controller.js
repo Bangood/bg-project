@@ -60,7 +60,7 @@ function _tradePay() {
 
           case 4:
             result = _context.sent;
-            logger.info('tradePay-result:', result);
+            logger.info("tradePay-result:".concat(JSON.stringify(result)));
             $ctx.ok(result);
             _context.next = 12;
             break;
