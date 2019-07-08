@@ -9,6 +9,7 @@ const alipaySDK = AlipaySDK.getInstance();
 const redisClient = Redis.getInstance();
 //网关验证
 async function verify(ctx) {
+    logger.info('这是一条网关验证信息');
     try {
         const result = await alipaySDK.checkNotifySignForGateway(ctx.request.body);
         if (result) {
@@ -23,6 +24,7 @@ async function verify(ctx) {
 }
 //alipay.fund.auth.order.app.freeze(线上资金授权冻结接口)
 async function fundAuthFreeze($ctx) {
+    logger.info('这是一条线上资金授权冻结信息');
     let result, order;
     try {
         result = await alipaySDK.checkNotifySign($ctx.request.body);
@@ -78,6 +80,7 @@ async function fundAuthFreeze($ctx) {
 }
 // alipay.trade.pay  授权转支付 
 async function tradePay($ctx) {
+    logger.info('这是一条授权转支付信息');
     try {
         const { out_trade_no } = $ctx.request.body;
         const result = await OrderModel.findOneAndUpdate({ outOrderNo: out_trade_no }, { status: 2 });
@@ -88,6 +91,7 @@ async function tradePay($ctx) {
 }
 //alipay.fund.auth.order.unfreeze 资金授权解冻 
 async function fundAuthUnfreeze($ctx) {
+    logger.info('这是一条资金授权解冻信息');
     try {
         const { out_order_no, out_request_no } = $ctx.request.body;
         const result = await OrderModel.findOneAndUpdate({ outOrderNo: out_order_no }, { status: 1 });
@@ -112,7 +116,9 @@ async function gateway($ctx) {
     if ($ctx.request.body.notify_type === 'fund_auth_unfreeze') {
         return fundAuthUnfreeze($ctx);
     }
+    logger.info('这是一条无法解读的信息');
     logger.info(JSON.stringify(body));
+    
     return $ctx.ok('无效来源数据！');
 }
 export { gateway };
