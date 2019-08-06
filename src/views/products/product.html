@@ -304,6 +304,8 @@
                                     ap.tradePay({
                                         orderStr: data.data.msg.body
                                     }, function(res) {
+                                        alert(res);
+                                        alert(JSON.stringify(res))
                                         if (res.resultCode == "9000") {
                                             $.ok(function() {
                                                 // window.location.href = "orderlist.html?openId=" + data.data.msg.openId;
@@ -319,7 +321,7 @@
 
                                 } else {
                                     $.alert({
-                                        showText: data
+                                        showText: data.data.msg
                                     });
                                 }
                             }
