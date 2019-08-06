@@ -83,7 +83,7 @@ function _create() {
               orderTitle: '预授权冻结',
               amount: product.creditAmount,
               productCode: 'PRE_AUTH_ONLINE',
-              payeeLogonId: '396493396@qq.com',
+              payeeLogonId: '287215760@qq.com',
               payTimeout: '30m',
               enablePayChannels: "[{\"payChannelType\":\"CREDITZHIMA\"},{\"payChannelType\":\"MONEY_FUND\"},{\"payChannelType\":\"PCREDIT_PAY\"}]",
               extraParam: "{\"category\":\"RENT_DIGITAL\"}"
