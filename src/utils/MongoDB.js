@@ -7,7 +7,9 @@ export class MongoDB{
     }
     static getInstance(){
         if(!this.instance){
-            this.instance = mongoose.createConnection('mongodb://bangood:alipay15196634454@ds155076.mlab.com:55076/alipay', { useNewUrlParser: true, useFindAndModify: false,reconnectTries: Number.MAX_VALUE,reconnectInterval: 500, poolSize: 10,useCreateIndex: true,autoIndex: false});
+            // this.instance = mongoose.createConnection('mongodb://bangood:alipay15196634454@ds155076.mlab.com:55076/alipay', { useNewUrlParser: true, useFindAndModify: false,reconnectTries: Number.MAX_VALUE,reconnectInterval: 500, poolSize: 10,useCreateIndex: true,autoIndex: false});
+            this.instance = mongoose.createConnection('mongodb://bangood:fuka15196634454@ds033484.mlab.com:33484/fuka', { useNewUrlParser: true, useFindAndModify: false,reconnectTries: Number.MAX_VALUE,reconnectInterval: 500, poolSize: 10,useCreateIndex: true,autoIndex: false});
+
             this.instance.once('open',function(){
                 logger.success('数据库已连接')
             })
