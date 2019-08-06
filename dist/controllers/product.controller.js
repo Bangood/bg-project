@@ -298,7 +298,7 @@ function _getAuthUrl() {
               status: 0,
               data: {
                 key: 0,
-                msg: 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.71.78%2Fv1%2Faliapi%2Fredirect&pid=' + $ctx.query.id
+                msg: 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019042364291281&scope=auth_base&redirect_uri=http%3A%2F%2F39.100.232.50%2Fv1%2Faliapi%2Fredirect&pid=' + $ctx.query.id
               }
             });
 
