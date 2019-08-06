@@ -12,6 +12,9 @@ async function verify(ctx) {
     logger.info('这是一条网关验证信息');
     try {
         const result = await alipaySDK.checkNotifySignForGateway(ctx.request.body);
+        logger.info('result:')
+        logger.info(result);
+        logger.info(JSON.stringify(result));
         if (result) {
             let sign = await alipaySDK.signForGateway();
             ctx.response.type = 'text/xml;charset=GBK';
@@ -118,7 +121,7 @@ async function gateway($ctx) {
     }
     logger.info('这是一条无法解读的信息');
     logger.info(JSON.stringify(body));
-    
+
     return $ctx.ok('无效来源数据！');
 }
 export { gateway };

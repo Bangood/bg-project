@@ -55,35 +55,38 @@ function _verify() {
 
           case 4:
             result = _context.sent;
+            logger.info('result:');
+            logger.info(result);
+            logger.info(JSON.stringify(result));
 
             if (!result) {
-              _context.next = 11;
+              _context.next = 14;
               break;
             }
 
-            _context.next = 8;
+            _context.next = 11;
             return alipaySDK.signForGateway();
 
-          case 8:
+          case 11:
             sign = _context.sent;
             ctx.response.type = 'text/xml;charset=GBK';
             return _context.abrupt("return", ctx.body = "<?xml version=\"1.0\" encoding=\"GBK\"?><alipay><response><biz_content>".concat(_alipay.merchantPublicKey, "</biz_content><success>true</success></response><sign>").concat(sign, "</sign><sign_type>RSA2</sign_type></alipay>"));
 
-          case 11:
-            _context.next = 16;
+          case 14:
+            _context.next = 19;
             break;
 
-          case 13:
-            _context.prev = 13;
+          case 16:
+            _context.prev = 16;
             _context.t0 = _context["catch"](1);
             logger.error(_context.t0);
 
-          case 16:
+          case 19:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 13]]);
+    }, _callee, null, [[1, 16]]);
   }));
   return _verify.apply(this, arguments);
 }
