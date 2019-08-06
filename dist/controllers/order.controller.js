@@ -76,7 +76,7 @@ function _create() {
             product = _context.sent;
             formData = new _form["default"]();
             formData.setMethod('get');
-            formData.addField('notifyUrl', 'http://39.100.71.78/v1/gateway');
+            formData.addField('notifyUrl', 'http://39.100.232.50/v1/gateway');
             formData.addField('bizContent', {
               outOrderNo: outOrderNo,
               outRequestNo: outRequestNo,

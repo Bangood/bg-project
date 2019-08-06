@@ -19,7 +19,7 @@ async function tradePay($ctx){
                 body: '预授权解冻转支付',
                 authConfirmMode: 'COMPLETE'
             },
-            notifyUrl: 'http://39.100.71.78/v1/gateway'
+            notifyUrl: 'http://39.100.232.50/v1/gateway'
         });
         logger.info(`tradePay-result:${JSON.stringify(result)}`);
         $ctx.ok(result);
@@ -38,7 +38,7 @@ async function fundAuthUnfreeze($ctx){
                 amount,
                 remark
             },
-             notifyUrl: 'http://39.100.71.78/v1/gateway'
+             notifyUrl: 'http://39.100.232.50/v1/gateway'
         })
         logger.info(`开始资金授权解冻：${outRequestNo}`);
         $ctx.ok(result);

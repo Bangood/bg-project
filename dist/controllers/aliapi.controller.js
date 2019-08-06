@@ -55,7 +55,7 @@ function _tradePay() {
                 body: '预授权解冻转支付',
                 authConfirmMode: 'COMPLETE'
               },
-              notifyUrl: 'http://39.100.71.78/v1/gateway'
+              notifyUrl: 'http://39.100.232.50/v1/gateway'
             });
 
           case 4:
@@ -104,7 +104,7 @@ function _fundAuthUnfreeze() {
                 amount: amount,
                 remark: remark
               },
-              notifyUrl: 'http://39.100.71.78/v1/gateway'
+              notifyUrl: 'http://39.100.232.50/v1/gateway'
             });
 
           case 4:

@@ -350,7 +350,7 @@ function _h5InvokeAlipay() {
         switch (_context9.prev = _context9.next) {
           case 0:
             _context9.next = 2;
-            return $ctx.redirect('alipays://platformapi/startapp?appId=20000067&url=https%3A%2F%2Fopenauth.alipay.com%2Foauth2%2FpublicAppAuthorize.htm%3Fapp_id%3D2019042364291281%26scope%3Dauth_base%26redirect_uri%3Dhttp%253A%252F%252F39.100.71.78%252Fv1%252Faliapi%252Fredirect%26pid%3D5cda6bd18d205f4ea85377e1');
+            return $ctx.redirect('alipays://platformapi/startapp?appId=20000067&url=https%3A%2F%2Fopenauth.alipay.com%2Foauth2%2FpublicAppAuthorize.htm%3Fapp_id%3D2019042364291281%26scope%3Dauth_base%26redirect_uri%3Dhttp%253A%252F%252F39.100.232.50%252Fv1%252Faliapi%252Fredirect%26pid%3D5cda6bd18d205f4ea85377e1');
 
           case 2:
           case "end":

@@ -20,7 +20,7 @@ async function create($ctx) {
         const product = await ProductModel.findById(productId);
         const formData = new AlipayFormData();
         formData.setMethod('get');
-        formData.addField('notifyUrl', 'http://39.100.71.78/v1/gateway');
+        formData.addField('notifyUrl', 'http://39.100.232.50/v1/gateway');
         formData.addField('bizContent', {
             outOrderNo: outOrderNo,
             outRequestNo: outRequestNo,
