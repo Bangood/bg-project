@@ -51,7 +51,7 @@
     "microtime": "3.0.0",
     "mongoose": "5.5.7",
     "nodemailer": "6.1.1",
-    "pug": "2.0.3",
+    "pug": "3.0.1",
     "redis": "2.8.0"
   }
 }
