@@ -50,7 +50,7 @@
     "koa-views": "6.2.0",
     "microtime": "3.0.0",
     "mongoose": "5.5.7",
-    "nodemailer": "6.1.1",
+    "nodemailer": "6.4.16",
     "pug": "2.0.3",
     "redis": "2.8.0"
   }
