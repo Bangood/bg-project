@@ -35,7 +35,7 @@
     "bcrypt": "3.0.6",
     "bg-logger": "1.0.4",
     "config": "3.1.0",
-    "jsonwebtoken": "8.5.1",
+    "jsonwebtoken": "9.0.0",
     "koa": "2.7.0",
     "koa-bodyparser": "4.2.1",
     "koa-compose": "4.1.0",
